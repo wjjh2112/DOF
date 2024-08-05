@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>DOF - Temperature Details</title>
+    <title>DOF - Dissolved Oxygen Details</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -156,12 +156,13 @@
                                 <a href="index.html"><i class="fas fa-arrow-left"></i></a>
                             </div>
                             <div class="col-sm-6">
-                                <center><h1>Temperature &nbsp; &deg;C</h1></center>
+                                <center><h1>Dissolved Oxygen &nbsp; mg/L</h1></center>
                             </div>
                         </div>
+
+                        <!-- CARD -->
                         <div class="row">
                             <div class="col">
-                                <!-- CARD -->
                                 <div class="au-card">
                                     <div class="au-card-header">
                                         <div class="row align-items-center">
@@ -181,8 +182,8 @@
                                             <div class="col">
                                                 <!-- REAL TIME GRAPH -->
                                                 <div class="au-card m-b-20">
-                                                        <h4><i class="far fa-chart-bar"></i> Real Time Temperature</h4><br>
-                                                        <canvas id="realtimeTemp"></canvas>
+                                                        <h4><i class="far fa-chart-bar"></i> Real Time Dissolved Oxygen</h4><br>
+                                                        <canvas id="realtimeDO"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -190,15 +191,15 @@
                                             <!-- CURRENT TEMP -->
                                             <div class="col-lg-4">
                                                 <div class="au-card">
-                                                    <h4 class="p-b-40"><i class="far fa-chart-pie"></i> Current Temperature</h4><br>
-                                                    <div id="temperature-gauge"></div>
+                                                    <h4 class="p-b-40"><i class="far fa-chart-pie"></i> Current Dissolved Oxygen</h4><br>
+                                                    <div id="do-gauge"></div>
                                                 </div>
                                             </div>
                                             <!-- TEMP EXTREMES -->
                                             <div class="col-lg-8">
                                                 <div class="au-card">
                                                     <div class="au-card-inner">
-                                                        <h4><i class="far fa-chart-bar"></i> Temperature Extremes</h4><br>
+                                                        <h4><i class="far fa-chart-bar"></i> Dissolved Oxygen Extremes</h4><br>
                                                         <div class="default-tab">
                                                             <nav>
                                                                 <div class="nav nav-tabs" id="temp-nav-tab" role="tablist">
@@ -278,8 +279,8 @@
     <!-- Main JS-->
     <script src="js/main.js"></script>
 
-    <!-- Temperature Details JS -->
-    <script src="js/tempDetails.js"></script>
+    <!-- Dissolved Oxygen Details JS -->
+    <script src="js/doDetails.js"></script>
 
 </body>
 
