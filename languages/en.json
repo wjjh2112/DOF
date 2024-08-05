@@ -1,13 +1,12 @@
 {
-    "dashboard": "Dashboard",
+    "telemetry": "Telemetry",
     "history": "History",
-    "statistics": "Statistics",
-    "reports": "Reports",
-    "users": "Users",
-    "devices": "Devices",
+    "accounting": "Accounting",
+    "gallery": "Gallery",
+    "about": "About",
+    "settings": "Settings",
 
     "account": "Account",
-    "settings": "Settings",
     "language": "Language",
     "changeLanguage": "Change Language",
     "logout": "Logout",
