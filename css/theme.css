@@ -294,8 +294,6 @@ section {
 .page-container {
     background: #f2f2f2;
     padding-left: 0px;
-    border-top-left-radius:15px; 
-    border-bottom-left-radius: 15px;
 }
 
 @media (max-width: 991px) {
@@ -545,7 +543,7 @@ section {
     background: #fd5959;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 3px;
+    border-radius: 5px;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -560,6 +558,11 @@ section {
 .au-btn--block {
     display: block;
     width: 100%;
+}
+
+.au-btn--logout {
+    background: #fd5959;
+    color: #fff;
 }
 
 .au-btn-icon i {
@@ -1313,6 +1316,10 @@ input[type="file"] {
     width: 180px;
 }
 
+.rs-select2--lg {
+    width: 250px;
+}
+
 .select2-container {
     display: block;
     max-width: 100% !important;
@@ -1610,11 +1617,11 @@ input[type="file"] {
 
 /* ----- Header ----- */
 .header-desktop {
-    background: #fff;
+    background: #fd5959;
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
+    width: 110px;
     height: 45px;
     z-index: 3;
     border-radius: 5px;
@@ -1646,7 +1653,6 @@ input[type="file"] {
         top: 10px;
     }
 }
-
 
 .header-wrap {
     display: flex;
@@ -3564,8 +3570,54 @@ input[type="file"] {
     background: #fff;
     overflow: hidden;
     margin: 10px;
-
 }
+
+.au-card-sm {
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+    display: block;
+    margin: 10px;
+    position: relative;
+}
+
+.au-card-xs {
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff;
+    overflow: hidden;
+    margin: 10px;
+}
+  
+.au-card-sm-inner {
+    padding: 10px;
+}
+
+.au-card-sm-footer {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    padding: 3px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    z-index: 10;
+  }
+  
+.au-card-footer :hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #fff;
+  }
 
 .au-card--border {
     -webkit-border-radius: 3px;
