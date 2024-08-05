@@ -29,6 +29,12 @@
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="vendor/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables-buttons/css/buttons.bootstrap4.min.css">
 
     <!-- Date Range Picker CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -37,11 +43,7 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 
     <style>
-        .highlighted-row {
-            background-color: lightgray;
-        }
     </style>
-
 </head>
 
 <body>
@@ -51,8 +53,8 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="/Dashboard">
-                            <img src="images/icon/GajahSafeLogo1.png" alt="GajahSafe" />
+                        <a class="logo" href="index.html">
+                            <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -66,28 +68,28 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li>
-                            <a href="/Dashboard">
-                                <i class="fas fa-tachometer-alt"></i><span data-i18n="dashboard"></span></a>
+                            <a href="index.html">
+                                <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
                         </li>
                         <li class="has-sub">
-                            <a href="/History">
+                            <a href="history.html">
                                 <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
                         </li>
                         <li>
-                            <a href="/Statistics">
-                                <i class="fas fa-chart-bar"></i><span data-i18n="statistics"></span></a>
+                            <a href="accounting.html">
+                                <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span></a>
                         </li>
                         <li>
-                            <a href="/Reports">
-                                <i class="fas fa-table"></i><span data-i18n="reports"></span></a>
+                            <a href="gallery.html">
+                                <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
                         </li>
-                        <li id="mobile-users-item">
-                            <a href="/Users">
-                                <i class="far fa-users"></i><span data-i18n="users"></span></a>
+                        <li>
+                            <a href="about.html">
+                                <i class="far fa-users"></i><span data-i18n="aboout"></span></a>
                         </li>
-                        <li id="mobile-devices-item">
-                            <a href="/Devices">
-                                <i class="fas fa-wrench"></i><span data-i18n="devices"></span></a>
+                        <li>
+                            <a href="settings.html">
+                                <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
                         </li>
                     </ul>
                 </div>
@@ -99,35 +101,35 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/GajahSafeLogo1.png" alt="GajahSafe" />
+                    <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="/Dashboard">
-                                <i class="fas fa-tachometer-alt"></i><span data-i18n="dashboard"></span></a>
+                            <a href="index.html">
+                                <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
                         </li>
                         <li class="active has-sub">
-                            <a href="/History">
+                            <a href="history.html">
                                 <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
                         </li>
                         <li>
-                            <a href="/Statistics">
-                                <i class="fas fa-chart-bar"></i><span data-i18n="statistics"></span></a>
+                            <a href="accounting.html">
+                                <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span></a>
                         </li>
                         <li>
-                            <a href="/Reports">
-                                <i class="fas fa-table"></i><span data-i18n="reports"></span></a>
+                            <a href="gallery.html">
+                                <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
                         </li>
-                        <li id="sidebar-users-item">
-                            <a href="/Users">
-                                <i class="far fa-users"></i><span data-i18n="users"></span></a>
+                        <li>
+                            <a href="about.html">
+                                <i class="far fa-users"></i><span data-i18n="about"></span></a>
                         </li>
-                        <li id="sidebar-devices-item">
-                            <a href="/Devices">
-                                <i class="fas fa-wrench"></i><span data-i18n="devices"></span></a>
+                        <li>
+                            <a href="settings.html">
+                                <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
                         </li>
                     </ul>
                 </nav>
@@ -139,44 +141,16 @@
         <div class="page-container">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop">
-                <div class="section__content section__content--p30">
-                <div class="container-fluid">
-                    <div class="header-wrap justify-content-end">
-                    <div class="header-button">
-                        <div class="account-wrap">
-                        <div class="account-item clearfix js-item-menu">
-                            <div class="image">
-                            <img id="avatarImg" src="images/icon/avatar-01.jpg" alt="Avatar" />
-                            </div>
-                            <div class="content">
-                            <a class="js-acc-btn" href="#" id="userName"></a>
-                            </div>
-                            <div class="account-dropdown js-dropdown">
-                            <div class="info clearfix">
-                                <div class="image">
-                                <img id="dropdownAvatarImg" src="images/icon/avatar-01.jpg" alt="Avatar" />
-                                </div>
-                                <div class="content">
-                                <h5 class="name" id="dropdownUserName"></h5>
-                                <span class="email" id="dropdownUserEmail"></span>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__body">
-                                <div class="account-dropdown__item">
-                                    <a href="#" id="languageSwitchBtn">
-                                    <i class="zmdi zmdi-globe"></i><span data-i18n="language"></span></a>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__footer">
-                                <a href="#" id="logoutBtn">
-                                <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span></a>
-                            </div>
+                <div class="section__content">
+                    <div class="container-fluid">
+                        <div class="header-wrap justify-content-end">
+                            <div>
+                                <button id="logoutBtn" class="au-btn--logout au-btn-icon">
+                                    <i class="zmdi zmdi-power"></i>Log Out</span>
+                                </button>
                             </div>
                         </div>
-                        </div>
                     </div>
-                    </div>
-                </div>
                 </div>
             </header>
             <!-- HEADER DESKTOP-->
@@ -206,139 +180,288 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="au-card">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 tm-b-5"><span data-i18n="deviceLocation"></span></h3><br>
-                                        <div class="row no-gutters">
-                                            <div id="googleMapHistory" class="map-content" style="width:100%; height:450px;"></div>
+                        <!-- END LANGUAGE POP UP -->
+                        <div class="row align-items-center">
+                            <div class="col d-flex justify-content-start"><h1>History</h1></div>
+                            <div class="col m-t-10 d-flex justify-content-end">
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--lg">
+                                            <select class="js-select2" name="sites" id="dropdownSites">
+                                                <option selected="Site">Site</option>
+                                                <option value="Santubong CageFarm">Santubong CageFarm</option>
+                                                <option value="Rambungan CageFarm">Rambungan CageFarm</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--lg">
+                                            <select class="js-select2" name="logger" id="dropdownLogger">
+                                                <option selected="Logger">Logger</option>
+                                                <option value="Logger 1">Logger 1</option>
+                                                <option value="Logger 2">Logger 2</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--lg">
+                                            <input type="text" id="dateRangePicker" name="daterange" placeholder="Select Date Range"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" >
+                        <div class="row">
                             <div class="col-md-12">
                                 <!-- DATA TABLE -->
                                 <div class="au-card">
                                     <div class="au-card-header">
-                                        <h3 class="title-2">Data Temp History</h3><br>
-                                        <div class="table-data__tool">
-                                            <div class="table-data__tool-left">
-                                                <div class="rs-select2--light">
-                                                    <input type="text" id="dateRangePicker" name="daterange" placeholder="Select Date Range"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="au-card-body">
-                                        <div class="table-container m-b-50">
-                                            <table class="table table-earning">
-                                                <thead>
-                                                    <tr>
-                                                        <th><span data-i18n="deviceID"></span></th>
-                                                        <th><span data-i18n="deviceName"></span></th>
-                                                        <th><span data-i18n="datetime"></span></th>
-                                                        <th><span data-i18n="action"></span></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>EF002</td>
-                                                        <td>Electric Fence 002</td>
-                                                        <td>20/09/2023, 16:08:30</td>
-                                                        <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF006</td>
-                                                            <td>Electric Fence 006</td>
-                                                            <td>20/06/2024, 16:08:57</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF002</td>
-                                                            <td>Electric Fence 002</td>
-                                                            <td>20/02/2024, 16:10:40</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF003</td>
-                                                            <td>Electric Fence 003</td>
-                                                            <td>12/02/2024, 16:13:10</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF004</td>
-                                                            <td>Electric Fence 004</td>
-                                                            <td>26/06/2024, 18:47:50</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF002</td>
-                                                            <td>Electric Fence 002</td>
-                                                            <td>01/12/2023, 16:08:57</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF001</td>
-                                                            <td>Electric Fence 001</td>
-                                                            <td>20/11/2023, 16:10:40</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF001</td>
-                                                            <td>Electric Fence 001</td>
-                                                            <td>20/05/2024, 16:13:10</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF004</td>
-                                                            <td>Electric Fence 004</td>
-                                                            <td>30/05/2024, 18:47:50</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF003</td>
-                                                            <td>Electric Fence 003</td>
-                                                            <td>20/09/2023, 16:08:57</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF006</td>
-                                                            <td>Electric Fence 006</td>
-                                                            <td>20/09/2023, 16:10:40</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF004</td>
-                                                            <td>Electric Fence 004</td>
-                                                            <td>20/09/2023, 16:13:10</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>EF005</td>
-                                                            <td>Electric Fence 005</td>
-                                                            <td>20/09/2023, 18:47:50</td>
-                                                            <td><a href="#" class="view-link"><span data-i18n="view"></span></a></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                        <h3>All Sites</h3>
+                                        <h4>All Loggers</h4>
+                                    </div><br>
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                          <th>Logger ID</th>
+                                          <th>Date</th>
+                                          <th>Time</th>
+                                          <th>Temp (&deg;C)</th>
+                                          <th>DO (mgL)</th>
+                                          <th>DO (%)</th>
+                                          <th>pH</th>
+                                          <th>EC</th>
+                                          <th>HEX</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/08/2024
+                                          </td>
+                                          <td>13:15:26</td>
+                                          <td> 30.8</td>
+                                          <td>4.97</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/08/2024
+                                          </td>
+                                          <td>
+                                            12:14:20</td>
+                                          <td> 30.8</td>
+                                          <td>4.97</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/08/2024
+                                          </td>
+                                          <td>11:13:16</td>
+                                          <td> 30.8</td>
+                                          <td>4.97</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/07/2024
+                                          </td>
+                                          <td>10:12:11</td>
+                                          <td> 30.8</td>
+                                          <td>5.91</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/07/2024
+                                          </td>
+                                          <td>
+                                            09:11:06</td>
+                                          <td> 29.8</td>
+                                          <td>4.97</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/07/2024
+                                          </td>
+                                          <td>08:10:01</td>
+                                          <td> 30.8</td>
+                                          <td>5.91</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/06/2024
+                                          </td>
+                                          <td>
+                                            07:08:56</td>
+                                          <td> 28.7</td>
+                                          <td>3.7</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/06/2024
+                                          </td>
+                                          <td>
+                                            06:07:50</td>
+                                          <td> 29.1</td>
+                                          <td>3.59</td>
+                                          <td>45.00</td>
+                                          <td>7.48</td>
+                                          <td>11490.96</td>
+                                          <td>28330167002D02EC46338BD3</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/06/2024
+                                          </td>
+                                          <td>05:06:44</td>
+                                          <td> 30.8</td>
+                                          <td>4.97</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/05/2024
+                                          </td>
+                                          <td>
+                                            04:05:39</td>
+                                          <td> 29.8</td>
+                                          <td>3.7</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/05/2024
+                                          </td>
+                                          <td>03:04:33</td>
+                                          <td> 30.8</td>
+                                          <td>4.97</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/05/2024
+                                          </td>
+                                          <td>
+                                            02:03:27</td>
+                                          <td> 28.7</td>
+                                          <td>5.91</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/04/2024
+                                          </td>
+                                          <td>
+                                            01:02:23</td>
+                                          <td> 30.8</td>
+                                          <td>4.97</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/04/2024
+                                          </td>
+                                          <td>
+                                            23:00:11</td>
+                                          <td> 30.8</td>
+                                          <td>3.7</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/04/2024
+                                          </td>
+                                          <td>13:15:26</td>
+                                          <td> 30.8</td>
+                                          <td>4.97</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        <tr>
+                                          <td>#356349280179954</td>
+                                          <td>
+                                            31/03/2024
+                                          </td>
+                                          <td>13:15:26</td>
+                                          <td> 30.8</td>
+                                          <td>4.97</td>
+                                          <td>65.00</td>
+                                          <td>7.77</td>
+                                          <td>12799.99</td>
+                                          <td>284401F1004103094647FFF7</td>
+                                        </tr>
+                                        </tfoot>
+                                      </table>
                                 </div>
                             </div>
                         </div>
-
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="row p-t-40"></div>
                     </div>
                 </div>
             </div>
@@ -365,6 +488,21 @@
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js"></script>
 
+    <!-- DataTables  & Plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="vendor/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="vendor/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="vendor/jszip/jszip.min.js"></script>
+    <script src="vendor/pdfmake/pdfmake.min.js"></script>
+    <script src="vendor/pdfmake/vfs_fonts.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
     <!-- Main JS-->
     <script src="js/main.js"></script>
 
@@ -374,16 +512,33 @@
     <!-- User Account JS -->
     <script src="js/userAccount.js"></script>
 
-    <!-- Google Map -->
-    <script src="js/google_map_devices_history.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM9c47J86uYl4dYw0NdwWdmE7BrwQ4xIc&callback=myMapDevicesHistory" async defer></script>
-
     <!-- Date Range Picker JS -->
     <script src="https://cdn.jsdelivr.net/npm/moment/min/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
     <!-- Language Switch JS -->
     <script src="js/language_switch.js"></script>
+
+
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        });
+    </script>
+    
 
 </body>
 
