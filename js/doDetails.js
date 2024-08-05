@@ -8,18 +8,18 @@ function generateInitialData() {
         const time = new Date(now.getTime() - (9 - i) * 60 * 1000);
         const formattedTime = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
         labels.push(formattedTime);
-        initialData.push(30.2 + Math.random() * 0.2);  // Values between 30.2 and 30.4
+        initialData.push(4.30 + Math.random() * 2.58);  // Values between 4.5 and 6.88
     }
   
     return { labels: labels, initialData: initialData };
 }
   
-// Initialize the real time temperature line chart
+// Initialize the real time Dissolved Oxygen line chart
 function initializeLineChart(ctx, initialData) {
     const data = {
         labels: initialData.labels,
         datasets: [{
-        label: "Temperature (°C)",
+        label: "Dissolved Oxygen (mg/L)",
         borderColor: "rgba(0,123,255,255)",
         borderWidth: 1,
         backgroundColor: "rgba(77, 163, 255, 0.7)",
@@ -51,8 +51,8 @@ function initializeLineChart(ctx, initialData) {
             }],
             yAxes: [{
               ticks: {
-                min: 28.5,
-                max: 31.5,
+                min: 4.0,
+                max: 7.0,
                 fontFamily: "Poppins"
               }
             }]
@@ -69,12 +69,12 @@ function initializeLineChart(ctx, initialData) {
 // Initialize the current temperature gauge
 function initializeTemperatureGauge(initialTemp) {
     return new JustGage({
-        id: "temperature-gauge",
+        id: "do-gauge",
         value: initialTemp,
-        min: 0,
-        max: 50,
-        title: "Temperature (°C)",
-        label: "°C",
+        min: 3.5,
+        max: 8.0,
+        title: "Dissolved Oxygen (mg/L)",
+        label: "mg/L",
         gaugeWidthScale: 0.6,
         decimals: 2,
         gaugeColor: "#f0f0f0", // background color of the gauge
@@ -90,7 +90,7 @@ function updateChartAndGauge(chart, gauge) {
     chart.data.labels.push(newTime);
     chart.data.labels.shift();
   
-    const newTemp = 30.2 + Math.random() * 0.2 // Generate new temperature between 30.2 and 30.4
+    const newTemp = 4.30 + Math.random() * 2.58 // Generate new temperature between 30.2 and 30.4
     chart.data.datasets[0].data.push(newTemp);
     chart.data.datasets[0].data.shift();
   
@@ -100,7 +100,7 @@ function updateChartAndGauge(chart, gauge) {
   
 // Main function to initialize everything
 document.addEventListener("DOMContentLoaded", function() {
-    const ctx = document.getElementById("realtimeTemp").getContext("2d");
+    const ctx = document.getElementById("realtimeDO").getContext("2d");
     const initialData = generateInitialData();
     const myChart = initializeLineChart(ctx, initialData);
   
@@ -157,13 +157,13 @@ document.addEventListener('DOMContentLoaded', function() {
         weekEnd.setDate(weekStart.getDate() + 6);
 
         const labels = [];
-        const minTemps = [];
-        const maxTemps = [];
+        const minDO = [];
+        const maxDO = [];
 
         for (let date = new Date(weekStart); date <= weekEnd; date.setDate(date.getDate() + 1)) {
             labels.push(date.toLocaleDateString('en-GB').slice(0, 5)); // Compact date format
-            minTemps.push(29.5); // Dummy data
-            maxTemps.push(31.0); // Dummy data
+            minDO.push(4.97); // Dummy data
+            maxDO.push(6.21); // Dummy data
         }
 
         if (weeklyChart) {
@@ -176,14 +176,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 labels: labels,
                 datasets: [
                     {
-                        label: 'Min Temperature',
-                        data: minTemps,
+                        label: 'Min Dissolved Oxygen',
+                        data: minDO,
                         backgroundColor: 'rgba(72, 160, 255, 0.8)',
                         stack: 'Stack 0'
                     },
                     {
-                        label: 'Max Temperature',
-                        data: maxTemps,
+                        label: 'Max Dissolved Oxygen',
+                        data: maxDO,
                         backgroundColor: 'rgba(243, 93, 93, 0.8)',
                         stack: 'Stack 0'  // Same stack to ensure stacking
                     }
@@ -199,8 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         stacked: true,
                         beginAtZero: true,
                         ticks: {
-                            suggestedMin: 28.5,
-                            suggestedMax: 31.5
+                            suggestedMin: 4.90,
+                            suggestedMax: 6.75
                         }
                     }]
                 }
@@ -215,8 +215,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextMonthStart = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
     
         const weeklyLabels = [];
-        const minTemps = [];
-        const maxTemps = [];
+        const minDO = [];
+        const maxDO = [];
     
         let date = new Date(monthStart);
         
@@ -229,11 +229,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
             weeklyLabels.push(`${date.toLocaleDateString('en-GB').slice(0, 5)} - ${endDate.toLocaleDateString('en-GB').slice(0, 5)}`);
             
-            const minTempForWeek = 29.5; // Replace with actual calculation
-            const maxTempForWeek = 31.0; // Replace with actual calculation
+            const minDOForWeek = 5.01; // Replace with actual calculation
+            const maxDOForWeek = 6.66; // Replace with actual calculation
             
-            minTemps.push(minTempForWeek);
-            maxTemps.push(maxTempForWeek);
+            minDO.push(minDOForWeek);
+            maxDO.push(maxDOForWeek);
     
             date.setDate(endDate.getDate() + 1);
         }
@@ -248,14 +248,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 labels: weeklyLabels,
                 datasets: [
                     {
-                        label: 'Min Temperature',
-                        data: minTemps,
+                        label: 'Min Dissolved Oxygen',
+                        data: minDO,
                         backgroundColor: 'rgba(72, 160, 255, 0.8)',
                         stack: 'Stack 0'
                     },
                     {
-                        label: 'Max Temperature',
-                        data: maxTemps,
+                        label: 'Max Dissolved Oxygen',
+                        data: maxDO,
                         backgroundColor: 'rgba(243, 93, 93, 0.8)',
                         stack: 'Stack 0'  // Same stack to ensure stacking
                     }
@@ -276,8 +276,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         stacked: true,
                         beginAtZero: true,
                         ticks: {
-                            suggestedMin: 28.5,
-                            suggestedMax: 31.5
+                            suggestedMin: 4.90,
+                            suggestedMax: 6.75
                         }
                     }]
                 }
@@ -289,14 +289,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function displayYearlyChart() {
         const labels = [];
-        const minTemps = [];
-        const maxTemps = [];
+        const minDO = [];
+        const maxDO = [];
 
         for (let month = 0; month < 12; month++) {
             const monthStart = new Date(currentYear, month, 1);
             labels.push(monthStart.toLocaleString('default', { month: 'long' }));
-            minTemps.push(29.5); // Dummy data
-            maxTemps.push(31.0); // Dummy data
+            minDO.push(4.99); // Dummy data
+            maxDO.push(6.54); // Dummy data
         }
 
         if (yearlyChart) {
@@ -309,14 +309,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 labels: labels,
                 datasets: [
                     {
-                        label: 'Min Temperature',
-                        data: minTemps,
+                        label: 'Min Dissolved Oxygen',
+                        data: minDO,
                         backgroundColor: 'rgba(72, 160, 255, 0.8)',
                         stack: 'Stack 0'
                     },
                     {
-                        label: 'Max Temperature',
-                        data: maxTemps,
+                        label: 'Max Dissolved Oxygen',
+                        data: maxDO,
                         backgroundColor: 'rgba(243, 93, 93, 0.8)',
                         stack: 'Stack 0'  // Same stack to ensure stacking
                     }
@@ -332,8 +332,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         stacked: true,
                         beginAtZero: true,
                         ticks: {
-                            suggestedMin: 28.5,
-                            suggestedMax: 31.5
+                            suggestedMin: 4.90,
+                            suggestedMax: 6.75
                         }
                     }]
                 }
