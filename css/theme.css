@@ -145,6 +145,12 @@ h6 {
     font-size: 13px;
 }
 
+@media (max-width: 991px) {
+    h1 {
+        color: #fff;
+    }
+}
+
 blockquote {
     margin: 0;
 }
@@ -224,7 +230,7 @@ a:focus,
 a:active {
     text-decoration: none;
     outline: none;
-    color: #ff182b;
+    color: #007bff;
 }
 
 a:hover,
@@ -298,11 +304,10 @@ section {
 
 @media (max-width: 991px) {
     .page-container {
+        background: #343a40;
         position: relative;
         top: 75px;
         padding-top: 0px;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
     }
 }
 
@@ -1853,13 +1858,13 @@ input[type="file"] {
     left: 0;
     top: 0;
     bottom: 0;
-    background: #fff;
+    background: #343a40;
 }
 
 .menu-sidebar .logo {
-    background: #fff;
-    height: 100px;
-    padding: 0;
+    background: #343a40;
+    height: auto;
+    padding: 10px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -1870,15 +1875,16 @@ input[type="file"] {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    justify-content: center;
     position: relative;
     z-index: 3;
 }
 
 .menu-sidebar .logo img {
-    width: auto; /* Adjust as needed */
-    height: 75px; /* Adjust as needed */
+    width: 150px; /* Adjust as needed */
+    height: auto; /* Adjust as needed */
     object-fit: contain;
-    padding: 10px;
+    padding: 0px;
 }
 
 
@@ -1904,7 +1910,7 @@ input[type="file"] {
 
 .navbar-sidebar .navbar__list li a {
     display: block;
-    color: #000000;
+    color: #fff;
     font-size: 16px;
     font-weight: 600;
     padding: 10px;
@@ -1918,7 +1924,7 @@ input[type="file"] {
 
 .navbar-sidebar .navbar__list li a:hover {
     color: #007bff;
-    background-color: #fff;
+    background-color: #343a40;
 }
 
 .navbar-sidebar .navbar__list li.active > a {
