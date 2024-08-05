@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>DOF - Dashboard</title>
+    <title>DOF - Telemetry</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -38,19 +38,6 @@
         body {
             overflow: hidden; /* Prevent scrolling */
         }
-        .main-content {
-            height: 100vh;
-            padding-top: 0px;
-        }
-        @media (max-width: 991px) {
-            .header-desktop {
-                position: fixed;
-                left: 0;
-                height: 45px;
-                top: 85px;
-                margin-top: 0;
-            }
-        }
     </style>
 </head>
 
@@ -62,7 +49,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/GajahSafeLogo1.png" alt="GajahSafe" />
+                            <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -77,27 +64,27 @@
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
                             <a href="index.html">
-                                <i class="fas fa-tachometer-alt"></i><span data-i18n="dashboard"></span></a>
+                                <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
                         </li>
                         <li>
                             <a href="history.html">
                                 <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
                         </li>
                         <li>
-                            <a href="statistics.html">
-                                <i class="fas fa-chart-bar"></i><span data-i18n="statistics"></span></a>
+                            <a href="accounting.html">
+                                <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span></a>
                         </li>
                         <li>
-                            <a href="reports.html">
-                                <i class="fas fa-table"></i><span data-i18n="reports"></span></a>
+                            <a href="gallery.html">
+                                <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
                         </li>
-                        <li id="mobile-users-item">
-                            <a href="users.html">
-                                <i class="far fa-users"></i><span data-i18n="users"></span></a>
+                        <li>
+                            <a href="about.html">
+                                <i class="far fa-users"></i><span data-i18n="aboout"></span></a>
                         </li>
-                        <li id="mobile-devices-item">
-                            <a href="devices.html">
-                                <i class="fas fa-wrench"></i><span data-i18n="devices"></span></a>
+                        <li>
+                            <a href="settings.html">
+                                <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
                         </li>
                     </ul>
                 </div>
@@ -109,7 +96,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/GajahSafeLogo1.png" alt="GajahSafe" />
+                    <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -117,27 +104,27 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
                             <a href="index.html">
-                                <i class="fas fa-tachometer-alt"></i><span data-i18n="dashboard"></span></a>
+                                <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
                         </li>
                         <li>
                             <a href="history.html">
                                 <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
                         </li>
                         <li>
-                            <a href="statistics.html">
-                                <i class="fas fa-chart-bar"></i><span data-i18n="statistics"></span></a>
+                            <a href="accounting.html">
+                                <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span></a>
                         </li>
                         <li>
-                            <a href="reports.html">
-                                <i class="fas fa-table"></i><span data-i18n="reports"></span></a>
+                            <a href="gallery.html">
+                                <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
                         </li>
-                        <li id="sidebar-users-item">
-                            <a href="users.html">
-                                <i class="far fa-users"></i><span data-i18n="users"></span></a>
+                        <li>
+                            <a href="about.html">
+                                <i class="far fa-users"></i><span data-i18n="about"></span></a>
                         </li>
-                        <li id="sidebar-devices-item">
-                            <a href="devices.html">
-                                <i class="fas fa-wrench"></i><span data-i18n="devices"></span></a>
+                        <li>
+                            <a href="settings.html">
+                                <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
                         </li>
                     </ul>
                 </nav>
@@ -149,73 +136,115 @@
         <div class="page-container">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop">
-                <div class="section__content section__content--p30">
-                <div class="container-fluid">
-                    <div class="header-wrap justify-content-end">
-                    <div class="header-button">
-                        <div class="account-wrap">
-                        <div class="account-item clearfix js-item-menu">
-                            <div class="image">
-                            <img id="avatarImg" src="images/icon/avatar-01.jpg" alt="Avatar" />
-                            </div>
-                            <div class="content">
-                            <a class="js-acc-btn" href="#" id="userName"></a>
-                            </div>
-                            <div class="account-dropdown js-dropdown">
-                            <div class="info clearfix">
-                                <div class="image">
-                                <img id="dropdownAvatarImg" src="images/icon/avatar-01.jpg" alt="Avatar" />
-                                </div>
-                                <div class="content">
-                                <h5 class="name" id="dropdownUserName"></h5>
-                                <span class="email" id="dropdownUserEmail"></span>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__body">
-                                <div class="account-dropdown__item">
-                                    <a href="#" id="languageSwitchBtn">
-                                    <i class="zmdi zmdi-globe"></i><span data-i18n="language"></span></a>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__footer">
-                                <a href="#" id="logoutBtn">
-                                <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span></a>
-                            </div>
+                <div class="section__content">
+                    <div class="container-fluid">
+                        <div class="header-wrap justify-content-end">
+                            <div>
+                                <button id="logoutBtn" class="au-btn--logout au-btn-icon">
+                                    <i class="zmdi zmdi-power"></i>Log Out</span>
+                                </button>
                             </div>
                         </div>
-                        </div>
                     </div>
-                    </div>
-                </div>
                 </div>
             </header>
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT -->
             <div class="main-content">
-                <!-- LANGUAGE POP UP -->
-                <div id="languageModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" id="closeLanguageModal">&times;</span>
-                        <h4><span data-i18n="changeLanguage"></span></h4><br>
-                        <form id="languageForm">
-                            <div class="form-group button-radio-group">
-                                <div>
-                                    <label for="langEn" class="button-radio-label">
-                                        <input type="radio" name="language" id="langEn" value="english" class="form-radio-input">
-                                        <span class="button-radio-button inactive-language" id="langBtnEn"><a onclick="changeLanguage('en')">English</a></span>
-                                    </label>
-                                    <label for="langMs" class="button-radio-label">
-                                        <input type="radio" name="language" id="langMs" value="malay" class="form-radio-input">
-                                        <span class="button-radio-button inactive-language" id="langBtnMs"><a onclick="changeLanguage('ms')">Bahasa Melayu</a></span>
-                                    </label>
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col d-flex justify-content-start"><h1>Telemetry</h1></div>
+                            <div class="col m-t-10 d-flex justify-content-end">
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--lg">
+                                            <select class="js-select2" name="sites" id="dropdownSites">
+                                                <option selected="Santubong CageFarm">Santubong CageFarm</option>
+                                                <option value="Rambungan CageFarm">Rambungan CageFarm</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--lg">
+                                            <select class="js-select2" name="logger" id="dropdownLogger">
+                                                <option selected="Logger 1">Logger 1</option>
+                                                <option value="Logger 2">Logger 2</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <!-- DATA FIELD -->
+                        <div class="au-card">
+                            <div class="au-card-header">
+                                <h3>Santubong CageFarm</h3>
+                                <h4>Logger 1</h4>
+                            </div><br>
+                            <div class="au-card-body">
+                                <h6 style="color: rgb(93, 93, 93);">Select Data Field:</h6><br>
+                                <div class="row justify-content-center">
+                                    <div class="col-5">
+                                        <div class="au-card-sm m-b-30  border border-primary">
+                                            <div class="au-card-sm-inner">
+                                                <h4>Temperature</h4><br>
+                                                <center><h2 style="color: #00c0ef;">30.3&deg;C</h2></center>
+                                            </div><br>
+                                            <a href="tempDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="au-card-sm m-b-30  border border-primary">
+                                            <div class="au-card-sm-inner">
+                                                <h4>Dissolved Oxygen</h4><br>
+                                                <center><h2 style="color: #00c0ef;">5.09mg/L</h2></center>
+                                            </div><br>
+                                            <a href="doDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-5">
+                                        <div class="au-card-sm m-b-30  border border-primary">
+                                            <div class="au-card-sm-inner">
+                                                <h4>Dissolved Oxygen Percentage</h4><br>
+                                                <center><h2 style="color: #00c0ef;">66.00%</h2></center>
+                                            </div><br>
+                                            <a href="doPercentageDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="au-card-sm m-b-30 border border-primary">
+                                            <div class="au-card-sm-inner">
+                                                <h4>pH Value</h4><br>
+                                                <center><h2 style="color: #00c0ef;">7.86</h2></center>
+                                            </div><br>
+                                            <a href="phDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-6">
+                                        <div class="au-card-sm border border-primary">
+                                            <div class="au-card-sm-inner">
+                                                <h4>Salinity</h4><br>
+                                                <center><h2 style="color: #00c0ef;">13213.21ppm</h2></center>
+                                            </div><br>
+                                            <a href="salinityDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END DATA FIELD -->
                     </div>
                 </div>
-                <!-- GOOGLE MAP -->
-                <div id="googleMapIndex" class="map-contentIndex"></div>
             </div>
             <!-- END MAIN CONTENT-->
         </div>
