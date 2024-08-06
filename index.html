@@ -92,6 +92,13 @@
                             <a href="settings.html">
                                 <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
                         </li>
+                        <li>
+                            <center>
+                                <button id="logoutBtn" class="au-btn au-btn-icon">
+                                    <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span>
+                                </button>
+                            </center>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -132,6 +139,13 @@
                             <a href="settings.html">
                                 <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
                         </li>
+                        <li>
+                            <center>
+                                <button id="logoutBtn" class="au-btn au-btn-icon">
+                                    <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span>
+                                </button>
+                            </center>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -140,22 +154,6 @@
 
         <!-- PAGE CONTAINER-->
         <div class="page-container">
-            <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
-                <div class="section__content">
-                    <div class="container-fluid">
-                        <div class="header-wrap justify-content-end">
-                            <div>
-                                <button id="logoutBtn" class="au-btn--logout au-btn-icon">
-                                    <i class="zmdi zmdi-power"></i>Log Out</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <!-- HEADER DESKTOP-->
-
             <!-- MAIN CONTENT -->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -187,68 +185,72 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- DATA FIELD -->
-                        <div class="au-card">
-                            <div class="au-card-header">
-                                <h3>Santubong CageFarm</h3>
-                                <h4>Logger 1</h4>
-                            </div><br>
-                            <div class="au-card-body p-l-0 p-r-0">
-                                <h6 style="color: rgb(93, 93, 93);">Select Data Field:</h6><br>
-                                <div class="row justify-content-center">
-                                    <div class="col-5">
-                                        <div class="au-card-sm m-l-0 m-b-30  border border-primary">
-                                            <div class="au-card-sm-inner">
-                                                <h4>Temperature</h4><br>
-                                                <center><h2 style="color: #00c0ef;">30.3&deg;C</h2></center>
-                                            </div><br>
-                                            <a href="tempDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <div class="row">
+                            <div class="col">
+                                <!-- DATA FIELD -->
+                                <div class="au-card">
+                                    <div class="au-card-header">
+                                        <h3>Santubong CageFarm</h3>
+                                        <h4>Logger 1</h4>
+                                    </div><br>
+                                    <div class="au-card-body p-l-0 p-r-0">
+                                        <h6 style="color: rgb(93, 93, 93);">Select Data Field:</h6><br>
+                                        <div class="row justify-content-center">
+                                            <div class="col-5">
+                                                <div class="au-card-sm m-l-0 m-b-30  border border-primary">
+                                                    <div class="au-card-sm-inner">
+                                                        <h4>Temperature</h4><br>
+                                                        <center><h2 style="color: #00c0ef;">30.3&deg;C</h2></center>
+                                                    </div><br>
+                                                    <a href="tempDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="au-card-sm m-r-0 m-b-30  border border-primary">
+                                                    <div class="au-card-sm-inner">
+                                                        <h4>Dissolved Oxygen</h4><br>
+                                                        <center><h2 style="color: #00c0ef;">5.09mg/L</h2></center>
+                                                    </div><br>
+                                                    <a href="doDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <div class="au-card-sm m-r-0 m-b-30  border border-primary">
-                                            <div class="au-card-sm-inner">
-                                                <h4>Dissolved Oxygen</h4><br>
-                                                <center><h2 style="color: #00c0ef;">5.09mg/L</h2></center>
-                                            </div><br>
-                                            <a href="doDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        <div class="row justify-content-center">
+                                            <div class="col-5">
+                                                <div class="au-card-sm m-l-0 m-b-30  border border-primary">
+                                                    <div class="au-card-sm-inner">
+                                                        <h4>Dissolved Oxygen Percentage</h4><br>
+                                                        <center><h2 style="color: #00c0ef;">66.00%</h2></center>
+                                                    </div><br>
+                                                    <a href="doPercentageDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="au-card-sm m-r-0 m-b-30 border border-primary">
+                                                    <div class="au-card-sm-inner">
+                                                        <h4>pH Value</h4><br>
+                                                        <center><h2 style="color: #00c0ef;">7.86</h2></center>
+                                                    </div><br>
+                                                    <a href="phDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-6">
+                                                <div class="au-card-sm m-l-0 m-r-0 border border-primary">
+                                                    <div class="au-card-sm-inner">
+                                                        <h4>Salinity</h4><br>
+                                                        <center><h2 style="color: #00c0ef;">13213.21ppm</h2></center>
+                                                    </div><br>
+                                                    <a href="salinityDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-5">
-                                        <div class="au-card-sm m-l-0 m-b-30  border border-primary">
-                                            <div class="au-card-sm-inner">
-                                                <h4>Dissolved Oxygen Percentage</h4><br>
-                                                <center><h2 style="color: #00c0ef;">66.00%</h2></center>
-                                            </div><br>
-                                            <a href="doPercentageDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <div class="au-card-sm m-r-0 m-b-30 border border-primary">
-                                            <div class="au-card-sm-inner">
-                                                <h4>pH Value</h4><br>
-                                                <center><h2 style="color: #00c0ef;">7.86</h2></center>
-                                            </div><br>
-                                            <a href="phDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-6">
-                                        <div class="au-card-sm m-l-0 m-r-0 border border-primary">
-                                            <div class="au-card-sm-inner">
-                                                <h4>Salinity</h4><br>
-                                                <center><h2 style="color: #00c0ef;">13213.21ppm</h2></center>
-                                            </div><br>
-                                            <a href="salinityDetails.html" class="au-card-sm-footer" style="color: black;">More info <i class="fas fa-arrow-circle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- END DATA FIELD -->
                             </div>
                         </div>
-                        <!-- END DATA FIELD -->
                     </div>
                 </div>
             </div>
