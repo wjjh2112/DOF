@@ -180,12 +180,13 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <label for="Email">E-mail</label>
-                                                        <input type="email" class="form-control" placeholder="e-mail" readonly>
+                                                        <input type="text" class="form-control" placeholder="e-mail" readonly>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="au-card-footer">
-                                                <button class="btn btn-primary">Edit</button>
+                                            <div class="au-card-footer form-footer">
+                                                <button type="submit" class="au-btn">Edit
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -193,59 +194,55 @@
                             </div>
                         </div>
 
-        <div class="row">
-            <div class="col">
-                <div class="card card-default">
-                    <div class="card-header">
-                        <h5 class="card-title">Organization</h5>
-                    </div>
-                    <div class="card-body">
-                        <center>
-                            <h1>Sarawak River</h1>
-                            <p>demo2@dof.dev</p>
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <!-- general form elements -->
-                <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">Language</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form>
-                    <div class="card-body">
-                      <div class="col-sm-6">
-                        <!-- radio group -->
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                          <label class="btn btn-primary active">
-                            <input type="radio" name="options" id="malay" autocomplete="off" checked> Malay
-                          </label>
-                          <br>
-                          <label class="btn btn-primary">
-                            <input type="radio" name="options" id="eng" autocomplete="off"> English
-                          </label>
+                        <div class="row">
+                            <div class="col">
+                                <div class="au-card">
+                                    <div class="au-card-header">
+                                        <h3>Organization</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <center>
+                                            <h1>Sarawak River</h1>
+                                            <p>demo2@dof.dev</p>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="au-card">
+                                    <div class="au-card-header">
+                                        <h3 class="card-title">Language</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="languageForm">
+                                            <div class="form-group button-radio-group">
+                                                <div>
+                                                    <label for="langEn" class="button-radio-label">
+                                                        <input type="radio" name="language" id="langEn" value="english" class="form-radio-input">
+                                                        <span class="button-radio-button inactive-language" id="langBtnEn"><a onclick="changeLanguage('en')">English</a></span>
+                                                    </label>
+                                                    <label for="langMs" class="button-radio-label">
+                                                        <input type="radio" name="language" id="langMs" value="malay" class="form-radio-input">
+                                                        <span class="button-radio-button inactive-language" id="langBtnMs"><a onclick="changeLanguage('ms')">Bahasa Melayu</a></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row p-t-40"></div>
+                        
                     </div>
-                    <!-- /.card-body -->
-                </form>
                 </div>
-                <!-- /.card -->
             </div>
         </div>
-
     </div>
-    <!-- END MAIN CONTENT-->
-</div>
-<!-- END PAGE CONTAINER-->
-
-</div>
 
 <!-- Jquery JS-->
 <script src="vendor/jquery-3.2.1.min.js"></script>
