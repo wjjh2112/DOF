@@ -1863,11 +1863,12 @@ input[type="file"] {
     top: 0;
     bottom: 0;
     background: #343a40;
+    height: 100vh;
 }
 
 .menu-sidebar .logo {
     background: #343a40;
-    height: auto;
+    height: 140px;
     padding: 10px;
     display: -webkit-box;
     display: -webkit-flex;
@@ -1906,6 +1907,10 @@ input[type="file"] {
     height: -webkit-calc(100vh - 75px);
     height: -moz-calc(100vh - 75px);
     height: calc(100vh - 75px);
+}
+
+.menu-sidebar-footer {
+    padding: 10px;
 }
 
 .navbar-sidebar {
