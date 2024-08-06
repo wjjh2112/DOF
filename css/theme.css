@@ -307,7 +307,7 @@ section {
         background: #343a40;
         position: relative;
         top: 0px;
-        padding-top: 0px;
+        padding-top: 50px;
     }
 }
 
@@ -566,7 +566,7 @@ section {
 }
 
 .au-btn--logout {
-    background: #007bff;
+    background: #7a7a7a;
     color: #fff;
 }
 
