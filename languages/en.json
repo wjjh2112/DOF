@@ -6,6 +6,9 @@
     "about": "About",
     "settings": "Settings",
 
+    "expenses": "Expenses",
+    "income": "Income",
+
     "account": "Account",
     "language": "Language",
     "changeLanguage": "Change Language",

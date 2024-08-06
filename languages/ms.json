@@ -1,13 +1,15 @@
 {
     "telemetry": "Papan Pemuka",
     "history": "Sejarah",
-    "statistics": "Statistik",
-    "reports": "Laporan",
-    "users": "Pengguna",
-    "devices": "Peranti",
+    "accounting": "Perakaunan",
+    "gallery": "Galeri",
+    "about": "Tentang",
+    "settings": "Tetapan",
+
+    "expenses": "Perbelanjaan",
+    "income": "Pendapatan",
 
     "account": "Akaun",
-    "settings": "Tetapan",
     "language": "Bahasa",
     "changeLanguage": "Tukar Bahasa",
     "logout": "Log Keluar",
