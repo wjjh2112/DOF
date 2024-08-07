@@ -65,7 +65,11 @@ textarea:focus {
 }
 
 input, textarea {
-    border: none;
+    display:block;
+    padding: 8px 12px;
+    cursor: text;
+    border: 1px solid #aaa;
+    border-radius: 4px;
 }
 
 button {
@@ -952,7 +956,7 @@ section {
 }
 
 
-.form-group input[type="text"]{
+.form-group input[type="text"], input[type="number"]{
     display:block;
     padding: 8px 12px;
     cursor: text;
@@ -963,7 +967,6 @@ section {
 .form-text {
     width:100%;
 }
-
 
 input[type="file"] {
     display: none;
