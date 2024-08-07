@@ -228,14 +228,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col">
                                 <!-- DATA TABLE -->
                                 <div class="au-card">
                                     <div class="au-card-header">
                                         <h3>All Sites</h3>
                                         <h4>All Loggers</h4>
                                     </div><br>
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="history" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
                                           <th>Logger ID</th>
@@ -466,7 +466,7 @@
                                           <td>12799.99</td>
                                           <td>284401F1004103094647FFF7</td>
                                         </tr>
-                                        </tfoot>
+                                        </tbody>
                                       </table>
                                 </div>
                             </div>
@@ -533,19 +533,10 @@
     <!-- Page specific script -->
     <script>
         $(function () {
-        $("#example1").DataTable({
+        $("#history").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
+        }).buttons().container().appendTo('#history_wrapper .col-md-6:eq(0)');
         });
     </script>
     

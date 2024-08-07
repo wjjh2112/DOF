@@ -31,6 +31,14 @@
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link href="vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all">
 
+    <!-- DataTables -->
+    <link rel="stylesheet" href="vendor/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+    <!-- Date Range Picker CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
@@ -204,7 +212,7 @@
                             </div>
                             <div class="row">
                               <div class="col">
-                                <table id="expense-table" class="table table-bordered table-striped">
+                                <table id="income-table" class="table table-bordered table-striped">
                                   <thead>
                                     <tr>
                                         <th>Date</th>
@@ -374,21 +382,10 @@
 <!-- Data Table Script -->
 <script>
   $(function () {
-    $("#example1").DataTable({
+    $("#income-table").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-      "pageLength": 5
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-      "pageLength": 5
-    });
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#income-table_wrapper .col-md-6:eq(0)');
   });
 </script>
 
@@ -396,7 +393,7 @@
 <script>
 $(document).ready(function() {
   // Initialize DataTable
-  var table = $('#expense-table').DataTable({
+  var table = $('#income-table').DataTable({
     "order": [[0, "desc"]],
     "columnDefs": [
       { "targets": 0, "type": "date-eu" }
@@ -464,7 +461,7 @@ $(function () {
   const parseExpenseTable = () => {
       const data = {};
       // Parse all rows, not just the displayed ones
-      $('#expense-table').DataTable().rows().every(function () {
+      $('#income-table').DataTable().rows().every(function () {
           const row = $(this.node());
           const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
           const date = row.find('td').eq(0).text().trim();  // Updated index for date column
@@ -555,7 +552,7 @@ $(function () {
       const data = {};
 
       // Parse all rows, not just the displayed ones
-      $('#expense-table').DataTable().rows().every(function () {
+      $('#income-table').DataTable().rows().every(function () {
           const row = $(this.node());
           const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
           const date = row.find('td').eq(0).text().trim();  // Updated index for date column
