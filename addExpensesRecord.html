@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>GajahSafe - Add New Expense Record</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body>
+  <div class="page-wrapper">
+      <!-- HEADER MOBILE-->
+      <header class="header-mobile d-block d-lg-none">
+          <div class="header-mobile__bar">
+              <div class="container-fluid">
+                  <div class="header-mobile-inner">
+                      <a class="logo" href="index.html">
+                          <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
+                      </a>
+                      <button class="hamburger hamburger--slider" type="button">
+                          <span class="hamburger-box">
+                              <span class="hamburger-inner"></span>
+                          </span>
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <div class="navbar-mobile">
+              <div class="container-fluid">
+                  <ul class="navbar-mobile__list list-unstyled">
+                      <li>
+                          <a href="index.html">
+                              <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
+                      </li>
+                      <li>
+                          <a href="history.html">
+                              <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
+                      </li>
+                      <li class="has-sub">
+                          <a class="js-arrow" href="#">
+                              <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span>
+                          </a>
+                          <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                              <li>
+                                  <a href="accountingExpenses.html"><span data-i18n="expenses"></a>
+                              </li>
+                              <li>
+                                  <a href="accountingIncome.html"><span data-i18n="income"></a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="gallery.html">
+                              <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
+                      </li>
+                      <li>
+                          <a href="about.html">
+                              <i class="far fa-users"></i><span data-i18n="about"></span></a>
+                      </li>
+                      <li>
+                          <a href="settings.html">
+                              <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
+                      </li>
+                      <br>
+                      <li>
+                          <center>
+                              <button id="logoutBtn" class="au-btn au-btn--logout au-btn-icon">
+                                  <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span>
+                              </button>
+                          </center>
+                      </li>
+                      <br>
+                  </ul>
+              </div>
+          </div>
+      </header>
+      <!-- END HEADER MOBILE-->
+
+      <!-- MENU SIDEBAR-->
+      <aside class="menu-sidebar d-none d-lg-block">
+          <div class="logo">
+              <a href="#">
+                  <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
+              </a>
+          </div>
+          <div class="menu-sidebar__content js-scrollbar1">
+              <nav class="navbar-sidebar">
+                  <ul class="list-unstyled navbar__list">
+                      <li>
+                          <a href="index.html">
+                              <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
+                      </li>
+                      <li>
+                          <a href="history.html">
+                              <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
+                      </li>
+                      <li class="active has-sub">
+                          <a class="js-arrow" href="#">
+                              <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span>
+                          </a>
+                          <ul class="list-unstyled navbar__sub-list js-sub-list">
+                              <li>
+                                  <a href="accountingExpenses.html"><span data-i18n="expenses"></a>
+                              </li>
+                              <li>
+                                  <a href="accountingIncome.html"><span data-i18n="income"></a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="gallery.html">
+                              <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
+                      </li>
+                      <li>
+                          <a href="about.html">
+                              <i class="far fa-users"></i><span data-i18n="about"></span></a>
+                      </li>
+                      <li>
+                          <a href="settings.html">
+                              <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
+                      </li>
+                      <br>
+                      <li>
+                          <center>
+                              <button id="logoutBtn" class="au-btn au-btn--logout au-btn-icon">
+                                  <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span>
+                              </button>
+                          </center>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </aside>
+      <!-- END MENU SIDEBAR-->
+
+      <!-- PAGE CONTAINER-->
+      <div class="page-container">
+          <!-- MAIN CONTENT -->
+          <div class="main-content">
+              <div class="section__content section__content--p30">
+                  <div class="container-fluid">
+                    <div class="row mb-4 align-items-center">
+                      <div class="col-sm-3">
+                          <a href="accountingExpenses.html"><i class="fas fa-arrow-left"></i></a>
+                      </div>
+                      <div class="col-sm-6">
+                          <center><h1>Accounting - Add New Expenses</h1></center>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="au-card">
+                          <form id="addReportForm" action="/submit-report" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="expenseItem" class="form-label"><span data-i18n="expItem"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input class="form-text" type="text" id="expenseItem" name="expenseItem" required>
+                              </div>
+                            </div>
+
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="expenseAmount" class="form-label"><span data-i18n="amount"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input class="form-text" type="number" id="expenseAmount" name="expenseAmount" required>
+                              </div>
+                            </div>
+                            
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="datetime-input" class="form-label"><span data-i18n="date"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input class="form-text" type="datetime-local" id="datetime-input" name="expRecDateTime" required readonly>
+                              </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="expCategory" class="form-label"><span data-i18n="category"></span></label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <select name="expCategory" class="js-select2" id="expCategory" required>
+                                        <option value="" disabled selected>Select Category</option>
+                                        <option>Aquaculture Equipment</option>
+                                        <option>Chemicals and Medications</option>
+                                        <option>Feed Costs</option>
+                                        <option>Fertilizers and Lime</option>
+                                        <option>Purchase of Livestock</option>
+                                        <option>Repairs and Maintenance</option>
+                                        <option>Storage and Warehousing</option>
+                                        <option>Other Expense</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="remarks" class="form-label"><span data-i18n="remarks"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                <textarea id="remarks" class="form-text" nam="remarks" rows="4"></textarea>
+                              </div>
+                            </div>
+                            
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="file-upload" class="form-label"><span data-i18n="images"></span></label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <div class="file-upload-container">
+                                        <ul id="file-list" class="file-list">
+                                            <li id="placeholder-li">
+                                                <label for="file-upload" class="add-images-placeholder">
+                                                    <span><i class="fas fa-upload"></i>&nbsp;</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                        <input type="file" id="file-upload" name="reportImages[]" multiple>
+                                    </div>
+                                    <small class="help-block form-text" data-i18n="fileTypeUploadValidation"></small>
+                                </div>
+                            </div>
+
+                            <div class="au-card-footer form-footer">
+                                <button type="submit" class="au-btn">
+                                    <span data-i18n="add"></span>
+                                </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS -->
+    <script src="vendor/slick/slick.min.js"></script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js"> </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+
+    <!-- DataTables  & Plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="vendor/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="vendor/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="vendor/jszip/jszip.min.js"></script>
+    <script src="vendor/pdfmake/pdfmake.min.js"></script>
+    <script src="vendor/pdfmake/vfs_fonts.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+
+    <!--   History Page JS   -->
+    <script src="js/history.js"></script>
+
+    <!-- User Account JS -->
+    <script src="js/userAccount.js"></script>
+
+    <!-- Date Range Picker JS -->
+    <script src="https://cdn.jsdelivr.net/npm/moment/min/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <!-- Language Switch JS -->
+    <script src="js/language_switch.js"></script>
+
+<!-- Add Record JS -->
+<script>
+// Damage Checkbox JS 
+document.addEventListener("DOMContentLoaded", function() {
+    var checkboxes = document.querySelectorAll('.form-check-input');
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            var parent = this.closest('.checkbox');
+            var inputs = parent.querySelectorAll('.damage-input');
+
+            if (this.checked) {
+                inputs.forEach(function(input) {
+                    input.style.display = 'inline-block';
+                });
+            } else {
+                inputs.forEach(function(input) {
+                    input.style.display = 'none';
+                });
+            }
+        });
+    });
+});
+
+// Date & Time JS
+document.addEventListener("DOMContentLoaded", function() {
+    var dateTimeInput = document.getElementById('datetime-input');
+    var currentDateTime = new Date();
+    var formattedDateTime = currentDateTime.toISOString().slice(0, 16); // Format the date and time for input[type="datetime-local"]
+
+    dateTimeInput.value = formattedDateTime;
+    dateTimeInput.readOnly = true; // Make the input read-only
+});
+
+// Upload Images File JS
+const fileArray = [];
+
+document.getElementById('file-upload').addEventListener('change', handleFileSelect);
+
+function handleFileSelect(event) {
+    const newFiles = Array.from(event.target.files);
+    const validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
+
+    const validFiles = newFiles.filter(file => {
+        if (!validExtensions.includes(file.type)) {
+            alert(`${file.name} is not a valid file type. Only JPEG, JPG, and PNG are allowed.`);
+            return false;
+        }
+        return true;
+    });
+
+    fileArray.push(...validFiles);
+
+    updateFileList();
+}
+
+function updateFileList() {
+    const fileListUl = document.getElementById('file-list');
+    fileListUl.innerHTML = '';
+
+    if (fileArray.length === 0) {
+        const placeholderLi = document.createElement('li');
+        placeholderLi.id = 'placeholder-li';
+        const placeholderLabel = document.createElement('label');
+        placeholderLabel.setAttribute('for', 'file-upload');
+        placeholderLabel.className = 'add-images-placeholder';
+        placeholderLabel.innerHTML = '<span>Click to add images</span>';
+        placeholderLi.appendChild(placeholderLabel);
+        fileListUl.appendChild(placeholderLi);
+    } else {
+        fileArray.forEach((file, index) => {
+            const li = document.createElement('li');
+
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(file);
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.onload = function() {
+                URL.revokeObjectURL(this.src);
+            };
+
+            a.appendChild(img);
+
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'X';
+            removeButton.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent the click from propagating to the anchor
+                fileArray.splice(index, 1);
+                updateFileList();
+            });
+
+            li.appendChild(a);
+            li.appendChild(removeButton);
+            fileListUl.appendChild(li);
+        });
+
+        // Append the Add Images button at the end
+        const addButtonLi = document.createElement('li');
+        addButtonLi.id = 'add-button-li';
+        const addButton = document.createElement('label');
+        addButton.setAttribute('for', 'file-upload');
+        addButton.className = 'add-images-label';
+        addButton.innerHTML = '<span>+</span> Add';
+        addButtonLi.appendChild(addButton);
+        fileListUl.appendChild(addButtonLi);
+    }
+
+    updateFileInput();
+}
+
+function updateFileInput() {
+    const dt = new DataTransfer();
+    fileArray.forEach(file => dt.items.add(file));
+    document.getElementById('file-upload').files = dt.files;
+}
+
+document.getElementById('addReportForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    let isValid = true;
+    let errorMessage = "";
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            // Handle single related input
+            const relatedInputId = checkbox.getAttribute('data-related-input');
+            if (relatedInputId) {
+                const relatedInput = document.getElementById(relatedInputId);
+                if (!relatedInput.value) {
+                    isValid = false;
+                    errorMessage += `Please enter a value for ${relatedInputId}.\n`;
+                    relatedInput.focus();
+                }
+            }
+
+            // Handle multiple related inputs
+            const relatedInputs = checkbox.getAttribute('data-related-inputs');
+            if (relatedInputs) {
+                relatedInputs.split(',').forEach(inputId => {
+                    const relatedInput = document.getElementById(inputId.trim());
+                    if (!relatedInput.value) {
+                        isValid = false;
+                        errorMessage += `Please enter a value for ${inputId}.\n`;
+                        relatedInput.focus();
+                    }
+                });
+            }
+        }
+    });
+
+    if (!isValid) {
+        alert(errorMessage);
+    } else {
+        const formData = new FormData(this);
+
+        fetch('/submit-report', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Report submitted successfully!');
+                window.location.href = '/Reports';
+            } else {
+                alert('Error submitting report: ' + (data.message || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error submitting report: ' + error.message);
+        });
+    }
+});
+
+</script>
+  
+
+</body>
+</html>
