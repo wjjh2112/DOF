@@ -217,7 +217,7 @@
                                     <tr>
                                         <th>Date</th>
                                         <th>Amount</th>
-                                        <th>Expense Item</th>
+                                        <th>Income Item</th>
                                         <th>Category</th>
                                         <th>Remarks</th>
                                         <th>View Record</th>
@@ -362,7 +362,6 @@
     <script src="vendor/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="vendor/datatables-buttons/js/buttons.colVis.min.js"></script>
 
-
     <!-- Main JS-->
     <script src="js/main.js"></script>
 
@@ -383,161 +382,147 @@
 <script>
   $(function () {
     $("#income-table").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "responsive": true, "lengthChange": false, "autoWidth": false, "searching": true,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#income-table_wrapper .col-md-6:eq(0)');
   });
 </script>
 
-<!-- Data Table Script -->
 <script>
 $(document).ready(function() {
-  // Initialize DataTable
-  var table = $('#income-table').DataTable({
-    "order": [[0, "desc"]],
-    "columnDefs": [
-      { "targets": 0, "type": "date-eu" }
-    ]
-  });
+    // Check if DataTable is already initialized
+    if (!$.fn.DataTable.isDataTable('#income-table')) {
+        // Initialize DataTable with sorting on the Date column (index 0)
+        var table = $('#income-table').DataTable({
+            "order": [[0, "desc"]],
+            "columnDefs": [
+                {
+                    "targets": 0,
+                    "type": "date-eu"
+                }
+            ]
+        });
 
-  // Initialize Select2
-  $('.select2').select2();
-
-  // Initialize date range picker
-  $('#daterange-filter').daterangepicker({
-    opens: 'left',
-    locale: { format: 'DD/MM/YYYY' }
-  });
-
-  // Apply both filters
-  $('#category-filter, #daterange-filter').on('change keyup', function() {
-    table.draw();
-  });
-
-  // Custom filtering function for category and date range
-  $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-    var min = $('#daterange-filter').data('daterangepicker').startDate;
-    var max = $('#daterange-filter').data('daterangepicker').endDate;
-    var date = moment(data[0], 'DD/MM/YYYY');
-    var category = $('#category-filter').val();
-    var rowCategory = data[3];
-
-    if (
-      ((min === null && max === null) || (min === null && date <= max) || (min <= date && max === null) || (min <= date && date <= max)) &&
-      (category === "" || rowCategory === category)
-    ) {
-      return true;
+        // Filter table based on category selection
+        $('#category-filter').on('change', function() {
+            var selectedCategory = $(this).val();
+            if (selectedCategory) {
+                table.column(3).search('^' + selectedCategory + '$', true, false).draw();
+            } else {
+                table.column(3).search('').draw();
+            }
+        });
     }
-    return false;
-  });
+});
 
-  // Custom date sorting (European format dd/mm/yyyy)
-  $.fn.dataTable.ext.type.order['date-eu-pre'] = function(d) {
+// Custom date sorting (European format dd/mm/yyyy)
+$.fn.dataTable.ext.type.order['date-eu-pre'] = function(d) {
     var parts = d.split('/');
     return Date.parse(parts[2] + '-' + parts[1] + '-' + parts[0]);
-  };
-});
+};
+
 </script>
+
 <!-- Page specific script -->
 <script>
-$(function () {
-  //Initialize Select2 Elements
-  $('.select2').select2()
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
 
-  //Initialize Select2 Elements
-  $('.select2bs4').select2({
-    theme: 'bootstrap4'
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
   })
-
-})
 </script>
 
 <!-- Bar Chart Script -->
 <script>
 $(function () {
-  const ctx = $('#barChart').get(0).getContext('2d');
-  let currentYear = new Date().getFullYear();
+    const ctx = $('#barChart').get(0).getContext('2d');
+    let currentYear = new Date().getFullYear();
 
-  const parseExpenseTable = () => {
-      const data = {};
-      // Parse all rows, not just the displayed ones
-      $('#income-table').DataTable().rows().every(function () {
-          const row = $(this.node());
-          const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
-          const date = row.find('td').eq(0).text().trim();  // Updated index for date column
-          const [day, month, year] = date.split('/').map(Number);
+    const parseIncomeTable = () => {
+        const data = {};
+        // Parse all rows, not just the displayed ones
+        $('#income-table').DataTable().rows().every(function () {
+            const row = $(this.node());
+            const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
+            const date = row.find('td').eq(0).text().trim();  // Updated index for date column
+            const [day, month, year] = date.split('/').map(Number);
 
-          if (!data[year]) data[year] = Array(12).fill(0);
-          data[year][month - 1] += amount;
-      });
-      return data;
-  };
+            if (!data[year]) data[year] = Array(12).fill(0);
+            data[year][month - 1] += amount;
+        });
+        return data;
+    };
 
-  const expenseData = parseExpenseTable();
+    const incomeData = parseIncomeTable();
 
-  const updateChart = (year) => {
-      if (!expenseData[year]) {
-          alert(`No data available for ${year}`);
-          return;
-      }
+    const updateChart = (year) => {
+        if (!incomeData[year]) {
+            alert(`No data available for ${year}`);
+            return;
+        }
 
-      const barChartData = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-          datasets: [{
-              label: `Income in ${year}`,
-              backgroundColor: 'rgba(60,141,188,0.9)',
-              borderColor: 'rgba(60,141,188,0.8)',
-              data: expenseData[year]
-          }]
-      };
+        const barChartData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [{
+                label: `Income in ${year}`,
+                backgroundColor: 'rgba(60,141,188,0.9)',
+                borderColor: 'rgba(60,141,188,0.8)',
+                data: incomeData[year]
+            }]
+        };
 
-      if (window.myBarChart) {
-          window.myBarChart.destroy();
-      }
+        if (window.myBarChart) {
+            window.myBarChart.destroy();
+        }
 
-      window.myBarChart = new Chart(ctx, {
-          type: 'bar',
-          data: barChartData,
-          options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              title: {
-                  display: true,
-                  text: `Income for ${year}`,
-                  fontSize: 18,
-                  fontColor: '#333'
-              },
-              legend: {
-                  display: true,
-                  position: 'bottom',
-                  labels: {
-                      fontSize: 12,
-                      fontColor: '#666'
-                  }
-              },
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero: true,
-                          max: 1000 // Fixed y-axis maximum value
-                      }
-                  }]
-              }
-          }
-      });
-  };
+        window.myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: `Income for ${year}`,
+                    fontSize: 18,
+                    fontColor: '#333'
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        fontSize: 12,
+                        fontColor: '#666'
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: 1000 // Fixed y-axis maximum value
+                        }
+                    }]
+                }
+            }
+        });
+    };
 
-  $('#prevYear').click(() => {
-      currentYear--;
-      updateChart(currentYear);
-  });
+    $('#prevYear').click(() => {
+        currentYear--;
+        updateChart(currentYear);
+    });
 
-  $('#nextYear').click(() => {
-      currentYear++;
-      updateChart(currentYear);
-  });
+    $('#nextYear').click(() => {
+        currentYear++;
+        updateChart(currentYear);
+    });
 
-  updateChart(currentYear);  // Initialize with the current year data
+    updateChart(currentYear);  // Initialize with the current year data
 });
 
 </script>
@@ -545,101 +530,102 @@ $(function () {
 <!-- Pie Chart Script -->
 <script>
 $(function () {
-  const ctxPie = $('#pieChart').get(0).getContext('2d');
-  let currentYear = new Date().getFullYear();
+    const ctxPie = $('#pieChart').get(0).getContext('2d');
+    let currentYear = new Date().getFullYear();
 
-  const parseExpenseTable = () => {
-      const data = {};
+    const parseIncomeTable = () => {
+        const data = {};
 
-      // Parse all rows, not just the displayed ones
-      $('#income-table').DataTable().rows().every(function () {
-          const row = $(this.node());
-          const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
-          const date = row.find('td').eq(0).text().trim();  // Updated index for date column
-          const category = row.find('td').eq(3).text().trim();  // Updated index for category column
-          const [day, month, year] = date.split('/').map(Number);
+        // Parse all rows, not just the displayed ones
+        $('#income-table').DataTable().rows().every(function () {
+            const row = $(this.node());
+            const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
+            const date = row.find('td').eq(0).text().trim();  // Updated index for date column
+            const category = row.find('td').eq(3).text().trim();  // Updated index for category column
+            const [day, month, year] = date.split('/').map(Number);
 
-          if (!data[year]) data[year] = {};
-          if (!data[year][category]) data[year][category] = 0;
-          data[year][category] += amount;
-      });
-      return data;
-  };
+            if (!data[year]) data[year] = {};
+            if (!data[year][category]) data[year][category] = 0;
+            data[year][category] += amount;
+        });
+        return data;
+    };
 
-  const expenseData = parseExpenseTable();
+    const incomeData = parseIncomeTable();
 
-  const getYearlyPieData = (year) => {
-      const yearlyData = expenseData[year];
-      if (!yearlyData) {
-          alert(`No data available for ${year}`);
-          return null;
-      }
+    const getYearlyPieData = (year) => {
+        const yearlyData = incomeData[year];
+        if (!yearlyData) {
+            alert(`No data available for ${year}`);
+            return null;
+        }
 
-      const categories = Object.keys(yearlyData);
-      const amounts = categories.map(cat => yearlyData[cat]);
+        const categories = Object.keys(yearlyData);
+        const amounts = categories.map(cat => yearlyData[cat]);
 
-      const pieChartData = {
-          labels: categories,
-          datasets: [{
-              backgroundColor: [
-                  '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc',
-                  '#d2d6de', '#8a6d3b', '#605ca8', '#78c2ad', '#b66353'
-              ],  // Colors for each category
-              data: amounts
-          }]
-      };
+        const pieChartData = {
+            labels: categories,
+            datasets: [{
+                backgroundColor: [
+                    '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc',
+                    '#d2d6de', '#8a6d3b', '#605ca8', '#78c2ad', '#b66353'
+                ],  // Colors for each category
+                data: amounts
+            }]
+        };
 
-      return pieChartData;
-  };
+        return pieChartData;
+    };
 
-  const updatePieChart = (year) => {
-      const pieData = getYearlyPieData(year);
+    const updatePieChart = (year) => {
+        const pieData = getYearlyPieData(year);
 
-      if (!pieData) return;
+        if (!pieData) return;
 
-      if (window.myPieChart) {
-          window.myPieChart.destroy();
-      }
+        if (window.myPieChart) {
+            window.myPieChart.destroy();
+        }
 
-      window.myPieChart = new Chart(ctxPie, {
-          type: 'pie',
-          data: pieData,
-          options: {
-              maintainAspectRatio: false,
-              responsive: true,
-              title: {
-                  display: true,
-                  text: `Income Categories for ${year}`,
-                  fontSize: 18,
-                  fontColor: '#333'
-              },
-              legend: {
-                  display: true,
-                  position: 'bottom',
-                  labels: {
-                      fontSize: 12,
-                      fontColor: '#666'
-                  }
-              }
-          }
-      });
-  };
+        window.myPieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: pieData,
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                title: {
+                    display: true,
+                    text: `Income Categories for ${year}`,
+                    fontSize: 18,
+                    fontColor: '#333'
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        fontSize: 12,
+                        fontColor: '#666'
+                    }
+                }
+            }
+        });
+    };
 
-  $('#prevYearPie').click(() => {
-      currentYear--;
-      updatePieChart(currentYear);
-  });
+    $('#prevYearPie').click(() => {
+        currentYear--;
+        updatePieChart(currentYear);
+    });
 
-  $('#nextYearPie').click(() => {
-      currentYear++;
-      updatePieChart(currentYear);
-  });
+    $('#nextYearPie').click(() => {
+        currentYear++;
+        updatePieChart(currentYear);
+    });
 
-  // Initial load with current year data
-  updatePieChart(currentYear);
+    // Initial load with current year data
+    updatePieChart(currentYear);
 });
 
 </script>
+
 
 </body>
 </html>
