@@ -47,8 +47,10 @@
     "viewRec": "View Record",
     
     "submit": "Submit",
+    "add":"Add",
     "genPDF": "Generate PDF",
     "print": "Print",
+    "fileTypeUploadValidation": "File Type: .JPEG, .JPG, or .PNG only.",
 
     "incomeRec": "Income Record",
     "addIncomeRec": "Add Income Record",
