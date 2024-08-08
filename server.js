@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 
+console.log('Starting MongoDB connection attempt...');
+
 // Connect to MongoDB
 mongoose.connect('mongodb://adminDOF:!sbdDOF2021080824!@13.215.209.29:27017/DOF', {
     useNewUrlParser: true,
