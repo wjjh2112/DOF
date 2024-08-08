@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('emailInput').value = userData.email;
     } else {
         // Redirect to login page if user data is not found
-        window.location.href = '/Login';
+        window.location.href = '/login';
     }
 
     // Logout functionality for mobile and sidebar
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 sessionStorage.removeItem('userData');
 
                 // Redirect to login page
-                window.location.href = '/Login';
+                window.location.href = '/login';
             });
         }
     });
