@@ -69,8 +69,21 @@
     "dwCSV": "Download CSV",
     "moreInfo": "More info",
     "realTime": "Real Time",
-    "current": "Current",
-    "extremes": "Extremes",
+
+    "currentTemp": "Current Temperature",
+    "tempExtremes": "Temperature Extremes",
+
+    "currentDissOxy": "Current Dissolved Oxygen",
+    "dissOxyExtremes": "Dissolved Oxygen Extremes",
+
+    "currentDissOxyPerc": "Current Dissolved Oxygen Percentage",
+    "dissOxyPercExtremes": "Dissolved Oxygen Percentage Extremes",
+
+    "currentPH": "Current pH Value",
+    "phExtremes": "pH Value Extremes",
+
+    "currentSalinity": "Current Salinity",
+    "salinityExtremes": "Salinity Extremes",
 
     "dateRangePlaceholder": "Select Date Range",
     "datetime": "Date & Time",

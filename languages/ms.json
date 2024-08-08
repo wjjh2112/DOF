@@ -68,11 +68,24 @@
 
     "organization": "Organisasi",
 
-    "dwCSV": "Download CSV",
-    "moreInfo": "More info",
-    "realTime": "Real Time",
-    "current": "Current",
-    "extremes": "Extremes",
+    "dwCSV": "Muat Turun CSV",
+    "moreInfo": "Maklumat Lanjut",
+    "realTime": "Masa Nyata",
+
+    "currentTemp": "Suhu Semasa",
+    "tempExtremes": "Ekstrem Suhu",
+
+    "currentDissOxy": "Oksigen Terlarut Semasa",
+    "dissOxyExtremes": "Ekstrem Oksigen Terlarut",
+
+    "currentDissOxyPerc": "Peratusan Oksigen Terlarut Semasa",
+    "dissOxyPercExtremes": "Ekstrem Peratusan Oksigen Terlarut",
+
+    "currentPH": "Nilai pH Semasa",
+    "phExtremes": "Ekstrem Nilai pH",
+
+    "currentSalinity": "Kesalinusan Semasa",
+    "salinityExtremes": "Ekstrem Kesalinusan",
     
     "dateRangePlaceholder": "Sila Pilih Julat Tarikh",
     "deviceLocation": "Lokasi Peranti",
