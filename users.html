@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>DOF - Users</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="vendor/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+    <!-- Date Range Picker CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+          <div class="header-mobile__bar">
+              <div class="container-fluid">
+                  <div class="header-mobile-inner">
+                      <a class="logo" href="/Telemetry">
+                          <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
+                      </a>
+                      <button class="hamburger hamburger--slider" type="button">
+                          <span class="hamburger-box">
+                              <span class="hamburger-inner"></span>
+                          </span>
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <div class="navbar-mobile">
+              <div class="container-fluid">
+                  <ul class="navbar-mobile__list list-unstyled">
+                      <li>
+                          <a href="/Telemetry">
+                              <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
+                      </li>
+                      <li>
+                          <a href="/History">
+                              <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
+                      </li>
+                      <li>
+                          <a class="js-arrow" href="#">
+                              <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span>
+                          </a>
+                          <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                              <li>
+                                  <a href="/Accounting-Expenses"><span data-i18n="expenses"></a>
+                              </li>
+                              <li>
+                                  <a href="Accounting-Income"><span data-i18n="income"></a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="/Gallery">
+                              <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
+                      </li>
+                      <li class="has-sub" id="mobile-users-item">
+                        <a href="/Users">
+                            <i class="fas fa-users"></i><span data-i18n="users"></span></a>
+                    </li>
+                    <li>
+                        <a href="/About">
+                            <i class="fas fa-copy"></i><span data-i18n="about"></span></a>
+                    </li>
+                      <li>
+                          <a href="/Settings">
+                              <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
+                      </li>
+                      <br>
+                      <li>
+                          <center>
+                              <button id="logoutBtn" class="au-btn au-btn--logout au-btn-icon">
+                                  <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span>
+                              </button>
+                          </center>
+                      </li>
+                      <br>
+                  </ul>
+              </div>
+          </div>
+      </header>
+      <!-- END HEADER MOBILE-->
+
+      <!-- MENU SIDEBAR-->
+      <aside class="menu-sidebar d-none d-lg-block">
+          <div class="logo">
+              <a href="#">
+                  <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
+              </a>
+          </div>
+          <div class="menu-sidebar__content js-scrollbar1">
+              <nav class="navbar-sidebar">
+                  <ul class="list-unstyled navbar__list">
+                      <li>
+                          <a href="/Telemetry">
+                              <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
+                      </li>
+                      <li>
+                          <a href="/History">
+                              <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
+                      </li>
+                      <li>
+                          <a class="js-arrow" href="#">
+                              <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span>
+                          </a>
+                          <ul class="list-unstyled navbar__sub-list js-sub-list">
+                              <li>
+                                  <a href="/Accounting-Expenses"><span data-i18n="expenses"></a>
+                              </li>
+                              <li>
+                                  <a href="/Accounting-Income"><span data-i18n="income"></a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="/Gallery">
+                              <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
+                      </li>
+                      <li class="active has-sub" id="sidebar-users-item">
+                        <a href="/Users">
+                            <i class="fas fa-users"></i><span data-i18n="users"></span></a>
+                    </li>
+                    <li>
+                        <a href="/About">
+                            <i class="fas fa-copy"></i><span data-i18n="about"></span></a>
+                    </li>
+                      <li>
+                          <a href="/Settings">
+                              <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
+                      </li>
+                      <br>
+                      <li>
+                          <center>
+                              <button id="logoutBtn" class="au-btn au-btn--logout au-btn-icon">
+                                  <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span>
+                              </button>
+                          </center>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </aside>
+      <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <!-- ADD USER POP UP -->
+                        <div id="addUserModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close" id="closeAddUserModal">&times;</span>
+                                <h4><span data-i18n="generateLinkHeader"></span></h4><br>
+                                <form id="generateLinkForm">
+                                    <div class="form-group">
+                                        <label for="expiryDays"><span data-i18n="linkExp"></span></label>
+                                        <input style="display:block; padding: 8px 12px; cursor: text; border: 1px solid #aaa; border-radius: 4px" type="number" id="expiryDays" name="expiryDays" min="1" required class="form-text">
+                                    </div>
+                                    <div class="form-group button-radio-group">
+                                        <label><span data-i18n="role"></span></label>
+                                        <div style="justify-content: end;">
+                                            <label for="adminRole" class="button-radio-label">
+                                                <input type="radio" name="role" id="adminRole" value="Admin" class="form-radio-input">
+                                                <span class="button-radio-button" data-i18n="admin"></span>
+                                            </label>
+                                            <label for="viewerRole" class="button-radio-label">
+                                                <input type="radio" name="role" id="viewerRole" value="Viewer" class="form-radio-input">
+                                                <span class="button-radio-button" data-i18n="viewer"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="generateLinkBtn" class="au-btn" style="width: 100%;"><span data-i18n="generateButton"></span></button>
+                                    <div id="generatedLinkArea" style="display: none;">
+                                        <div class="input-group">
+                                            <input type="text" id="generatedLink" readonly class="form-text">
+                                            <button type="button" id="copyLinkBtn" class="au-btn--trans-backg"><i class="fas fa-copy"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END USER POP UP -->
+
+                        <!-- DELETE USER POP UP -->
+                        <div id="deleteUserConfirmationModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close" id="closeDeleteUserConfirmationModal">&times;</span>
+                                <h4><span data-i18n="deleteUserConfirmation"></span></h4><br>
+                                <form>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label class="form-label"><span data-i18n="userFullname"></span>: </label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <p> <strong id="confirmUserFullname"></strong></p>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label class="form-label"><span data-i18n="userEmail"></span>: </label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <p> <strong id="confirmUserEmail"></strong></p>
+                                        </div>
+                                    </div>
+                                    <div class="au-card-footer form-footer">
+                                        <button id="confirmDeleteUserBtn" class="au-btn"><span data-i18n="delete"></span></button>
+                                        &nbsp;&nbsp;
+                                        <button id="cancelDeleteUserBtn" class="au-btn"><span data-i18n="cancel"></span></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END DELETE DEVICE POP UP -->
+
+                        <!-- EDIT DEVICE POP UP -->
+                        <div id="editUserModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close" id="closeEditUserModal">&times;</span>
+                                <h3><span data-i18n="editUser"></span></h3><br>
+                                <!-- Device ID (display only) -->
+                                <h5 id="userID">(User ID)</h5>&nbsp;
+                                <form id="editUserForm">
+                                    <!-- User Fullname (editable) -->
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="user-fullname" class="form-label"><span data-i18n="userFullname"></span></label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="text" id="user-fullname" name="user-fullname" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!-- User Type (editable) -->
+                                    <div class="form-group button-radio-group">
+                                        <label><span data-i18n="role"></span></label>
+                                        <div style="justify-content: end;">
+                                            <label for="adminRole" class="button-radio-label">
+                                                <input type="radio" name="role" id="adminRole" value="Admin" class="form-radio-input">
+                                                <span class="button-radio-button" data-i18n="admin"></span>
+                                            </label>
+                                            <label for="viewerRole" class="button-radio-label">
+                                                <input type="radio" name="role" id="viewerRole" value="Viewer" class="form-radio-input">
+                                                <span class="button-radio-button" data-i18n="viewer"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- Submit Button -->
+                                    <div class="au-card-footer form-footer">
+                                        <button type="submit" class="au-btn">
+                                            <span data-i18n="update"></span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END EDIT DEVICE POP UP -->
+
+                        <div class="row" style="justify-content: end; margin: 10px;">
+                            <button id="addUserBtn" class="au-btn au-btn-icon">
+                                <i class="zmdi zmdi-plus"></i> <span data-i18n="user"></span>
+                            </button>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="au-card">
+                                    <div class="au-card-header">
+                                        <h3 class="title-2"><span data-i18n="users"></span></h3><br>
+                                        <div class="table-data__tool">
+                                            <div class="table-data__tool-left">
+                                                <div class="rs-select2--light rs-select2--md">
+                                                    <select class="js-select2" name="type" id="userRoleFilter">
+                                                        <option value="all" selected>All Users</option>
+                                                        <option value="admin">Admin</option>
+                                                        <option value="viewer">Viewer</option>
+                                                    </select>
+                                                    <div class="dropDownSelect2"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="au-card-body">
+                                        <div class="table-container">
+                                            <table class="table table-data">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span data-i18n="userID"></span></th>
+                                                        <th><span data-i18n="name"></span></th>
+                                                        <th><span data-i18n="role"></span></th>
+                                                        <th class="text-center"><span data-i18n="action"></span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="userTableBody">
+                                                    <!-- User rows will be inserted here by JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+        <!-- END PAGE CONTAINER-->
+    </div>
+
+    
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+
+    <!--   Users Page JS   -->
+    <script src="js/users.js"></script>
+    
+    <!-- User Account JS -->
+    <script src="js/userAccount.js"></script>
+
+    <!-- Language Switch JS -->
+    <script src="js/language_switch.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->
