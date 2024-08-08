@@ -61,6 +61,9 @@
     "incomeCategoryAnalysis": "Analisis Kategori Pendapatan",
 
     "userProfile": "Profil Pengguna",
+    "userID": "ID Pengguna",
+    "Name": "Nama",
+    "role": "Peranan",
     "firstName": "Nama Pertama",
     "lastName": "Nama Keluarga",
     "e-mail": "E-mail",

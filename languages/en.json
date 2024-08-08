@@ -60,6 +60,9 @@
     "incomeCategoryAnalysis": "Income Category Analysis",
 
     "userProfile": "User Profile",
+    "userID": "User ID",
+    "name": "Name",
+    "role": "Role",
     "firstName": "First Name",
     "lastName": "Last Name",
     "e-mail": "E-mail",
