@@ -30,9 +30,9 @@
     "ec": "EC",
     "hex": "HEX",
 
-    "expRec": "Expenses Record",
+    "expRec": "Expense Record",
+    "expsRec": "Expenses Record",
     "addExpRec": "Add Expenses Record",
-    "genExpRec": "Generate Expenses Record",
     "addNewExpRec": "Add New Expense Record",
     "expAnalysis": "Expense Analysis",
     "expCategoryAnalysis": "Expense Category Analysis",
@@ -54,7 +54,6 @@
 
     "incomeRec": "Income Record",
     "addIncomeRec": "Add Income Record",
-    "genIncomeRec": "Generate Income Record",
     "addNewIncomeRec": "Add New Income Record",
     "incomeAnalysis": "Income Analysis",
     "incomeCategoryAnalysis": "Income Category Analysis",
