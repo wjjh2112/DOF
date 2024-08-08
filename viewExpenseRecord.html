@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>GajahSafe - View Expense Record</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body>
+  <div class="page-wrapper">
+      <!-- HEADER MOBILE-->
+      <header class="header-mobile d-block d-lg-none">
+          <div class="header-mobile__bar">
+              <div class="container-fluid">
+                  <div class="header-mobile-inner">
+                      <a class="logo" href="index.html">
+                          <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
+                      </a>
+                      <button class="hamburger hamburger--slider" type="button">
+                          <span class="hamburger-box">
+                              <span class="hamburger-inner"></span>
+                          </span>
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <div class="navbar-mobile">
+              <div class="container-fluid">
+                  <ul class="navbar-mobile__list list-unstyled">
+                      <li>
+                          <a href="index.html">
+                              <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
+                      </li>
+                      <li>
+                          <a href="history.html">
+                              <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
+                      </li>
+                      <li class="has-sub">
+                          <a class="js-arrow" href="#">
+                              <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span>
+                          </a>
+                          <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                              <li>
+                                  <a href="accountingExpenses.html"><span data-i18n="expenses"></a>
+                              </li>
+                              <li>
+                                  <a href="accountingIncome.html"><span data-i18n="income"></a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="gallery.html">
+                              <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
+                      </li>
+                      <li>
+                          <a href="about.html">
+                              <i class="far fa-users"></i><span data-i18n="about"></span></a>
+                      </li>
+                      <li>
+                          <a href="settings.html">
+                              <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
+                      </li>
+                      <br>
+                      <li>
+                          <center>
+                              <button id="logoutBtn" class="au-btn au-btn--logout au-btn-icon">
+                                  <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span>
+                              </button>
+                          </center>
+                      </li>
+                      <br>
+                  </ul>
+              </div>
+          </div>
+      </header>
+      <!-- END HEADER MOBILE-->
+
+      <!-- MENU SIDEBAR-->
+      <aside class="menu-sidebar d-none d-lg-block">
+          <div class="logo">
+              <a href="#">
+                  <img src="images/SBDLogo.jpeg" alt="Satok Bridge Digital" />
+              </a>
+          </div>
+          <div class="menu-sidebar__content js-scrollbar1">
+              <nav class="navbar-sidebar">
+                  <ul class="list-unstyled navbar__list">
+                      <li>
+                          <a href="index.html">
+                              <i class="fas fa-tachometer-alt"></i><span data-i18n="telemetry"></span></a>
+                      </li>
+                      <li>
+                          <a href="history.html">
+                              <i class="fas fa-archive"></i><span data-i18n="history"></span></a>
+                      </li>
+                      <li class="active has-sub">
+                          <a class="js-arrow" href="#">
+                              <i class="fas fa-chart-bar"></i><span data-i18n="accounting"></span>
+                          </a>
+                          <ul class="list-unstyled navbar__sub-list js-sub-list">
+                              <li>
+                                  <a href="accountingExpenses.html"><span data-i18n="expenses"></a>
+                              </li>
+                              <li>
+                                  <a href="accountingIncome.html"><span data-i18n="income"></a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="gallery.html">
+                              <i class="fas fa-table"></i><span data-i18n="gallery"></span></a>
+                      </li>
+                      <li>
+                          <a href="about.html">
+                              <i class="far fa-users"></i><span data-i18n="about"></span></a>
+                      </li>
+                      <li>
+                          <a href="settings.html">
+                              <i class="fas fa-wrench"></i><span data-i18n="settings"></span></a>
+                      </li>
+                      <br>
+                      <li>
+                          <center>
+                              <button id="logoutBtn" class="au-btn au-btn--logout au-btn-icon">
+                                  <i class="zmdi zmdi-power"></i><span data-i18n="logout"></span>
+                              </button>
+                          </center>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </aside>
+      <!-- END MENU SIDEBAR-->
+
+      <!-- PAGE CONTAINER-->
+      <div class="page-container">
+          <!-- MAIN CONTENT -->
+          <div class="main-content">
+              <div class="section__content section__content--p30">
+                  <div class="container-fluid">
+                    <div class="row mb-4 align-items-center">
+                      <div class="col-sm-3">
+                          <a href="accountingExpenses.html"><i class="fas fa-arrow-left"></i></a>
+                      </div>
+                      <div class="col-sm-6">
+                          <center><h1>Accounting - Add New Expenses</h1></center>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="au-card">
+                          <form id="addReportForm" action="/submit-report" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                            <!-- EXPENSE ITEM -->
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="expenseItem" class="form-label"><span data-i18n="expItem"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input class="form-text" type="text" id="expenseItem" name="expenseItem" readonly>
+                              </div>
+                            </div>
+
+                            <!-- EXPENSE AMOUNT -->
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="expenseAmount" class="form-label"><span data-i18n="amount"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input class="form-text" type="number" id="expenseAmount" name="expenseAmount" readonly>
+                              </div>
+                            </div>
+                            
+                            <!-- DATE & TIME -->
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="datetime-input" class="form-label"><span data-i18n="date"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input class="form-text" type="datetime-local" id="datetime-input" name="expRecDateTime" readonly>
+                              </div>
+                            </div>
+
+                            <!-- CATEGORY -->
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="expCategory" class="form-label"><span data-i18n="category"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input class="form-text" type="text" id="expCategory" name="expCategory" readonly>
+                              </div>
+                            </div>
+
+                            <!-- REMARKS -->
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="remarks" class="form-label"><span data-i18n="remarks"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                <textarea id="remarks" class="form-text" nam="remarks" rows="4" readonly></textarea>
+                              </div>
+                            </div>
+
+                            <!-- IMAGES -->
+                            <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label class="form-label"><span data-i18n="images"></span></label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <div class="file-upload-container">
+                                      <ul id="file-list" class="file-list">
+                                          <!-- IMAGES DISPLAY HERE -->
+                                      </ul>
+                                  </div>
+                                  <small class="help-block form-text" data-i18n="clickImage"></small>
+                              </div>
+                          </div>
+
+                            <div class="au-card-footer form-footer">
+                                <button type="submit" class="au-btn">
+                                    <span data-i18n="add"></span>
+                                </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS -->
+    <script src="vendor/slick/slick.min.js"></script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js"> </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+
+    <!-- DataTables  & Plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="vendor/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="vendor/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="vendor/jszip/jszip.min.js"></script>
+    <script src="vendor/pdfmake/pdfmake.min.js"></script>
+    <script src="vendor/pdfmake/vfs_fonts.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="vendor/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+
+    <!--   History Page JS   -->
+    <script src="js/history.js"></script>
+
+    <!-- User Account JS -->
+    <script src="js/userAccount.js"></script>
+
+    <!-- Date Range Picker JS -->
+    <script src="https://cdn.jsdelivr.net/npm/moment/min/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <!-- Language Switch JS -->
+    <script src="js/language_switch.js"></script>  
+
+</body>
+</html>
