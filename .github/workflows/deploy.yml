@@ -1,0 +1,48 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build & Deploy
+        env:
+          PRIVATE_KEY: ${{ secrets.EC2_KEY }}
+          HOSTNAME: ${{ secrets.EC2_HOST }}
+          USER_NAME: ubuntu
+        run: |
+          echo "$PRIVATE_KEY" > private_key
+          chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} << 'EOF'
+            set -e
+
+            echo "Connected to EC2 instance"
+
+            cd /home/ubuntu/DOF
+            echo "Resetting local changes"
+            git reset --hard
+            git clean -fd
+            echo "Pulling latest changes"
+            git pull origin main
+            echo "Installing dependencies"
+            npm install
+            sudo npm install -g pm2
+
+            if pm2 describe DOFApp > /dev/null; then
+              echo "Restarting application"
+              pm2 restart DOFApp
+            else
+              echo "Starting application"
+              pm2 start /home/ubuntu/DOF/server.js --name "DOFApp"
+            fi
+
+            echo "Deployment completed"
+          EOF
