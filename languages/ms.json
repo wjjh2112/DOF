@@ -2,12 +2,12 @@
     "telemetry": "Papan Pemuka",
     "history": "Sejarah",
     "accounting": "Perakaunan",
-    "gallery": "Galeri",
-    "about": "Tentang",
-    "settings": "Tetapan",
-
     "expenses": "Perbelanjaan",
     "income": "Pendapatan",
+    "gallery": "Galeri",
+    "about": "Tentang",
+    "users": "Pengguna",
+    "settings": "Tetapan",
 
     "language": "Bahasa",
     "changeLanguage": "Tukar Bahasa",
