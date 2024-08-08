@@ -38,24 +38,37 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    // Find user in database
-    mongoose.connection.db.collection('users').findOne({ email, password }, (err, user) => {
-        if (err) {
-            return res.status(500).json({ error: 'Internal server error' });
-        }
-        if (!user) {
-            return res.status(401).json({ error: 'Invalid email or password' });
-        }
-        // Return user data including usertype as JSON
-        res.json({
-            firstname: user.firstname,
-            lastname: user.lastname,
-            email: user.email,
-            usertype: user.usertype
-        });
-    });
+  const { email, password } = req.body;
+
+  console.log(`Login attempt with email: ${email}`);
+
+  mongoose.connection.db.collection('users').findOne({ email }, (err, user) => {
+      if (err) {
+          console.error('Error finding user:', err);
+          return res.status(500).json({ error: 'Internal server error' });
+      }
+      if (!user) {
+          console.log('User not found for email:', email);
+          return res.status(401).json({ error: 'Invalid email or password' });
+      }
+
+      console.log('User found, verifying password...');
+      
+      if (user.password !== password) {
+          console.log('Password does not match for email:', email);
+          return res.status(401).json({ error: 'Invalid email or password' });
+      }
+
+      console.log('Password matches, logging in user:', email);
+      res.json({
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email,
+          usertype: user.usertype
+      });
+  });
 });
+
 
 // Endpoint to fetch all users
 app.get('/users', (req, res) => {
