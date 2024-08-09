@@ -8,8 +8,6 @@ const port = process.env.PORT || 3000;
 
 // Connect to MongoDB
 mongoose.connect('mongodb://admin:!sbdDOF2021080824!@13.215.209.29:27017/DOF', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   authSource: 'admin' // the database where the user is created
 }).then(() => {
   console.log('Connected to MongoDB');
@@ -34,41 +32,6 @@ app.get('/', (req, res) => {
 app.get('/test', (req, res) => {
   res.send('Test endpoint is working');
 });
-
-
-// app.get('/login', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'login.html'));
-// });
-
-// app.post('/login', (req, res) => {
-//   const { email, password } = req.body;
-//   // Find user in database
-//   mongoose.connection.db.collection('users').findOne({ email, password }, (err, user) => {
-//     if (err) {
-//       return res.status(500).json({ error: 'Internal server error' });
-//     }
-//     if (!user) {
-//       return res.status(401).json({ error: 'Invalid email or password' });
-//     }
-//     // Return user data including usertype as JSON
-//     res.json({
-//       firstname: user.firstname,
-//       lastname: user.lastname,
-//       email: user.email,
-//       usertype: user.usertype
-//     });
-//   });
-// });
-
-// Endpoint to fetch all users
-// app.get('/users', (req, res) => {
-//   mongoose.connection.db.collection('users').find({}).toArray((err, users) => {
-//     if (err) {
-//       return res.status(500).json({ error: 'Internal server error' });
-//     }
-//     res.json(users);
-//   });
-// });
 
 app.get('/users', (req, res) => {
   console.log('Received request for /users');
