@@ -57,7 +57,6 @@ app.post('/login', (req, res) => {
   });
 });
 
-
 app.get('/users', (req, res) => {
   console.log('Received request for /users');
   
@@ -71,6 +70,39 @@ app.get('/users', (req, res) => {
   });
 });
 
+// Endpoint to update user details
+app.put('/updateUser', (req, res) => {
+  const { id, fullname, usertype } = req.body;
+  
+  mongoose.connection.db.collection('users').updateOne(
+    { user_id: id },
+    { $set: { fullname, usertype } },
+    (err, result) => {
+      if (err) {
+        return res.status(500).json({ success: false, error: 'Failed to update user' });
+      }
+      if (result.modifiedCount === 0) {
+        return res.status(404).json({ success: false, error: 'User not found' });
+      }
+      res.status(200).json({ success: true, message: 'User updated successfully' });
+    }
+  );
+});
+
+// Endpoint to delete a user
+app.delete('/deleteUser', (req, res) => {
+  const { id } = req.body;
+
+  mongoose.connection.db.collection('users').deleteOne({ user_id: id }, (err, result) => {
+    if (err) {
+      return res.status(500).json({ success: false, error: 'Failed to delete user' });
+    }
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+    res.status(200).json({ success: true, message: 'User deleted successfully' });
+  });
+});
 
 // Start the server
 app.listen(port, () => {
