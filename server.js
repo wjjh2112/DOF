@@ -61,14 +61,28 @@ app.get('/test', (req, res) => {
 // });
 
 // Endpoint to fetch all users
+// app.get('/users', (req, res) => {
+//   mongoose.connection.db.collection('users').find({}).toArray((err, users) => {
+//     if (err) {
+//       return res.status(500).json({ error: 'Internal server error' });
+//     }
+//     res.json(users);
+//   });
+// });
+
 app.get('/users', (req, res) => {
+  console.log('Received request for /users');
+  
   mongoose.connection.db.collection('users').find({}).toArray((err, users) => {
     if (err) {
+      console.error('Error fetching users:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
+    console.log('Users fetched:', users);
     res.json(users);
   });
 });
+
 
 // Start the server
 app.listen(port, () => {
