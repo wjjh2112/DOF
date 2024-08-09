@@ -1,3 +1,10 @@
+$(function () {
+    $("#users").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#users_wrapper .col-md-6:eq(0)');
+    });
+
 document.addEventListener('DOMContentLoaded', function() {
     const userTableBody = document.getElementById('userTableBody');
 
