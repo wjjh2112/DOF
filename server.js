@@ -31,29 +31,29 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
-});
+// app.get('/login', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'login.html'));
+// });
 
-app.post('/login', (req, res) => {
-  const { email, password } = req.body;
-  // Find user in database
-  mongoose.connection.db.collection('users').findOne({ email, password }, (err, user) => {
-    if (err) {
-      return res.status(500).json({ error: 'Internal server error' });
-    }
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
-    // Return user data including usertype as JSON
-    res.json({
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
-      usertype: user.usertype
-    });
-  });
-});
+// app.post('/login', (req, res) => {
+//   const { email, password } = req.body;
+//   // Find user in database
+//   mongoose.connection.db.collection('users').findOne({ email, password }, (err, user) => {
+//     if (err) {
+//       return res.status(500).json({ error: 'Internal server error' });
+//     }
+//     if (!user) {
+//       return res.status(401).json({ error: 'Invalid email or password' });
+//     }
+//     // Return user data including usertype as JSON
+//     res.json({
+//       firstname: user.firstname,
+//       lastname: user.lastname,
+//       email: user.email,
+//       usertype: user.usertype
+//     });
+//   });
+// });
 
 // Endpoint to fetch all users
 app.get('/users', (req, res) => {
