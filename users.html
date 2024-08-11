@@ -310,11 +310,18 @@
                             <div class="col-12">
                                 <div class="au-card">
                                     <div class="au-card-header">
-                                        <select id="userTypeFilter" multiple="multiple" style="width: 200px;">
-                                            <option value="all" selected>All Users</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="viewer">Viewer</option>
-                                        </select>
+                                        <div class="table-data__tool">
+                                            <div class="table-data__tool-left">
+                                                <div class="rs-select2--light rs-select2--md">
+                                                    <select class="js-select2" name="type" id="userRoleFilter">
+                                                        <option value="all" selected>All Users</option>
+                                                        <option value="admin">Admin</option>
+                                                        <option value="viewer">Viewer</option>
+                                                    </select>
+                                                    <div class="dropDownSelect2"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="au-card-body">
                                         <table id="users" class="table table-bordered table-striped">
@@ -330,7 +337,7 @@
                                                 <!-- User rows will be inserted here by JavaScript -->
                                             </tbody>
                                         </table>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>
