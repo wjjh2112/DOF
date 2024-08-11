@@ -1,5 +1,4 @@
 $(function () {
-    // Initialize DataTable
     const table = $("#users").DataTable({
         "responsive": true,
         "lengthChange": false,
@@ -7,8 +6,8 @@ $(function () {
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#users_wrapper .col-md-6:eq(0)');
 
-    // Initialize Select2 for the user type filter
-    $('#usertype-filter').select2();
+    // Initialize Select2 for the dropdown
+    $('#category-filter').select2();
 
     // Fetch users from the server
     fetch('/users')
@@ -50,9 +49,6 @@ $(function () {
             userTableBody.appendChild(row);
         });
 
-        // Rebuild DataTable with new data
-        table.clear().rows.add(userTableBody.querySelectorAll('tr')).draw();
-
         // Attach event listeners for edit and delete buttons
         attachEventListeners();
     }
@@ -62,15 +58,9 @@ $(function () {
         // Add your event listener logic here for edit and delete buttons
     }
 
-    // Event listener for the user type filter
+    // User type filter change event
     $('#usertype-filter').on('change', function () {
         const selectedUserType = $(this).val();
-
-        // Filter the DataTable based on selected user type
-        if (selectedUserType) {
-            table.column(2).search(selectedUserType).draw();
-        } else {
-            table.column(2).search('').draw();
-        }
+        table.columns(2).search(selectedUserType).draw();
     });
 });
