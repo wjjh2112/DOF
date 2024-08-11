@@ -1,12 +1,10 @@
 $(function () {
     const table = $("#users").DataTable({
-        "responsive": true, 
-        "lengthChange": false, 
+        "responsive": true,
+        "lengthChange": false,
         "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#users_wrapper .col-md-6:eq(0)');
-    
-    $('#usertype-filter').select2();
 
     // Fetch users from the server
     fetch('/users')
@@ -48,16 +46,6 @@ $(function () {
             userTableBody.appendChild(row);
         });
 
-        // Category filter function
-        $('#usertype-filter').on('change', function () {
-            var selectedCategory = $(this).val();
-            if (selectedCategory === "") {
-                table.column(2).search('').draw();
-            } else {
-                table.column(2).search(selectedCategory).draw();
-            }
-        });
-
         // Attach event listeners for edit and delete buttons
         attachEventListeners();
     }
@@ -66,5 +54,10 @@ $(function () {
     function attachEventListeners() {
         // Add your event listener logic here for edit and delete buttons
     }
-});
 
+    // User type filter change event
+    $('#usertype-filter').on('change', function () {
+        const selectedUserType = $(this).val();
+        table.columns(2).search(selectedUserType).draw();
+    });
+});
