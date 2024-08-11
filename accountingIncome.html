@@ -367,63 +367,35 @@
     <!-- Language Switch JS -->
     <script src="js/language_switch.js"></script>
 
-<!-- Data Table Script -->
-<script>
-  $(function () {
+   <!-- Data Table Script -->
+   <script>
+    $(function () {
     $("#income-table").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false, "searching": true,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "responsive": true, "lengthChange": false, "autoWidth": false, "searching": true,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#income-table_wrapper .col-md-6:eq(0)');
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+    // Initialize DataTable
+    var table = $('#income-table').DataTable();
+
+    // Initialize Select2 for the dropdown
+    $('#category-filter').select2();
+
+    // Category filter function
+    $('#category-filter').on('change', function () {
+      var selectedCategory = $(this).val();
+      table.column(3).search(selectedCategory).draw();
+    });
+
+    // Reset filter when 'All Categories' is selected
+    $('#category-filter').on('select2:clear', function () {
+      table.column(3).search('').draw();
+    });
   });
-</script>
-
-<script>
-$(document).ready(function() {
-    // Check if DataTable is already initialized
-    if (!$.fn.DataTable.isDataTable('#income-table')) {
-        // Initialize DataTable with sorting on the Date column (index 0)
-        var table = $('#income-table').DataTable({
-            "order": [[0, "desc"]],
-            "columnDefs": [
-                {
-                    "targets": 0,
-                    "type": "date-eu"
-                }
-            ]
-        });
-
-        // Filter table based on category selection
-        $('#category-filter').on('change', function() {
-            var selectedCategory = $(this).val();
-            if (selectedCategory) {
-                table.column(3).search('^' + selectedCategory + '$', true, false).draw();
-            } else {
-                table.column(3).search('').draw();
-            }
-        });
-    }
-});
-
-// Custom date sorting (European format dd/mm/yyyy)
-$.fn.dataTable.ext.type.order['date-eu-pre'] = function(d) {
-    var parts = d.split('/');
-    return Date.parse(parts[2] + '-' + parts[1] + '-' + parts[0]);
-};
-
-</script>
-
-<!-- Page specific script -->
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
-
-  })
 </script>
 
 <!-- Bar Chart Script -->
