@@ -379,15 +379,21 @@
               ]
           });
 
-          // Filter table based on category selection
-          $('#category-filter').on('change', function() {
-              var selectedCategory = $(this).val();
-              if (selectedCategory) {
-                  table.column(3).search('^' + selectedCategory + '$', true, false).draw();
-              } else {
-                  table.column(3).search('').draw();
-              }
-          });
+             // Initialize Select2 for the dropdown
+            $('#category-filter').select2();
+
+
+            // Filter table based on category selection
+            // Category filter function
+            $('#category-filter').on('change', function () {
+            var selectedCategory = $(this).val();
+            table.column(3).search(selectedCategory).draw();
+            });
+
+            // Reset filter when 'All Categories' is selected
+            $('#category-filter').on('select2:clear', function () {
+            table.column(3).search('').draw();
+            });
       }
   });
 
