@@ -7,7 +7,7 @@ $(function () {
     }).buttons().container().appendTo('#users_wrapper .col-md-6:eq(0)');
 
     // Initialize Select2 for the dropdown
-    $('#category-filter').select2();
+    $('#usertype-filter').select2();
 
     // Fetch users from the server
     fetch('/users')
