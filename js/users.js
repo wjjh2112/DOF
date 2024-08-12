@@ -1,31 +1,16 @@
-$(document).ready(function () {
-    // Initialize DataTable for users-table
-    var table = $('#users-table').DataTable({
-        responsive: true,
-        lengthChange: false,
-        autoWidth: false,
-        searching: true,
-        buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    });
+$(function () {
+    // Initialize Select2 for the dropdown
+    $('#usertype-filter').select2();
+    
+    // Initialize users table
+    const table = $("#users-table").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#users-table_wrapper .col-md-6:eq(0)');
 
-    // Initialize Select2 for the user type filter dropdown
-    $('#usertype-filter').select2({
-        placeholder: "Select user type",
-        allowClear: true
-    });
-
-    // Event listener for user type filter change
-    $('#usertype-filter').on('change', function () {
-        var selectedUserType = $(this).val();
-        table.column(2).search(selectedUserType).draw();  // Assuming the usertype is in the 3rd column (index 2)
-    });
-
-    // Reset filter when 'All Users' is selected (cleared)
-    $('#usertype-filter').on('select2:clear', function () {
-        table.column(2).search('').draw();  // Clear the search on user type column
-    });
-
-    // Fetch users from the server and populate the table
+    // Fetch users from the server
     fetch('/users')
         .then(response => response.json())
         .then(users => {
@@ -65,7 +50,23 @@ $(document).ready(function () {
             userTableBody.appendChild(row);
         });
 
-        // Re-draw the DataTable after adding new rows
-        table.draw();
+        // Attach event listeners for edit and delete buttons
+        attachEventListeners();
     }
+
+    // Function to attach event listeners to the edit and delete buttons
+    function attachEventListeners() {
+        // Add your event listener logic here for edit and delete buttons
+    }
+
+    // User type filter change event
+    $('#usertype-filter').on('change', function () {
+        const selectedUserType = $(this).val();
+        table.columns(2).search(selectedUserType).draw();
+    });
+
+    // Reset filter when 'All Categories' is selected
+    $('#category-filter').on('select2:clear', function () {
+        table.column(3).search('').draw();
+    });
 });
