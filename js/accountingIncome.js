@@ -1,10 +1,9 @@
-// Data Table and Filter Script
 $(document).ready(function () {
-    // Initialize DataTable with options and buttons
+    // Initialize DataTable
     var table = $('#income-table').DataTable({
-        responsive: true, 
-        lengthChange: false, 
-        autoWidth: false, 
+        responsive: true,
+        lengthChange: false,
+        autoWidth: false,
         searching: true,
         buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
     });
@@ -12,36 +11,54 @@ $(document).ready(function () {
     // Append buttons to the specified container
     table.buttons().container().appendTo('#income-table_wrapper .col-md-6:eq(0)');
 
-    // Initialize Select2 for the category filter dropdown
-    $('#category-filter').select2({
-        placeholder: "Select a category",
-        allowClear: true
-    });
+    // Fetch income data from the server
+    $.getJSON('/incomes', function (data) {
+        // Populate the table
+        data.forEach(function (income) {
+            const date = new Date(income.incomeRecDateTime).toLocaleDateString();
+            const amount = '$' + income.incomeAmount.toFixed(2);
+            const item = income.incomeItem;
+            const category = income.incomeCategory;
+            const remarks = income.remarks || '';
 
-    // Event listener for category filter change
-    $('#category-filter').on('change', function () {
-        var selectedCategory = $(this).val();
-        table.column(3).search(selectedCategory).draw();
-    });
+            const viewRecordButton = '<button class="btn btn-primary view-record" data-id="' + income.incomeID + '">View</button>';
 
-    // Reset filter when 'All Categories' is selected (cleared)
-    $('#category-filter').on('select2:clear', function () {
-        table.column(3).search('').draw();
+            // Append the row to the table
+            table.row.add([date, amount, item, category, remarks, viewRecordButton]).draw();
+        });
+        
+        // Initialize Select2 for category filtering
+        $('#category-filter').select2({
+            placeholder: "Select a category",
+            allowClear: true
+        });
+
+        // Event listener for category filter change
+        $('#category-filter').on('change', function () {
+            var selectedCategory = $(this).val();
+            table.column(3).search(selectedCategory).draw();
+        });
+
+        // Reset filter when 'All Categories' is selected (cleared)
+        $('#category-filter').on('select2:clear', function () {
+            table.column(3).search('').draw();
+        });
+
+        // Bar Chart Initialization (after table is populated)
+        initBarChart();
     });
 });
 
-// Bar Chart Script
-$(function () {
+function initBarChart() {
     const ctx = $('#barChart').get(0).getContext('2d');
     let currentYear = new Date().getFullYear();
 
     const parseIncomeTable = () => {
         const data = {};
-        // Parse all rows, not just the displayed ones
         $('#income-table').DataTable().rows().every(function () {
             const row = $(this.node());
             const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
-            const date = row.find('td').eq(0).text().trim();  // Updated index for date column
+            const date = row.find('td').eq(0).text().trim();
             const [day, month, year] = date.split('/').map(Number);
 
             if (!data[year]) data[year] = Array(12).fill(0);
@@ -96,7 +113,7 @@ $(function () {
                     yAxes: [{
                         ticks: {
                             beginAtZero: true,
-                            max: 1000 // Fixed y-axis maximum value
+                            max: 1000 
                         }
                     }]
                 }
@@ -104,111 +121,10 @@ $(function () {
         });
     };
 
-    $('#prevYear').click(() => {
-        currentYear--;
-        updateChart(currentYear);
+    updateChart(currentYear);
+
+    $('#year-filter').on('change', function () {
+        const selectedYear = parseInt($(this).val(), 10);
+        updateChart(selectedYear);
     });
-
-    $('#nextYear').click(() => {
-        currentYear++;
-        updateChart(currentYear);
-    });
-
-    updateChart(currentYear);  // Initialize with the current year data
-});
-
-// Pie Chart Script
-$(function () {
-    const ctxPie = $('#pieChart').get(0).getContext('2d');
-    let currentYear = new Date().getFullYear();
-
-    const parseIncomeTable = () => {
-        const data = {};
-
-        // Parse all rows, not just the displayed ones
-        $('#income-table').DataTable().rows().every(function () {
-            const row = $(this.node());
-            const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
-            const date = row.find('td').eq(0).text().trim();  // Updated index for date column
-            const category = row.find('td').eq(3).text().trim();  // Updated index for category column
-            const [day, month, year] = date.split('/').map(Number);
-
-            if (!data[year]) data[year] = {};
-            if (!data[year][category]) data[year][category] = 0;
-            data[year][category] += amount;
-        });
-        return data;
-    };
-
-    const incomeData = parseIncomeTable();
-
-    const getYearlyPieData = (year) => {
-        const yearlyData = incomeData[year];
-        if (!yearlyData) {
-            alert(`No data available for ${year}`);
-            return null;
-        }
-
-        const categories = Object.keys(yearlyData);
-        const amounts = categories.map(cat => yearlyData[cat]);
-
-        const pieChartData = {
-            labels: categories,
-            datasets: [{
-                backgroundColor: [
-                    '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc',
-                    '#d2d6de', '#8a6d3b', '#605ca8', '#78c2ad', '#b66353'
-                ],  // Colors for each category
-                data: amounts
-            }]
-        };
-
-        return pieChartData;
-    };
-
-    const updatePieChart = (year) => {
-        const pieData = getYearlyPieData(year);
-
-        if (!pieData) return;
-
-        if (window.myPieChart) {
-            window.myPieChart.destroy();
-        }
-
-        window.myPieChart = new Chart(ctxPie, {
-            type: 'pie',
-            data: pieData,
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                title: {
-                    display: true,
-                    text: `Income Categories for ${year}`,
-                    fontSize: 18,
-                    fontColor: '#333'
-                },
-                legend: {
-                    display: true,
-                    position: 'bottom',
-                    labels: {
-                        fontSize: 12,
-                        fontColor: '#666'
-                    }
-                }
-            }
-        });
-    };
-
-    $('#prevYearPie').click(() => {
-        currentYear--;
-        updatePieChart(currentYear);
-    });
-
-    $('#nextYearPie').click(() => {
-        currentYear++;
-        updatePieChart(currentYear);
-    });
-
-    // Initial load with current year data
-    updatePieChart(currentYear);
-});
+}
