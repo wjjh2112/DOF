@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             if (data.success) {
                 alert('Income record submitted successfully!');
-                window.location.href = '/IncomeRecords'; // Redirect to another page or refresh
+                window.location.href = '/Accounting-Income'; // Redirect to another page or refresh
             } else {
                 alert('Error submitting income record: ' + (data.message || 'Unknown error'));
             }

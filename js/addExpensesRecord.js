@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             if (data.success) {
                 alert('Expense record submitted successfully!');
-                window.location.href = '/ExpenseRecords'; // Redirect to another page or refresh
+                window.location.href = '/Accounting-Expenses '; // Redirect to another page or refresh
             } else {
                 alert('Error submitting expense record: ' + (data.message || 'Unknown error'));
             }
