@@ -38,7 +38,7 @@ $(document).ready(function () {
         })
         .catch(error => console.error('Error fetching income records:', error));
 
-    function populateTable(users) {
+    function populateTable(data) {
         table.clear().draw(); // Clear existing data
             
         data.forEach(record => {
