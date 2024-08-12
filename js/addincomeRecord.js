@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Set current date and time in the datetime input
-    var dateTimeInput = document.getElementById('datetime-input');
+    var dateTimeInput = document.getElementById('income-datetime-input');
     var currentDateTime = new Date();
     var formattedDateTime = currentDateTime.toISOString().slice(0, 16); // Format the date and time for input[type="datetime-local"]
     dateTimeInput.value = formattedDateTime;
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const placeholderLabel = document.createElement('label');
             placeholderLabel.setAttribute('for', 'file-upload');
             placeholderLabel.className = 'add-images-placeholder';
-            placeholderLabel.innerHTML = '<span>Click to add images</span>';
+            placeholderLabel.innerHTML = '<span data-i18n="clickAddFiles"></span>';
             placeholderLi.appendChild(placeholderLabel);
             fileListUl.appendChild(placeholderLi);
         } else {
