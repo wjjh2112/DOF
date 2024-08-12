@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Set current date and time in the datetime input
-    var dateTimeInput = document.getElementById('expense-datetime-input');
+    var dateTimeInput = document.getElementById('datetime-input');
     var currentDateTime = new Date();
     var formattedDateTime = currentDateTime.toISOString().slice(0, 16); // Format the date and time for input[type="datetime-local"]
     dateTimeInput.value = formattedDateTime;
@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Handle file upload functionality
     const fileArray = [];
-    const fileUpload = document.getElementById('expense-file-upload');
-    const fileListUl = document.getElementById('expense-file-list');
+    const fileUpload = document.getElementById('file-upload');
+    const fileListUl = document.getElementById('file-list');
 
     fileUpload.addEventListener('change', handleFileSelect);
 

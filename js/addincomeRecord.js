@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Handle file upload functionality
     const fileArray = [];
-    const fileUpload = document.getElementById('income-file-upload');
-    const fileListUl = document.getElementById('income-file-list');
+    const fileUpload = document.getElementById('file-upload');
+    const fileListUl = document.getElementById('file-list');
 
     fileUpload.addEventListener('change', handleFileSelect);
 
