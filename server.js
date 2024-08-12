@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const bodyParser = require('body-parser');
+const AWS = require('aws-sdk');
+const multer = require('multer');
+const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,6 +24,36 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+AWS.config.update({ region: 'ap-southeast-1' });
+
+const s3 = new AWS.S3();
+
+// Configure multer for file uploads
+const upload = multer({ dest: 'uploads/' });
+
+// Function to upload file to S3
+const uploadFileToS3 = (filePath, fileName, folder) => {
+    const fileContent = fs.readFileSync(filePath);
+
+    const params = {
+        Bucket: 'ikanmeter',
+        Key: `${folder}/${fileName}`,
+        Body: fileContent,
+        ContentDisposition: 'inline'
+    };
+
+    return s3.upload(params).promise()
+        .then(data => {
+            // Delete the file from local after upload
+            fs.unlinkSync(filePath);
+            return data.Location; // Return the S3 URL
+        })
+        .catch(err => {
+            console.error('Error uploading file:', err);
+            throw err;
+        });
+};
 
 // Serve static files (from root directory)
 app.use(express.static(path.join(__dirname)));
@@ -146,6 +179,76 @@ app.post('/registerUser', (req, res) => {
       });
     });
   });
+});
+
+app.post('/submit-expense', upload.array('reportImages', 10), async (req, res) => {
+  try {
+      const expenseItem = req.body.expenseItem;
+      const expenseAmount = req.body.expenseAmount;
+      const expRecDateTime = req.body.expRecDateTime;
+      const expCategory = req.body.expCategory;
+      const remarks = req.body.remarks;
+
+      // Upload images to S3
+      const imageUrls = [];
+      for (const file of req.files) {
+          const s3Url = await uploadFileToS3(file.path, file.originalname, 'expense-images');
+          imageUrls.push(s3Url);
+      }
+
+      // Save expense record to database along with the image URLs
+      const newExpense = {
+          expenseItem,
+          expenseAmount,
+          expRecDateTime,
+          expCategory,
+          remarks,
+          imageUrls
+      };
+
+      // Assume you have a MongoDB model named Expense
+      await mongoose.connection.db.collection('expenses').insertOne(newExpense);
+
+      res.status(200).send({ message: 'Expense record saved successfully!', newExpense });
+  } catch (error) {
+      console.error('Error saving expense record:', error);
+      res.status(500).send({ error: 'Failed to save expense record' });
+  }
+});
+
+app.post('/submit-income', upload.array('reportImages', 10), async (req, res) => {
+  try {
+      const incomeItem = req.body.incomeItem;
+      const incomeAmount = req.body.incomeAmount;
+      const incomeRecDateTime = req.body.incomeRecDateTime;
+      const incomeCategory = req.body.incomeCategory;
+      const remarks = req.body.remarks;
+
+      // Upload images to S3
+      const imageUrls = [];
+      for (const file of req.files) {
+          const s3Url = await uploadFileToS3(file.path, file.originalname, 'income-images');
+          imageUrls.push(s3Url);
+      }
+
+      // Save income record to database along with the image URLs
+      const newExpense = {
+          incomeItem,
+          incomeAmount,
+          incomeRecDateTime,
+          incomeCategory,
+          remarks,
+          imageUrls
+      };
+
+      // Assume you have a MongoDB model named Income
+      await mongoose.connection.db.collection('incomes').insertOne(newIncome);
+
+      res.status(200).send({ message: 'Income record saved successfully!', newIncome });
+  } catch (error) {
+      console.error('Error saving income record:', error);
+      res.status(500).send({ error: 'Failed to save income record' });
+  }
 });
 
 // Start the server
