@@ -1,15 +1,4 @@
 $(function () {
-    // Initialize Select2 for the dropdown
-    $('#usertype-filter').select2();
-    
-    // Initialize users table
-    const table = $("#users-table").DataTable({
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#users-table_wrapper .col-md-6:eq(0)');
-
     // Fetch users from the server
     fetch('/users')
         .then(response => response.json())
@@ -49,24 +38,5 @@ $(function () {
 
             userTableBody.appendChild(row);
         });
-
-        // Attach event listeners for edit and delete buttons
-        attachEventListeners();
     }
-
-    // Function to attach event listeners to the edit and delete buttons
-    function attachEventListeners() {
-        // Add your event listener logic here for edit and delete buttons
-    }
-
-    // User type filter change event
-    $('#usertype-filter').on('change', function () {
-        const selectedUserType = $(this).val();
-        table.columns(2).search(selectedUserType).draw();
-    });
-
-    // Reset filter when 'All Categories' is selected
-    $('#category-filter').on('select2:clear', function () {
-        table.column(3).search('').draw();
-    });
 });
