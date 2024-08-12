@@ -181,7 +181,12 @@ app.post('/registerUser', (req, res) => {
   });
 });
 
-app.post('/submit-expense', upload.array('reportImages', 10), async (req, res) => {
+const generateUniqueID = (prefix) => {
+  const randomNum = Math.floor(100 + Math.random() * 900); // Generates a random 3-digit number
+  return `${prefix}${randomNum}`;
+};
+
+app.post('/submit-expense', upload.array('expenseImages', 10), async (req, res) => {
   try {
       const expenseItem = req.body.expenseItem;
       const expenseAmount = req.body.expenseAmount;
@@ -189,24 +194,28 @@ app.post('/submit-expense', upload.array('reportImages', 10), async (req, res) =
       const expCategory = req.body.expCategory;
       const remarks = req.body.remarks;
 
-      // Upload images to S3
-      const imageUrls = [];
+      // Generate unique expense ID
+      const expenseID = generateUniqueID('EXP');
+
+      // Upload images to S3 and generate image keys
+      const imageKeys = [];
       for (const file of req.files) {
-          const s3Url = await uploadFileToS3(file.path, file.originalname, 'expense-images');
-          imageUrls.push(s3Url);
+          const imageKey = `${expenseID}_${new Date().toISOString().split('T')[0]}_${file.originalname}`;
+          await uploadFileToS3(file.path, imageKey, 'expense-images');
+          imageKeys.push(imageKey);
       }
 
-      // Save expense record to database along with the image URLs
+      // Save expense record to database
       const newExpense = {
+          expenseID,
           expenseItem,
           expenseAmount,
           expRecDateTime,
           expCategory,
           remarks,
-          imageUrls
+          imageKeys
       };
 
-      // Assume you have a MongoDB model named Expense
       await mongoose.connection.db.collection('expenses').insertOne(newExpense);
 
       res.status(200).send({ message: 'Expense record saved successfully!', newExpense });
@@ -216,7 +225,7 @@ app.post('/submit-expense', upload.array('reportImages', 10), async (req, res) =
   }
 });
 
-app.post('/submit-income', upload.array('reportImages', 10), async (req, res) => {
+app.post('/submit-income', upload.array('incomeImages', 10), async (req, res) => {
   try {
       const incomeItem = req.body.incomeItem;
       const incomeAmount = req.body.incomeAmount;
@@ -224,24 +233,28 @@ app.post('/submit-income', upload.array('reportImages', 10), async (req, res) =>
       const incomeCategory = req.body.incomeCategory;
       const remarks = req.body.remarks;
 
-      // Upload images to S3
-      const imageUrls = [];
+      // Generate unique income ID
+      const incomeID = generateUniqueID('INC');
+
+      // Upload images to S3 and generate image keys
+      const imageKeys = [];
       for (const file of req.files) {
-          const s3Url = await uploadFileToS3(file.path, file.originalname, 'income-images');
-          imageUrls.push(s3Url);
+          const imageKey = `${incomeID}_${new Date().toISOString().split('T')[0]}_${file.originalname}`;
+          await uploadFileToS3(file.path, imageKey, 'income-images');
+          imageKeys.push(imageKey);
       }
 
-      // Save income record to database along with the image URLs
-      const newExpense = {
+      // Save income record to database
+      const newIncome = {
+          incomeID,
           incomeItem,
           incomeAmount,
           incomeRecDateTime,
           incomeCategory,
           remarks,
-          imageUrls
+          imageKeys
       };
 
-      // Assume you have a MongoDB model named Income
       await mongoose.connection.db.collection('incomes').insertOne(newIncome);
 
       res.status(200).send({ message: 'Income record saved successfully!', newIncome });
