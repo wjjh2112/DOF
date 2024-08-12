@@ -14,6 +14,17 @@ $(document).ready(function () {
         allowClear: true
     });
 
+    // Event listener for user type filter change
+    $('#usertype-filter').on('change', function () {
+        var selectedUserType = $(this).val();
+        table.column(2).search(selectedUserType).draw();  // Assuming the usertype is in the 3rd column (index 2)
+    });
+
+    // Reset filter when 'All Users' is selected (cleared)
+    $('#usertype-filter').on('select2:clear', function () {
+        table.column(2).search('').draw();  // Clear the search on user type column
+    });
+
     // Fetch users from the server and populate the table
     fetch('/users')
         .then(response => response.json())
@@ -52,17 +63,6 @@ $(document).ready(function () {
             `;
 
             userTableBody.appendChild(row);
-        });
-
-        // Event listener for user type filter change
-        $('#usertype-filter').on('change', function () {
-            var selectedUserType = $(this).val();
-            table.column(2).search(selectedUserType).draw();  // Assuming the usertype is in the 3rd column (index 2)
-        });
-
-        // Reset filter when 'All Users' is selected (cleared)
-        $('#usertype-filter').on('select2:clear', function () {
-            table.column(2).search('').draw();  // Clear the search on user type column
         });
 
         // Re-draw the DataTable after adding new rows
