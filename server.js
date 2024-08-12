@@ -70,37 +70,80 @@ app.get('/users', (req, res) => {
   });
 });
 
-// Endpoint to update user details
-app.put('/updateUser', (req, res) => {
-  const { id, fullname, usertype } = req.body;
-  
-  mongoose.connection.db.collection('users').updateOne(
-    { user_id: id },
-    { $set: { fullname, usertype } },
-    (err, result) => {
-      if (err) {
-        return res.status(500).json({ success: false, error: 'Failed to update user' });
-      }
-      if (result.modifiedCount === 0) {
-        return res.status(404).json({ success: false, error: 'User not found' });
-      }
-      res.status(200).json({ success: true, message: 'User updated successfully' });
+// Endpoint to generate a registration link
+app.post('/generateLink', (req, res) => {
+  const { token, expiryDays, role } = req.body;
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + parseInt(expiryDays));
+
+  mongoose.connection.db.collection('registrationLinks').insertOne({
+    token,
+    role,
+    expiryDate,
+    used: false
+  }, (err, result) => {
+    if (err) {
+      res.json({ success: false, message: 'Error generating link.' });
+    } else {
+      res.json({ success: true });
     }
-  );
+  });
 });
 
-// Endpoint to delete a user
-app.delete('/deleteUser', (req, res) => {
-  const { id } = req.body;
+// Function to generate a unique user ID
+function generateUserId() {
+  return 'U' + uuidv4();
+}
 
-  mongoose.connection.db.collection('users').deleteOne({ user_id: id }, (err, result) => {
+// Endpoint to register a new user
+app.post('/registerUser', (req, res) => {
+  const { firstname, lastname, email, password, token } = req.body;
+
+  mongoose.connection.db.collection('users').findOne({ email }, (err, existingUser) => {
     if (err) {
-      return res.status(500).json({ success: false, error: 'Failed to delete user' });
+      res.json({ success: false, message: 'Error checking existing email.' });
+      return;
     }
-    if (result.deletedCount === 0) {
-      return res.status(404).json({ success: false, error: 'User not found' });
+
+    if (existingUser) {
+      res.json({ success: false, message: 'Email already registered.' });
+      return;
     }
-    res.status(200).json({ success: true, message: 'User deleted successfully' });
+
+    mongoose.connection.db.collection('registrationLinks').findOne({ token }, (err, link) => {
+      if (err || !link) {
+        res.json({ success: false, message: 'Invalid or expired registration link.' });
+        return;
+      }
+
+      if (link.used || new Date() > link.expiryDate) {
+        res.json({ success: false, message: 'Registration link has expired or already been used.' });
+        return;
+      }
+
+      const newUser = {
+        user_id: generateUserId(),
+        firstname,
+        lastname,
+        email,
+        password,
+        usertype: link.role
+      };
+
+      mongoose.connection.db.collection('users').insertOne(newUser, (err, result) => {
+        if (err) {
+          res.json({ success: false, message: 'Error registering user.' });
+        } else {
+          mongoose.connection.db.collection('registrationLinks').updateOne({ token }, { $set: { used: true } }, (err, updateResult) => {
+            if (err) {
+              res.json({ success: false, message: 'Error updating registration link status.' });
+            } else {
+              res.json({ success: true });
+            }
+          });
+        }
+      });
+    });
   });
 });
 

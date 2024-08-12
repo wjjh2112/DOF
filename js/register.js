@@ -30,8 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const data = {
+            firstname: formData.get('firstname'),
+            lastname: formData.get('lastname'),
             email: formData.get('email'),
-            fullname: formData.get('fullname'),
             password: password,
             confirmpassword: confirmpassword,
             token: token
@@ -52,12 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Create a link to the login page
                 const loginLink = document.createElement('a');
-                loginLink.href = 'http://gajahsafe.com/Login';
+                loginLink.href = 'https://ikanmeter.com/Login';
                 loginLink.textContent = 'here';
                 loginLink.style.textDecoration = 'underline';
-                loginLink.style.color = '#ff182b';
+                loginLink.style.color = '#007bff';
 
-                redirectLogin.innerHTML = 'Login to GajahSafe with your new account ';
+                redirectLogin.innerHTML = 'Login to IkanMeter with your new account ';
                 redirectLogin.appendChild(loginLink);
                 redirectLogin.innerHTML += '.';
 
