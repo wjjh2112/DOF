@@ -42,9 +42,12 @@ $(document).ready(function () {
         table.clear().draw(); // Clear existing data
             
         data.forEach(record => {
+            const formattedDate = new Date(record.expRecDateTime).toLocaleDateString('en-GB');
+            const formattedAmount = `RM${record.expenseAmount}`;
+
             table.row.add([
-                record.expRecDateTime,
-                record.expenseAmount,
+                formattedDate,
+                formattedAmount,
                 record.expenseItem,
                 record.expCategory,
                 record.remarks || '-',
