@@ -186,78 +186,76 @@
                     <div class="row">
                       <div class="col">
                         <div class="au-card">
-                          <form id="addReportForm" action="/submit-report" method="post" enctype="multipart/form-data" class="form-horizontal">
-
-                            <!-- EXPENSE ITEM -->
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label for="incomeItem" class="form-label"><span data-i18n="incomeItem"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                  <input class="form-text" type="text" id="incomeItem" name="incomeItem" readonly>
-                              </div>
-                            </div>
-
-                            <!-- EXPENSE AMOUNT -->
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label for="incomeAmount" class="form-label"><span data-i18n="amount"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                  <input class="form-text" type="number" id="incomeAmount" name="incomeAmount" readonly>
-                              </div>
-                            </div>
+                            <form id="viewIncomeForm" class="form-horizontal">
+                                <!-- INCOME ITEM -->
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="incomeItem" class="form-label"><span data-i18n="incomeItem"></span></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input class="form-text" type="text" id="incomeItem" name="incomeItem" readonly>
+                                    </div>
+                                </div>
                             
-                            <!-- DATE & TIME -->
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label for="datetime-input" class="form-label"><span data-i18n="date"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                  <input class="form-text" type="datetime-local" id="datetime-input" name="expRecDateTime" readonly>
-                              </div>
-                            </div>
-
-                            <!-- CATEGORY -->
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label for="expCategory" class="form-label"><span data-i18n="category"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                  <input class="form-text" type="text" id="expCategory" name="expCategory" readonly>
-                              </div>
-                            </div>
-
-                            <!-- REMARKS -->
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label for="remarks" class="form-label"><span data-i18n="remarks"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                <textarea id="remarks" class="form-text" nam="remarks" rows="4" readonly></textarea>
-                              </div>
-                            </div>
-
-                            <!-- IMAGES -->
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label class="form-label"><span data-i18n="images"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                  <div class="file-upload-container">
-                                      <ul id="file-list" class="file-list">
-                                          <!-- IMAGES DISPLAY HERE -->
-                                      </ul>
-                                  </div>
-                                  <small class="help-block form-text" data-i18n="clickImage"></small>
-                              </div>
-                          </div>
-
-                            <div class="au-card-footer form-footer">
+                                <!-- INCOME AMOUNT -->
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="incomeAmount" class="form-label"><span data-i18n="amount"></span></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input class="form-text" type="number" id="incomeAmount" name="incomeAmount" readonly>
+                                    </div>
+                                </div>
+                            
+                                <!-- DATE & TIME -->
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="income-datetime-input" class="form-label"><span data-i18n="date"></span></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input class="form-text" type="datetime-local" id="income-datetime-input" name="incomeRecDateTime" readonly>
+                                    </div>
+                                </div>
+                            
+                                <!-- CATEGORY -->
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="incomeCategory" class="form-label"><span data-i18n="category"></span></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input class="form-text" type="text" id="incomeCategory" name="incomeCategory" readonly>
+                                    </div>
+                                </div>
+                            
+                                <!-- REMARKS -->
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="remarks" class="form-label"><span data-i18n="remarks"></span></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <textarea id="remarks" class="form-text" name="remarks" rows="4" readonly></textarea>
+                                    </div>
+                                </div>
+                            
+                                <!-- IMAGES -->
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class="form-label"><span data-i18n="images"></span></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <div class="file-upload-container">
+                                            <ul id="income-file-list" class="file-list">
+                                                <!-- IMAGES DISPLAY HERE -->
+                                            </ul>
+                                        </div>
+                                        <small class="help-block form-text" data-i18n="clickImage"></small>
+                                    </div>
+                                </div>
+                            <!-- <div class="au-card-footer form-footer">
                                 <button type="submit" class="au-btn">
-                                    <span data-i18n="add"></span>
+                                    <span data-i18n="edit"></span>
                                 </button>
-                            </div>
+                            </div> -->
                           </form>
                         </div>
                       </div>

@@ -189,6 +189,22 @@ app.get('/get-expense-records', async (req, res) => {
   }
 });
 
+app.get('/get-expense-record', async (req, res) => {
+  try {
+      const expenseID = req.query.id;
+      const expenseRecord = await mongoose.connection.db.collection('expenses').findOne({ expenseID });
+
+      if (expenseRecord) {
+          res.status(200).json(expenseRecord);
+      } else {
+          res.status(404).json({ error: 'Expense record not found' });
+      }
+  } catch (error) {
+      console.error('Error fetching expense record:', error);
+      res.status(500).json({ error: 'Failed to fetch expense record' });
+  }
+});
+
 app.get('/get-income-records', async (req, res) => {
   try {
       const incomeRecords = await mongoose.connection.db.collection('incomes').find({}).toArray();
@@ -196,6 +212,22 @@ app.get('/get-income-records', async (req, res) => {
   } catch (error) {
       console.error('Error fetching income records:', error);
       res.status(500).json({ error: 'Failed to fetch income records' });
+  }
+});
+
+app.get('/get-income-record', async (req, res) => {
+  try {
+      const incomeID = req.query.id;
+      const incomeRecord = await mongoose.connection.db.collection('incomes').findOne({ incomeID });
+
+      if (incomeRecord) {
+          res.status(200).json(incomeRecord);
+      } else {
+          res.status(404).json({ error: 'Income record not found' });
+      }
+  } catch (error) {
+      console.error('Error fetching income record:', error);
+      res.status(500).json({ error: 'Failed to fetch income record' });
   }
 });
 
