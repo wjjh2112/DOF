@@ -186,7 +186,7 @@ const generateUniqueID = (prefix) => {
   return `${prefix}${randomNum}`;
 };
 
-app.post('/submit-expense', upload.array('expenseImages', 10), async (req, res) => {
+app.post('/submit-expense', upload.array('expenseImages[]'), async (req, res) => {
   try {
       const expenseItem = req.body.expenseItem;
       const expenseAmount = req.body.expenseAmount;
@@ -225,7 +225,7 @@ app.post('/submit-expense', upload.array('expenseImages', 10), async (req, res) 
   }
 });
 
-app.post('/submit-income', upload.array('incomeImages', 10), async (req, res) => {
+app.post('/submit-income', upload.array('incomeImages[]'), async (req, res) => {
   try {
       const incomeItem = req.body.incomeItem;
       const incomeAmount = req.body.incomeAmount;
