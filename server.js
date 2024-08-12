@@ -181,31 +181,32 @@ app.post('/registerUser', (req, res) => {
   });
 });
 
+app.get('/get-expense-records', async (req, res) => {
+  try {
+      const expenseRecords = await mongoose.connection.db.collection('expenses').find({}).toArray();
+      res.status(200).json(expenseRecords);
+  } catch (error) {
+      console.error('Error fetching expense records:', error);
+      res.status(500).json({ error: 'Failed to fetch expense records' });
+  }
+});
+
+
+app.get('/get-income-records', async (req, res) => {
+  try {
+      const incomeRecords = await mongoose.connection.db.collection('incomes').find({}).toArray();
+      res.status(200).json(incomeRecords);
+  } catch (error) {
+      console.error('Error fetching income records:', error);
+      res.status(500).json({ error: 'Failed to fetch income records' });
+  }
+});
+
+
 const generateUniqueID = (prefix) => {
   const randomNum = Math.floor(100 + Math.random() * 900); // Generates a random 3-digit number
   return `${prefix}${randomNum}`;
 };
-
-app.get('/expenses', async (req, res) => {
-  try {
-      const expenses = await mongoose.connection.db.collection('expenses').find({}).toArray();
-      res.json(expenses);
-  } catch (error) {
-      console.error('Error fetching expense records:', error);
-      res.status(500).send({ error: 'Failed to fetch expense records' });
-  }
-});
-
-app.get('/incomes', async (req, res) => {
-  try {
-      const incomes = await mongoose.connection.db.collection('incomes').find({}).toArray();
-      res.json(incomes);
-  } catch (error) {
-      console.error('Error fetching income records:', error);
-      res.status(500).send({ error: 'Failed to fetch income records' });
-  }
-});
-
 
 app.post('/submit-expense', upload.array('expenseImages[]'), async (req, res) => {
   try {

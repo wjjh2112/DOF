@@ -1,34 +1,68 @@
 // Data Table and Filter Script
-    $(document).ready(function () {
-        // Initialize DataTable with options and buttons
-        var table = $('#expense-table').DataTable({
-            responsive: true, 
-            lengthChange: false, 
-            autoWidth: false, 
-            searching: true,
-            buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        });
-
-        // Append buttons to the specified container
-        table.buttons().container().appendTo('#expense-table_wrapper .col-md-6:eq(0)');
-
-        // Initialize Select2 for the category filter dropdown
-        $('#category-filter').select2({
-            placeholder: "Select a category",
-            allowClear: true
-        });
-
-        // Event listener for category filter change
-        $('#category-filter').on('change', function () {
-            var selectedCategory = $(this).val();
-            table.column(3).search(selectedCategory).draw();
-        });
-
-        // Reset filter when 'All Categories' is selected (cleared)
-        $('#category-filter').on('select2:clear', function () {
-            table.column(3).search('').draw();
-        });
+$(document).ready(function () {
+    // Initialize DataTable with options and buttons
+    var table = $('#expense-table').DataTable({
+        responsive: true, 
+        lengthChange: false, 
+        autoWidth: false, 
+        searching: true,
+        buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
     });
+
+    // Append buttons to the specified container
+    table.buttons().container().appendTo('#expense-table_wrapper .col-md-6:eq(0)');
+
+    // Fetch and populate the table with expense records from the database
+    fetch('/get-expense-records')
+        .then(response => response.json())
+        .then(data => {
+            const tbody = $('#expensesTableBody');
+            tbody.empty(); // Clear existing table body
+
+            data.forEach(record => {
+                const date = new Date(record.expRecDateTime).toLocaleDateString('en-GB');
+                const amount = `$${record.expenseAmount}`;
+                const expenseItem = record.expenseItem;
+                const category = record.expCategory;
+                const remarks = record.remarks || '-';
+                const viewLink = `<a href="/View-Expense-Record?id=${record.expenseID}">View</a>`;
+
+                const row = `
+                    <tr>
+                        <td>${date}</td>
+                        <td>${amount}</td>
+                        <td>${expenseItem}</td>
+                        <td>${category}</td>
+                        <td>${remarks}</td>
+                        <td>${viewLink}</td>
+                    </tr>
+                `;
+                tbody.append(row);
+            });
+
+            // Re-draw the DataTable with the new data
+            table.draw();
+        })
+        .catch(error => console.error('Error fetching expense records:', error));
+
+    // Initialize Select2 for the category filter dropdown
+    $('#category-filter').select2({
+        placeholder: "Select a category",
+        allowClear: true
+    });
+
+    // Event listener for category filter change
+    $('#category-filter').on('change', function () {
+        var selectedCategory = $(this).val();
+        table.column(3).search(selectedCategory).draw();
+    });
+
+    // Reset filter when 'All Categories' is selected (cleared)
+    $('#category-filter').on('select2:clear', function () {
+        table.column(3).search('').draw();
+    });
+});
+
 
 // Bar Chart Script
     $(function () {
