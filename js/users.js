@@ -1,13 +1,14 @@
 $(function () {
-    const table = $("#users").DataTable({
+    // Initialize Select2 for the dropdown
+    $('#usertype-filter').select2();
+    
+    // Initialize users table
+    const table = $("#users-table").DataTable({
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#users_wrapper .col-md-6:eq(0)');
-
-    // Initialize Select2 for the dropdown
-    $('#usertype-filter').select2();
+    }).buttons().container().appendTo('#users-table_wrapper .col-md-6:eq(0)');
 
     // Fetch users from the server
     fetch('/users')
@@ -62,5 +63,10 @@ $(function () {
     $('#usertype-filter').on('change', function () {
         const selectedUserType = $(this).val();
         table.columns(2).search(selectedUserType).draw();
+    });
+
+    // Reset filter when 'All Categories' is selected
+    $('#category-filter').on('select2:clear', function () {
+        table.column(3).search('').draw();
     });
 });
