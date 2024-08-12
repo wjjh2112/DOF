@@ -68,8 +68,11 @@
     "e-mail": "E-mail",
     "edit": "Edit",
     "addUser": "Add New User",
-
-    "organization": "Organization",
+    "generateLinkHeader": "Generate Registration Link ",
+    "linkExp": "Link Expiry (days)",
+    "admin": "Admin",
+    "viewer": "Viewer",
+    "generateButton": "Generate Link",
 
     "dwCSV": "Download CSV",
     "moreInfo": "More info",

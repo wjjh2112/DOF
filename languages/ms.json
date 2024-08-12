@@ -69,8 +69,11 @@
     "e-mail": "E-mail",
     "edit": "Edit",
     "addUser": "Tambah Pengguna Baharu",
-
-    "organization": "Organisasi",
+    "generateLinkHeader": "Jana Pautan Pendafataran",
+    "linkExp": "Tamat Tempoh Pautan (hari)",
+    "admin": "Pentadbir",
+    "viewer": "Pemerhati",
+    "generateButton": "Jana Pautan",
 
     "dwCSV": "Muat Turun CSV",
     "moreInfo": "Maklumat Lanjut",
