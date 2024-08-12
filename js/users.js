@@ -1,11 +1,14 @@
 $(document).ready(function () {
-    // Initialize DataTable with options
+    // Initialize DataTable
     var table = $('#users-table').DataTable({
         responsive: true,
         lengthChange: false,
         autoWidth: false,
         searching: true,
-        buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        columnDefs: [
+            { targets: 2, searchable: true } // Ensure the user type column is searchable
+        ]
     });
 
     // Append buttons to the specified container
@@ -39,33 +42,23 @@ $(document).ready(function () {
 
     // Function to populate the table with users
     function populateTable(users) {
-        const userTableBody = document.getElementById('userTableBody');
-        userTableBody.innerHTML = ''; // Clear existing rows
+        table.clear().draw(); // Clear existing data
 
         users.forEach(user => {
-            const row = document.createElement('tr');
-            row.setAttribute('data-id', user.user_id);
-
-            row.innerHTML = `
-                <td><p>${user.user_id}</p></td>
-                <td>
-                    <div class="table-data__info">
-                        <h4>${user.firstname} ${user.lastname}</h4>
-                        <span><a href="#">${user.email}</a></span>
-                    </div>
-                </td>
-                <td><p>${user.usertype}</p></td>
-                <td class="text-center">
-                    <span class="more">
-                        <i class="zmdi zmdi-edit editUserBtn"></i>
-                    </span>
-                    <span class="more">
-                        <i class="zmdi zmdi-delete deleteUserBtn"></i>
-                    </span>
-                </td>
-            `;
-
-            userTableBody.appendChild(row);
+            table.row.add([
+                user.user_id,
+                `<div class="table-data__info">
+                    <h4>${user.firstname} ${user.lastname}</h4>
+                    <span><a href="#">${user.email}</a></span>
+                </div>`,
+                user.usertype,
+                `<span class="more">
+                    <i class="zmdi zmdi-edit editUserBtn"></i>
+                </span>
+                <span class="more">
+                    <i class="zmdi zmdi-delete deleteUserBtn"></i>
+                </span>`
+            ]).draw();
         });
     }
 });
