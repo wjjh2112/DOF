@@ -186,94 +186,87 @@
                     <div class="row">
                       <div class="col">
                         <div class="au-card">
-                          <form id="addIncomeRecordForm" action="/submit-income" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <form id="addIncomeRecordForm" action="/submit-income" method="post" enctype="multipart/form-data" class="form-horizontal">
 
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label for="incomeItem" class="form-label"><span data-i18n="incomeItem"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                  <input class="form-text" type="text" id="incomeItem" name="incomeItem" required>
-                              </div>
-                            </div>
-
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label for="incomeAmount" class="form-label"><span data-i18n="amount"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                  <input class="form-text" type="number" id="incomeAmount" name="incomeAmount" required>
-                              </div>
-                            </div>
-                            
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label for="datetime-input" class="form-label"><span data-i18n="date"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                  <input class="form-text" type="datetime-local" id="datetime-input" name="incomeRecDateTime" required readonly>
-                              </div>
-                            </div>
-
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="incomeCategory" class="form-label"><span data-i18n="category"></span></label>
+                                <div class="row form-group">
+                                  <div class="col col-md-3">
+                                      <label for="incomeItem" class="form-label"><span data-i18n="incomeItem"></span></label>
+                                  </div>
+                                  <div class="col-12 col-md-9">
+                                      <input class="form-text" type="text" id="incomeItem" name="incomeItem" required>
+                                  </div>
                                 </div>
-                                <div class="col-12 col-md-9">
-                                    <select name="incomeCategory" class="js-select2" id="incomeCategory" required>
-                                        <option value="" disabled selected>Select Category</option>
-                                        <option>Sales of livestock</option>
-                                        <option>Cooperative distributions</option>
-                                        <option>Agricultural program payments</option>
-                                        <option>Other income</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
+    
+                                <div class="row form-group">
+                                  <div class="col col-md-3">
+                                      <label for="incomeAmount" class="form-label"><span data-i18n="amount"></span></label>
+                                  </div>
+                                  <div class="col-12 col-md-9">
+                                      <input class="form-text" type="number" id="incomeAmount" name="incomeAmount" required>
+                                  </div>
                                 </div>
-                            </div>
-
-                            <div class="row form-group">
-                              <div class="col col-md-3">
-                                  <label for="remarks" class="form-label"><span data-i18n="remarks"></span></label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                <textarea id="remarks" class="form-text" name="remarks" rows="4"></textarea>
-                              </div>
-                            </div>
-                            
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="file-upload" class="form-label"><span data-i18n="images"></span></label>
+                                
+                                <div class="row form-group">
+                                  <div class="col col-md-3">
+                                      <label for="datetime-input" class="form-label"><span data-i18n="date"></span></label>
+                                  </div>
+                                  <div class="col-12 col-md-9">
+                                      <input class="form-text" type="datetime-local" id="datetime-input" name="incomeRecDateTime" required readonly>
+                                  </div>
                                 </div>
-                                <div class="col-12 col-md-9">
-                                    <div class="file-upload-container">
-                                        <ul id="file-list" class="file-list">
-                                            <li id="placeholder-li">
-                                                <label for="file-upload" class="add-images-placeholder">
-                                                    <span><i class="fas fa-upload"></i>&nbsp;</span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                        <input type="file" id="file-upload" name="incomeImages[]" multiple>
+    
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="incomeCategory" class="form-label"><span data-i18n="category"></span></label>
                                     </div>
-                                    <small class="help-block form-text" data-i18n="fileTypeUploadValidation"></small>
+                                    <div class="col-12 col-md-9">
+                                        <select name="incomeCategory" class="js-select2" id="incomeCategory" required>
+                                            <option value="" disabled selected>Select Category</option>
+                                            <option>Sales of livestock</option>
+                                            <option>Cooperative distributions</option>
+                                            <option>Agricultural program payments</option>
+                                            <option>Other iIcome</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="au-card-footer form-footer">
-                                <button type="submit" class="au-btn">
-                                    <span data-i18n="add"></span>
-                                </button>
-                            </div>
-                          </form>
+    
+                                <div class="row form-group">
+                                  <div class="col col-md-3">
+                                      <label for="remarks" class="form-label"><span data-i18n="remarks"></span></label>
+                                  </div>
+                                  <div class="col-12 col-md-9">
+                                    <textarea id="remarks" class="form-text" name="remarks" rows="4"></textarea>
+                                  </div>
+                                </div>
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="file-upload" class="form-label"><span data-i18n="images"></span></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <div class="file-upload-container">
+                                            <ul id="file-list" class="file-list">
+                                                <li id="placeholder-li">
+                                                    <label for="file-upload" class="add-images-placeholder">
+                                                        <span><i class="fas fa-upload"></i>&nbsp;</span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                            <input type="file" id="file-upload" name="incomeImages[]" multiple>
+                                        </div>
+                                        <small class="help-block form-text" data-i18n="fileTypeUploadValidation"></small>
+                                    </div>
+                                </div>
+    
+                                <div class="au-card-footer form-footer">
+                                    <button type="submit" class="au-btn">
+                                        <span data-i18n="add"></span>
+                                    </button>
+                                </div>
+                              </form>
                         </div>
                       </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
-                        </div>
                     </div>
                   </div>
               </div>
