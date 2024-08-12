@@ -17,11 +17,12 @@ $(document).ready(function () {
                     $('#remarks').val(data.remarks);
 
                     // Display images
-                    if (data.imageURLs && data.imageURLs.length > 0) {
+                    if (data.imageKeys && data.imageKeys.length > 0) {
                         const fileList = $('#income-file-list');
                         fileList.empty();
-
-                        data.imageURLs.forEach(url => {
+                        
+                        data.imageKeys.forEach(key => {
+                            const url = `https://ikanmeter.s3.ap-southeast-1.amazonaws.com/income-images/${key}`;
                             const listItem = `<li><a href="${url}" target="_blank"><img src="${url}" alt="Income Image" class="img-thumbnail"></a></li>`;
                             fileList.append(listItem);
                         });
