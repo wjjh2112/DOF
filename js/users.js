@@ -61,4 +61,120 @@ $(document).ready(function () {
             ]).draw();
         });
     }
+
+    // Close modals when clicking outside or on close button
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+    };
+
+    document.querySelectorAll('.close').forEach(closeBtn => {
+        closeBtn.onclick = function() {
+            this.closest('.modal').style.display = 'none';
+        };
+    });
+
+    // Existing code for add user modal and link generation
+    const modal = document.getElementById('addUserModal');
+    const addUserBtn = document.getElementById('addUserBtn');
+    const closeBtn = document.getElementById('closeAddUserModal');
+    const generateLinkBtn = document.getElementById('generateLinkBtn');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+    const generatedLinkArea = document.getElementById('generatedLinkArea');
+    const generatedLink = document.getElementById('generatedLink');
+    const expiryDaysInput = document.getElementById('expiryDays');
+    const roleRadios = document.getElementsByName('role');
+
+    // Show the modal
+    addUserBtn.addEventListener('click', function() {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Disable scrolling
+    });
+
+    // Close the modal and reset form
+    function closeModalAndReset() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling
+        // Reset form fields here
+        expiryDaysInput.value = '';
+        generatedLinkArea.style.display = 'none';
+        generatedLink.value = '';
+        // Uncheck radio buttons
+        roleRadios.forEach(radio => {
+            radio.checked = false;
+        });
+    }
+
+    // Close the modal on close button click
+    closeBtn.addEventListener('click', closeModalAndReset);
+
+    // Close the modal if user clicks outside the modal content
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            closeModalAndReset();
+        }
+    });
+
+    // Generate link button click
+    generateLinkBtn.addEventListener('click', function() {
+        const expiryDays = expiryDaysInput.value;
+        const selectedRole = document.querySelector('input[name="role"]:checked');
+    
+        if (!expiryDays || !selectedRole) {
+            alert('Please fill in all fields.');
+            return;
+        }
+    
+        const role = selectedRole.value;
+        
+        // Use async/await to handle the promise
+        (async function() {
+            try {
+                const link = await generateLink(expiryDays, role); // Await the promise
+                generatedLink.value = link;
+                generatedLinkArea.style.display = 'block';
+            } catch (error) {
+                alert('Failed to generate link.');
+            }
+        })();
+    });
+
+    // Copy link to clipboard
+    copyLinkBtn.addEventListener('click', function() {
+        generatedLink.select();
+        document.execCommand('copy');
+        alert('Link copied to clipboard.');
+    });
+
+    // Function to generate the link
+    async function generateLink(expiryDays, role) {
+        const token = generateToken();
+        
+        try {
+            const response = await fetch('/generateLink', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token, expiryDays, role })
+            });
+            const data = await response.json();
+            if (data.success) {
+                const baseUrl = window.location.origin;
+                return `${baseUrl}/Register?token=${token}`;
+            } else {
+                throw new Error('Failed to generate link.');
+            }
+        } catch (error) {
+            console.error('Error generating link:', error);
+            throw error;
+        }
+    }
+
+    // Function to generate a unique token
+    function generateToken() {
+        return Math.random().toString(36).substr(2, 9); // Simple token generation (you may want to use a more secure method)
+    }
+    
 });
