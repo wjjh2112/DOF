@@ -1,4 +1,3 @@
-// Data Table and Filter Script
 $(document).ready(function () {
     // Initialize DataTable with options and buttons
     var table = $('#expense-table').DataTable({
@@ -35,6 +34,8 @@ $(document).ready(function () {
         .then(data => {
             // Populate the table with data
             populateTable(data);
+            // Update charts with new data
+            updateExpenseCharts(data);
         })
         .catch(error => console.error('Error fetching expense records:', error));
 
@@ -55,32 +56,25 @@ $(document).ready(function () {
             ]).draw();
         });
     }
-});
 
+    function updateExpenseCharts(data) {
+        const parseExpenseData = () => {
+            const dataByYear = {};
+            data.forEach(record => {
+                const amount = parseFloat(record.expenseAmount);
+                const date = new Date(record.expRecDateTime);
+                const year = date.getFullYear();
+                const month = date.getMonth();
 
-// Bar Chart Script
-    $(function () {
-        const ctx = $('#barChart').get(0).getContext('2d');
-        let currentYear = new Date().getFullYear();
-
-        const parseExpenseTable = () => {
-            const data = {};
-            // Parse all rows, not just the displayed ones
-            $('#expense-table').DataTable().rows().every(function () {
-                const row = $(this.node());
-                const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
-                const date = row.find('td').eq(0).text().trim();  // Updated index for date column
-                const [day, month, year] = date.split('/').map(Number);
-
-                if (!data[year]) data[year] = Array(12).fill(0);
-                data[year][month - 1] += amount;
+                if (!dataByYear[year]) dataByYear[year] = Array(12).fill(0);
+                dataByYear[year][month] += amount;
             });
-            return data;
+            return dataByYear;
         };
 
-        const expenseData = parseExpenseTable();
+        const expenseData = parseExpenseData();
 
-        const updateChart = (year) => {
+        const updateBarChart = (year) => {
             if (!expenseData[year]) {
                 alert(`No data available for ${year}`);
                 return;
@@ -100,7 +94,7 @@ $(document).ready(function () {
                 window.myBarChart.destroy();
             }
 
-            window.myBarChart = new Chart(ctx, {
+            window.myBarChart = new Chart($('#barChart'), {
                 type: 'bar',
                 data: barChartData,
                 options: {
@@ -132,49 +126,23 @@ $(document).ready(function () {
             });
         };
 
-        $('#prevYear').click(() => {
-            currentYear--;
-            updateChart(currentYear);
-        });
+        const updatePieChart = (year) => {
+            const pieData = {};
+            data.forEach(record => {
+                const amount = parseFloat(record.expenseAmount);
+                const date = new Date(record.expRecDateTime);
+                const yearRecord = date.getFullYear();
+                const category = record.expCategory;
 
-        $('#nextYear').click(() => {
-            currentYear++;
-            updateChart(currentYear);
-        });
-
-        updateChart(currentYear);  // Initialize with the current year data
-    });
-
-// Pie Chart Script
-    $(function () {
-        const ctxPie = $('#pieChart').get(0).getContext('2d');
-        let currentYear = new Date().getFullYear();
-
-        const parseExpenseTable = () => {
-            const data = {};
-
-            // Parse all rows, not just the displayed ones
-            $('#expense-table').DataTable().rows().every(function () {
-                const row = $(this.node());
-                const amount = parseFloat(row.find('td').eq(1).text().replace('$', '').trim());
-                const date = row.find('td').eq(0).text().trim();  // Updated index for date column
-                const category = row.find('td').eq(3).text().trim();  // Updated index for category column
-                const [day, month, year] = date.split('/').map(Number);
-
-                if (!data[year]) data[year] = {};
-                if (!data[year][category]) data[year][category] = 0;
-                data[year][category] += amount;
+                if (!pieData[yearRecord]) pieData[yearRecord] = {};
+                if (!pieData[yearRecord][category]) pieData[yearRecord][category] = 0;
+                pieData[yearRecord][category] += amount;
             });
-            return data;
-        };
 
-        const expenseData = parseExpenseTable();
-
-        const getYearlyPieData = (year) => {
-            const yearlyData = expenseData[year];
+            const yearlyData = pieData[year];
             if (!yearlyData) {
                 alert(`No data available for ${year}`);
-                return null;
+                return;
             }
 
             const categories = Object.keys(yearlyData);
@@ -191,21 +159,13 @@ $(document).ready(function () {
                 }]
             };
 
-            return pieChartData;
-        };
-
-        const updatePieChart = (year) => {
-            const pieData = getYearlyPieData(year);
-
-            if (!pieData) return;
-
             if (window.myPieChart) {
                 window.myPieChart.destroy();
             }
 
-            window.myPieChart = new Chart(ctxPie, {
+            window.myPieChart = new Chart($('#pieChart'), {
                 type: 'pie',
-                data: pieData,
+                data: pieChartData,
                 options: {
                     maintainAspectRatio: false,
                     responsive: true,
@@ -227,6 +187,18 @@ $(document).ready(function () {
             });
         };
 
+        let currentYear = new Date().getFullYear();
+
+        $('#prevYear').click(() => {
+            currentYear--;
+            updateBarChart(currentYear);
+        });
+
+        $('#nextYear').click(() => {
+            currentYear++;
+            updateBarChart(currentYear);
+        });
+
         $('#prevYearPie').click(() => {
             currentYear--;
             updatePieChart(currentYear);
@@ -237,6 +209,7 @@ $(document).ready(function () {
             updatePieChart(currentYear);
         });
 
-        // Initial load with current year data
+        updateBarChart(currentYear);
         updatePieChart(currentYear);
-    });
+    }
+});
