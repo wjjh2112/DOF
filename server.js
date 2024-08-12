@@ -190,9 +190,11 @@ app.post('/submit-expense', upload.array('expenseImages[]'), async (req, res) =>
   try {
       const expenseItem = req.body.expenseItem;
       const expenseAmount = req.body.expenseAmount;
-      const expRecDateTime = req.body.expRecDateTime;
+      const expRecDateTime = new Date(req.body.expRecDateTime);
       const expCategory = req.body.expCategory;
       const remarks = req.body.remarks;
+
+      const currentDate = new Date().toISOString().slice(0, 10);
 
       // Generate unique expense ID
       const expenseID = generateUniqueID('EXP');
@@ -200,7 +202,7 @@ app.post('/submit-expense', upload.array('expenseImages[]'), async (req, res) =>
       // Upload images to S3 and generate image keys
       const imageKeys = [];
       for (const file of req.files) {
-          const imageKey = `${expenseID}_${new Date().toISOString().split('T')[0]}_${file.originalname}`;
+          const imageKey = `${expenseID}_${currentDate}_${file.originalname}`;
           await uploadFileToS3(file.path, imageKey, 'expense-images');
           imageKeys.push(imageKey);
       }
@@ -229,9 +231,11 @@ app.post('/submit-income', upload.array('incomeImages[]'), async (req, res) => {
   try {
       const incomeItem = req.body.incomeItem;
       const incomeAmount = req.body.incomeAmount;
-      const incomeRecDateTime = req.body.incomeRecDateTime;
+      const incomeRecDateTime = new Date(req.body.incomeRecDateTime);
       const incomeCategory = req.body.incomeCategory;
       const remarks = req.body.remarks;
+
+      const currentDate = new Date().toISOString().slice(0, 10);
 
       // Generate unique income ID
       const incomeID = generateUniqueID('INC');
@@ -239,7 +243,7 @@ app.post('/submit-income', upload.array('incomeImages[]'), async (req, res) => {
       // Upload images to S3 and generate image keys
       const imageKeys = [];
       for (const file of req.files) {
-          const imageKey = `${incomeID}_${new Date().toISOString().split('T')[0]}_${file.originalname}`;
+          const imageKey = `${incomeID}_${currentDate}_${file.originalname}`;
           await uploadFileToS3(file.path, imageKey, 'income-images');
           imageKeys.push(imageKey);
       }
