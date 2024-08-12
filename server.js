@@ -186,98 +186,82 @@ const generateUniqueID = (prefix) => {
   return `${prefix}${randomNum}`;
 };
 
-app.post('/submit-expense', upload.array('expenseImages[]'), async (req, res) => {
+app.post('/submit-expense', upload.array('expenseImages', 10), async (req, res) => {
   try {
-    const expenseItem = req.body.expenseItem;
-    const expenseAmount = req.body.expenseAmount;
-    const expRecDateTime = req.body.expRecDateTime;
-    const expCategory = req.body.expCategory;
-    const remarks = req.body.remarks;
+      const expenseItem = req.body.expenseItem;
+      const expenseAmount = req.body.expenseAmount;
+      const expRecDateTime = req.body.expRecDateTime;
+      const expCategory = req.body.expCategory;
+      const remarks = req.body.remarks;
 
-    console.log('Received Data:', {
-        expenseItem,
-        expenseAmount,
-        expRecDateTime,
-        expCategory,
-        remarks
-    });
+      // Generate unique expense ID
+      const expenseID = generateUniqueID('EXP');
 
-    // Generate unique expense ID
-    const expenseID = generateUniqueID('EXP');
+      // Upload images to S3 and generate image keys
+      const imageKeys = [];
+      for (const file of req.files) {
+          const imageKey = `${expenseID}_${new Date().toISOString().split('T')[0]}_${file.originalname}`;
+          await uploadFileToS3(file.path, imageKey, 'expense-images');
+          imageKeys.push(imageKey);
+      }
 
-    // Upload images to S3 and generate image keys
-    const imageKeys = [];
-    for (const file of req.files) {
-        const imageKey = `${expenseID}_${new Date().toISOString().split('T')[0]}_${file.originalname}`;
-        await uploadFileToS3(file.path, imageKey, 'expense-images');
-        imageKeys.push(imageKey);
-    }
+      // Save expense record to database
+      const newExpense = {
+          expenseID,
+          expenseItem,
+          expenseAmount,
+          expRecDateTime,
+          expCategory,
+          remarks,
+          imageKeys
+      };
 
-    // Save expense record to database
-    const newExpense = {
-        expenseID,
-        expenseItem,
-        expenseAmount,
-        expRecDateTime,
-        expCategory,
-        remarks,
-        imageKeys
-    };
+      await mongoose.connection.db.collection('expenses').insertOne(newExpense);
 
-    await mongoose.connection.db.collection('expenses').insertOne(newExpense);
-
-    res.status(200).send({ message: 'Expense record saved successfully!', newExpense });
-} catch (error) {
-    console.error('Error saving expense record:', error);
-    res.status(500).send({ error: 'Failed to save expense record' });
-}
+      res.status(200).send({ message: 'Expense record saved successfully!', newExpense });
+  } catch (error) {
+      console.error('Error saving expense record:', error);
+      res.status(500).send({ error: 'Failed to save expense record' });
+  }
 });
 
-app.post('/submit-income', upload.array('incomeImages[]'), async (req, res) => {
+app.post('/submit-income', upload.array('incomeImages', 10), async (req, res) => {
   try {
-    const incomeItem = req.body.incomeItem;
-    const incomeAmount = req.body.incomeAmount;
-    const incomeRecDateTime = req.body.incomeRecDateTime;
-    const incomeCategory = req.body.incomeCategory;
-    const remarks = req.body.remarks;
+      const incomeItem = req.body.incomeItem;
+      const incomeAmount = req.body.incomeAmount;
+      const incomeRecDateTime = req.body.incomeRecDateTime;
+      const incomeCategory = req.body.incomeCategory;
+      const remarks = req.body.remarks;
 
-    console.log('Received Data:', {
-        incomeItem,
-        incomeAmount,
-        incomeRecDateTime,
-        incomeCategory,
-        remarks
-    });
+      // Generate unique income ID
+      const incomeID = generateUniqueID('INC');
 
-    // Generate unique income ID
-    const incomeID = generateUniqueID('INC');
+      // Upload images to S3 and generate image keys
+      const imageKeys = [];
+      for (const file of req.files) {
+          const imageKey = `${incomeID}_${new Date().toISOString().split('T')[0]}_${file.originalname}`;
+          await uploadFileToS3(file.path, imageKey, 'income-images');
+          imageKeys.push(imageKey);
+      }
 
-    // Upload images to S3 and generate image keys
-    const imageKeys = [];
-    for (const file of req.files) {
-        const imageKey = `${incomeID}_${new Date().toISOString().split('T')[0]}_${file.originalname}`;
-        await uploadFileToS3(file.path, imageKey, 'income-images');
-        imageKeys.push(imageKey);
-    }
+      // Save income record to database
+      const newIncome = {
+          incomeID,
+          incomeItem,
+          incomeAmount,
+          incomeRecDateTime,
+          incomeCategory,
+          remarks,
+          imageKeys
+      };
 
-    // Save expense record to database
-    const newIncome = {
-        incomeID,
-        incomeItem,
-        incomeAmount,
-        incomeRecDateTime,
-        incomeCategory,
-        remarks,
-        imageKeys
-    };
+      await mongoose.connection.db.collection('incomes').insertOne(newIncome);
 
-    await mongoose.connection.db.collection('incomes').insertOne(newIncome);
-
-    res.status(200).send({ message: 'Income record saved successfully!', newIncome });
-} catch (error) {
-    console.error('Error saving income record:', error);
-    res.status(500).send({ error: 'Failed to save income record' });
-}
+      res.status(200).send({ message: 'Income record saved successfully!', newIncome });
+  } catch (error) {
+      console.error('Error saving income record:', error);
+      res.status(500).send({ error: 'Failed to save income record' });
+  }
 });
 
 // Start the server
