@@ -1,4 +1,33 @@
-$(function () {
+$(document).ready(function () {
+    // Initialize DataTable with options
+    var table = $('#users-table').DataTable({
+        responsive: true,
+        lengthChange: false,
+        autoWidth: false,
+        searching: true,
+        buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    });
+
+    // Append buttons to the specified container
+    table.buttons().container().appendTo('#users-table_wrapper .col-md-6:eq(0)');
+
+    // Initialize Select2 for the user type filter dropdown
+    $('#usertype-filter').select2({
+        placeholder: "Select a user type",
+        allowClear: true
+    });
+
+    // Event listener for user type filter change
+    $('#usertype-filter').on('change', function () {
+        var selectedUserType = $(this).val();
+        table.column(2).search(selectedUserType).draw(); // Filter on the 3rd column (user type)
+    });
+
+    // Reset filter when 'All Users' is selected (cleared)
+    $('#usertype-filter').on('select2:clear', function () {
+        table.column(2).search('').draw();
+    });
+
     // Fetch users from the server
     fetch('/users')
         .then(response => response.json())
