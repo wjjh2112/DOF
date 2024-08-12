@@ -12,39 +12,6 @@ $(document).ready(function () {
     // Append buttons to the specified container
     table.buttons().container().appendTo('#income-table_wrapper .col-md-6:eq(0)');
 
-    // Fetch and populate the table with income records from the database
-    fetch('/get-income-records')
-        .then(response => response.json())
-        .then(data => {
-            const tbody = $('#incomesTableBody');
-            tbody.empty(); // Clear existing table body
-
-            data.forEach(record => {
-                const date = new Date(record.incomeRecDateTime).toLocaleDateString('en-GB');
-                const amount = `$${record.incomeAmount}`;
-                const incomeItem = record.incomeItem;
-                const category = record.incomeCategory;
-                const remarks = record.remarks || '-';
-                const viewLink = `<a href="/View-Income-Record?id=${record.incomeID}">View</a>`;
-
-                const row = `
-                    <tr>
-                        <td>${date}</td>
-                        <td>${amount}</td>
-                        <td>${incomeItem}</td>
-                        <td>${category}</td>
-                        <td>${remarks}</td>
-                        <td>${viewLink}</td>
-                    </tr>
-                `;
-                tbody.append(row);
-            });
-
-            // Re-draw the DataTable with the new data
-            table.draw();
-        })
-        .catch(error => console.error('Error fetching income records:', error));
-
     // Initialize Select2 for the category filter dropdown
     $('#category-filter').select2({
         placeholder: "Select a category",
@@ -61,6 +28,30 @@ $(document).ready(function () {
     $('#category-filter').on('select2:clear', function () {
         table.column(3).search('').draw();
     });
+
+    // Fetch and populate the table with income records from the database
+    fetch('/get-income-records')
+        .then(response => response.json())
+        .then(data => {
+            // Populate the table with data
+            populateTable(data);
+        })
+        .catch(error => console.error('Error fetching income records:', error));
+
+    function populateTable(users) {
+        table.clear().draw(); // Clear existing data
+            
+        data.forEach(record => {
+            table.row.add([
+                record.incomeRecDateTime,
+                record.incomeAmount,
+                record.incomeItem,
+                record.incomeCategory,
+                record.remarks || '-',
+                `<a href="/View-Income-Record?id=${record.incomeID}">View</a>`
+            ]).draw();
+        });
+    }
 });
 
 // Bar Chart Script

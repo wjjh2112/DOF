@@ -92,8 +92,6 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/users', (req, res) => {
-  console.log('Received request for /users');
-  
   mongoose.connection.db.collection('users').find({}).toArray((err, users) => {
     if (err) {
       console.error('Error fetching users:', err);
@@ -190,7 +188,6 @@ app.get('/get-expense-records', async (req, res) => {
       res.status(500).json({ error: 'Failed to fetch expense records' });
   }
 });
-
 
 app.get('/get-income-records', async (req, res) => {
   try {
