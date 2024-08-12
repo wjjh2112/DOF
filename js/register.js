@@ -1,59 +1,85 @@
-app.post('/registerUser', (req, res) => {
-    console.log('Registration request received');
-    const { firstname, lastname, email, password, token } = req.body;
-  
-    mongoose.connection.db.collection('users').findOne({ email }, (err, existingUser) => {
-      if (err) {
-        console.error('Error checking existing email:', err);
-        res.json({ success: false, message: 'Error checking existing email.' });
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const registrationTokenElement = document.getElementById('registration-token');
+    const registerForm = document.getElementById('registerForm');
+    const registrationStatus = document.getElementById('registrationStatus');
+    const redirectLogin = document.getElementById('redirectLogin');
+
+    if (token) {
+        registrationTokenElement.textContent = token;
+    } else {
+        registrationStatus.textContent = 'Invalid or missing registration token.';
+        registrationStatus.style.color = 'red';
+        registerForm.style.display = 'none';
         return;
-      }
-  
-      if (existingUser) {
-        res.json({ success: false, message: 'Email already registered.' });
-        return;
-      }
-  
-      console.log('Checking registration token');
-      mongoose.connection.db.collection('registrationLinks').findOne({ token }, (err, link) => {
-        if (err || !link) {
-          console.error('Invalid or expired registration link:', err);
-          res.json({ success: false, message: 'Invalid or expired registration link.' });
-          return;
+    }
+
+    registerForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from refreshing the page
+
+        const formData = new FormData(registerForm);
+        const password = formData.get('password');
+        const confirmpassword = formData.get('confirmpassword');
+
+        // Check if passwords match
+        if (password !== confirmpassword) {
+            registrationStatus.textContent = 'Passwords do not match.';
+            registrationStatus.style.color = 'red';
+            return;
         }
-  
-        if (link.used || new Date() > link.expiryDate) {
-          res.json({ success: false, message: 'Registration link has expired or already been used.' });
-          return;
-        }
-  
-        console.log('Registering new user');
-        const newUser = {
-          user_id: generateUserId(),
-          firstname,
-          lastname,
-          email,
-          password,
-          usertype: link.role
+
+        // Collect form data into an object
+        const data = {
+            firstname: formData.get('firstname'),
+            lastname: formData.get('lastname'),
+            email: formData.get('email'),
+            password: password,
+            confirmpassword: confirmpassword,
+            token: token
         };
-  
-        mongoose.connection.db.collection('users').insertOne(newUser, (err, result) => {
-          if (err) {
-            console.error('Error registering user:', err);
-            res.json({ success: false, message: 'Error registering user.' });
-          } else {
-            mongoose.connection.db.collection('registrationLinks').updateOne({ token }, { $set: { used: true } }, (err, updateResult) => {
-              if (err) {
-                console.error('Error updating registration link status:', err);
-                res.json({ success: false, message: 'Error updating registration link status.' });
-              } else {
-                console.log('User registered successfully');
-                res.json({ success: true });
-              }
-            });
-          }
+
+        console.log('Submitting registration data:', data);
+
+        // Send registration data to the server
+        fetch('/registerUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            return response.json();
+        })
+        .then(result => {
+            console.log('Server response:', result);
+            if (result.success) {
+                registrationStatus.textContent = 'Registration successful!';
+                registrationStatus.style.color = 'green';
+
+                // Create a link to the login page
+                const loginLink = document.createElement('a');
+                loginLink.href = '/login';
+                loginLink.textContent = 'here';
+                loginLink.style.textDecoration = 'underline';
+                loginLink.style.color = '#007bff';
+
+                redirectLogin.innerHTML = 'Login to IkanMeter with your new account ';
+                redirectLogin.appendChild(loginLink);
+                redirectLogin.innerHTML += '.';
+
+                registerForm.reset();
+            } else {
+                registrationStatus.textContent = 'Registration failed: ' + result.message;
+                registrationStatus.style.color = 'red';
+            }
+        })
+        .catch(error => {
+            console.error('Error during registration:', error);
+            registrationStatus.textContent = 'An error occurred. Please try again later.';
+            registrationStatus.style.color = 'red';
         });
-      });
     });
-  });
-  
+});
