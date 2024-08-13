@@ -213,3 +213,67 @@ $(document).ready(function () {
         updatePieChart(currentYear);
     }
 });
+
+document.getElementById('downloadBarChart').addEventListener('click', () => {
+    const canvas = document.getElementById('barChart');
+    const url = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'barChart.png';
+    link.click();
+});
+
+document.getElementById('printBarChart').addEventListener('click', () => {
+    const canvas = document.getElementById('barChart');
+    const printWindow = window.open('', '', 'height=500,width=700');
+    printWindow.document.write('<html><head><title>Print Chart</title>');
+    printWindow.document.write('</head><body >');
+    printWindow.document.write('<img src="' + canvas.toDataURL('image/png') + '" />');
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+});
+
+
+// Function to export data to CSV
+function exportToCSV(chart) {
+    const csvData = [];
+    const labels = chart.data.labels;
+    const datasets = chart.data.datasets;
+
+    // Add header
+    csvData.push(['Category', 'Value']);
+
+    // Add data rows
+    datasets.forEach((dataset, i) => {
+        dataset.data.forEach((data, index) => {
+            csvData.push([labels[index], data]);
+        });
+    });
+
+    // Convert to CSV and download
+    const csv = Papa.unparse(csvData);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'chart-data.csv';
+    link.click();
+}
+
+// Function to export data to Excel
+function exportToExcel(chart) {
+    const worksheet = XLSX.utils.json_to_sheet(chart.data.datasets[0].data.map((data, i) => ({
+        Category: chart.data.labels[i],
+        Value: data
+    })));
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+    XLSX.writeFile(workbook, 'chart-data.xlsx');
+}
+
+// Example of adding export buttons for data
+document.getElementById('exportCSV').addEventListener('click', () => exportToCSV(window.myBarChart));
+document.getElementById('exportExcel').addEventListener('click', () => exportToExcel(window.myBarChart));
