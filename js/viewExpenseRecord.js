@@ -9,8 +9,9 @@ $(document).ready(function () {
             .then(response => response.json())
             .then(data => {
                 if (data) {
+                    // Display the expense ID
+                    $('#expenseID').text(data.expenseID);
                     // Populate the form fields with the fetched data
-                    $('#expenseID').val(data.expenseID);
                     $('#expenseItem').val(data.expenseItem);
                     $('#expenseAmount').val(data.expenseAmount);
                     $('#expense-datetime-input').val(new Date(data.expRecDateTime).toISOString().slice(0, 16));
@@ -23,7 +24,8 @@ $(document).ready(function () {
                         fileList.empty();
                         data.imageKeys.forEach(key => {
                           const url = `https://ikanmeter.s3.ap-southeast-1.amazonaws.com/expense-images/${key}`;
-                          const listItem = `<li><a href="javascript:void(0);" onclick="window.open('${url}', '_blank');"><img src="${url}" alt="Expense Image" class="img-thumbnail"></a></li>`;
+                          const cssUrl = `${url}#zoom=1&fit=contain`;
+                          const listItem = `<li><a href="${cssUrl}" target="_blank"><img src="${url}" alt="Expense Image" class="img-thumbnail"></a></li>`;
                           fileList.append(listItem);
                         });
                       }
