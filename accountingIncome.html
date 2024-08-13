@@ -43,6 +43,31 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 
     <style>
+      /* Ensure items are side by side by default */
+      .analysis-container .analysis-item {
+          margin-bottom: 20px; /* Adjust spacing as needed */
+      }
+
+      /* For screens from 1222px to 991px, and 862px and smaller, stack items vertically */
+      @media (max-width: 1222px) and (min-width: 992px),
+            (max-width: 862px) {
+          .analysis-container .analysis-item {
+              flex: 0 0 100%;
+              max-width: 100%;
+          }
+      }
+
+      /* Ensure items are side by side for larger screens */
+      @media (min-width: 1230px) {
+          .analysis-container {
+              display: flex;
+              flex-wrap: wrap;
+          }
+          .analysis-container .analysis-item {
+              flex: 0 0 50%;
+              max-width: 50%;
+          }
+      }
     </style>
 </head>
 
@@ -237,8 +262,8 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col">
+                      <div class="row analysis-container">
+                        <div class="col-md-6 analysis-item">
                           <div class="au-card">
                             <div class="au-card-header">
                               <h3><span data-i18n="incomeAnalysis"></span></h3><br>
@@ -258,7 +283,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col">
+                        <div class="col-md-6 analysis-item">
                           <div class="au-card">
                             <div class="au-card-header">
                               <h3><span data-i18n="incomeCategoryAnalysis"></span></h3><br>
