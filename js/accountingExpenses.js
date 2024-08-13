@@ -79,7 +79,7 @@ $(document).ready(function () {
                 alert(`No data available for ${year}`);
                 return;
             }
-        
+
             const barChartData = {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 datasets: [{
@@ -89,24 +89,17 @@ $(document).ready(function () {
                     data: expenseData[year]
                 }]
             };
-        
+
             if (window.myBarChart) {
                 window.myBarChart.destroy();
             }
-        
+
             window.myBarChart = new Chart($('#barChart'), {
                 type: 'bar',
                 data: barChartData,
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        // Plugin for exporting chart as image
-                        export: {
-                            enabled: true,
-                            position: 'top'
-                        }
-                    },
                     title: {
                         display: true,
                         text: `Expenses for ${year}`,
@@ -131,7 +124,7 @@ $(document).ready(function () {
                     }
                 }
             });
-        };        
+        };
 
         const updatePieChart = (year) => {
             const pieData = {};
