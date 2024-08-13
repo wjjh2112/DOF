@@ -150,7 +150,7 @@ h6 {
 }
 
 @media (max-width: 991px) {
-    h1 {
+    h1,h2 {
         color: #fff;
     }
 }
@@ -3585,6 +3585,13 @@ input[type="file"] {
     margin: 10px;
 }
 
+@media (max-width: 991px) {
+    .au-card {
+        padding: 10px;
+        margin: 5px;
+    }
+}
+
 .au-card-sm {
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
@@ -3625,7 +3632,7 @@ input[type="file"] {
     text-align: center;
     text-decoration: none;
     z-index: 10;
-  }
+}
   
 .au-card-footer :hover {
     background-color: rgba(0, 0, 0, 0.15);
