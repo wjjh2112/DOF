@@ -20,13 +20,12 @@ $(document).ready(function () {
                     if (data.imageKeys && data.imageKeys.length > 0) {
                         const fileList = $('#expense-file-list');
                         fileList.empty();
-
                         data.imageKeys.forEach(key => {
-                            const url = `https://ikanmeter.s3.ap-southeast-1.amazonaws.com/expense-images/${key}`;
-                            const listItem = `<li><a href="${url}" target="_blank"><img src="${url}" alt="Expense Image" class="img-thumbnail"></a></li>`;
-                            fileList.append(listItem);
+                          const url = `https://ikanmeter.s3.ap-southeast-1.amazonaws.com/expense-images/${key}`;
+                          const listItem = `<li><a href="javascript:void(0);" onclick="window.open('${url}', '_blank');"><img src="${url}" alt="Expense Image" class="img-thumbnail"></a></li>`;
+                          fileList.append(listItem);
                         });
-                    }
+                      }
                 } else {
                     alert('Expense record not found.');
                 }
