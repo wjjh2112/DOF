@@ -44,9 +44,12 @@ $(document).ready(function () {
 // Function to open the image centered in a new tab
 function openCenteredImage(imageUrl) {
     const newWindow = window.open("", "_blank", "width=800,height=600,scrollbars=no");
+
+    newWindow.document.open();
     newWindow.document.write(`
         <html>
         <head>
+            <title>Expense Image</title>
             <style>
                 body, html {
                     height: 100%;
