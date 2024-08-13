@@ -118,15 +118,9 @@ $(document).ready(function () {
                         yAxes: [{
                             ticks: {
                                 beginAtZero: true,
-                                max: 1000,
-                                callback: function(value, index, values) {
-                                    return 'RM' + value;
-                                }
+                                max: 1000 // Fixed y-axis maximum value
                             }
                         }]
-                    },
-                    plugins: {
-                        backgroundColor: '#ffffff'
                     }
                 }
             });
@@ -188,18 +182,6 @@ $(document).ready(function () {
                             fontSize: 12,
                             fontColor: '#666'
                         }
-                    },
-                    tooltips: {
-                        callbacks: {
-                            label: function(tooltipItem, data) {
-                                let label = data.labels[tooltipItem.index] || '';
-                                let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                                return label + ': RM' + value;
-                            }
-                        }
-                    },
-                    plugins: {
-                        backgroundColor: '#ffffff'
                     }
                 }
             });
@@ -232,7 +214,6 @@ $(document).ready(function () {
     }
 });
 
-// Bar Chart Buttons
 document.getElementById('downloadBarChart').addEventListener('click', () => {
     const canvas = document.getElementById('barChart');
     const url = canvas.toDataURL('image/png');
@@ -262,7 +243,7 @@ function exportToCSV(chart) {
     const datasets = chart.data.datasets;
 
     // Add header
-    csvData.push(['Month', 'Value']);
+    csvData.push(['Category', 'Value']);
 
     // Add data rows
     datasets.forEach((dataset, i) => {
@@ -294,71 +275,5 @@ function exportToExcel(chart) {
 }
 
 // Example of adding export buttons for data
-document.getElementById('exportBarCSV').addEventListener('click', () => exportToCSV(window.myBarChart));
-document.getElementById('exportBarExcel').addEventListener('click', () => exportToExcel(window.myBarChart));
-
-
-
-// Pie Chart Buttons
-document.getElementById('downloadPieChart').addEventListener('click', () => {
-    const canvas = document.getElementById('pieChart');
-    const url = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'pieChart.png';
-    link.click();
-});
-
-document.getElementById('printPieChart').addEventListener('click', () => {
-    const canvas = document.getElementById('pieChart');
-    const printWindow = window.open('', '', 'height=500,width=700');
-    printWindow.document.write('<html><head><title>Print Chart</title>');
-    printWindow.document.write('</head><body >');
-    printWindow.document.write('<img src="' + canvas.toDataURL('image/png') + '" />');
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-});
-
-// Function to export pie chart data to CSV
-function exportPieChartToCSV(chart) {
-    const csvData = [];
-    const labels = chart.data.labels;
-    const datasets = chart.data.datasets[0].data;
-
-    // Add header
-    csvData.push(['Category', 'Value']);
-
-    // Add data rows
-    labels.forEach((label, index) => {
-        csvData.push([label, datasets[index]]);
-    });
-
-    // Convert to CSV and download
-    const csv = Papa.unparse(csvData);
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'pie-chart-data.csv';
-    link.click();
-}
-
-// Function to export pie chart data to Excel
-function exportPieChartToExcel(chart) {
-    const worksheet = XLSX.utils.json_to_sheet(chart.data.labels.map((label, i) => ({
-        Category: label,
-        Value: chart.data.datasets[0].data[i]
-    })));
-
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-
-    XLSX.writeFile(workbook, 'pie-chart-data.xlsx');
-}
-
-// Example of adding export button for pie chart data
-document.getElementById('exportPieExcel').addEventListener('click', () => exportPieChartToExcel(window.myPieChart));
-
-// Example of adding export button for pie chart data
-document.getElementById('exportPieCSV').addEventListener('click', () => exportPieChartToCSV(window.myPieChart));
+document.getElementById('exportCSV').addEventListener('click', () => exportToCSV(window.myBarChart));
+document.getElementById('exportExcel').addEventListener('click', () => exportToExcel(window.myBarChart));
