@@ -344,16 +344,6 @@ function exportPieChartToCSV(chart) {
     link.click();
 }
 
-// Ensure this button is properly linked to the pie chart export function
-document.getElementById('exportPieCSV').addEventListener('click', () => {
-    if (window.myPieChart) {
-        exportPieChartToCSV(window.myPieChart);
-    } else {
-        console.error('Pie chart not initialized');
-    }
-});
-
-
 // Function to export pie chart data to Excel
 function exportPieChartToExcel(chart) {
     const worksheet = XLSX.utils.json_to_sheet(chart.data.labels.map((label, i) => ({
@@ -367,11 +357,8 @@ function exportPieChartToExcel(chart) {
     XLSX.writeFile(workbook, 'pie-chart-data.xlsx');
 }
 
-// Ensure this button is properly linked to the pie chart export function
-document.getElementById('exportPieExcel').addEventListener('click', () => {
-    if (window.myPieChart) {
-        exportPieChartToExcel(window.myPieChart);
-    } else {
-        console.error('Pie chart not initialized');
-    }
-});
+// Example of adding export button for pie chart data
+document.getElementById('exportPieExcel').addEventListener('click', () => exportPieChartToExcel(window.myPieChart));
+
+// Example of adding export button for pie chart data
+document.getElementById('exportPieCSV').addEventListener('click', () => exportPieChartToCSV(window.myPieChart));
