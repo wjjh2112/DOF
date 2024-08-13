@@ -25,9 +25,8 @@ $(document).ready(function () {
                         fileList.empty();
                         data.imageKeys.forEach(key => {
                           const url = `https://ikanmeter.s3.ap-southeast-1.amazonaws.com/income-images/${key}`;
-                          const cssUrl = `${url}#zoom=1&fit=contain`;
-                          const listItem = `<li><a href="${cssUrl}" target="_blank"><img src="${url}" alt="Income Image" class="img-thumbnail"></a></li>`;
-                          fileList.append(listItem);
+                          const listItem = `<li><a href="javascript:void(0);" onclick="openCenteredImage('${url}');"><img src="${url}" alt="Income Image" class="img-thumbnail"></a></li>`;
+                            fileList.append(listItem);
                         });
                       }
                 } else {
@@ -42,3 +41,32 @@ $(document).ready(function () {
         alert('No income ID provided in the URL.');
     }
 });
+
+// Function to open the image centered in a new tab
+function openCenteredImage(imageUrl) {
+    const newWindow = window.open("", "_blank", "width=800,height=600,scrollbars=no");
+    newWindow.document.write(`
+        <html>
+        <head>
+            <style>
+                body, html {
+                    height: 100%;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #000;
+                }
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            </style>
+        </head>
+        <body>
+            <img src="${imageUrl}" alt="Income Image">
+        </body>
+        </html>
+    `);
+    newWindow.document.close();
+}

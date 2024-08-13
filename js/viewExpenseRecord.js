@@ -23,12 +23,11 @@ $(document).ready(function () {
                         const fileList = $('#expense-file-list');
                         fileList.empty();
                         data.imageKeys.forEach(key => {
-                          const url = `https://ikanmeter.s3.ap-southeast-1.amazonaws.com/expense-images/${key}`;
-                          const cssUrl = `${url}#zoom=1&fit=contain`;
-                          const listItem = `<li><a href="${cssUrl}" target="_blank"><img src="${url}" alt="Expense Image" class="img-thumbnail"></a></li>`;
-                          fileList.append(listItem);
+                            const url = `https://ikanmeter.s3.ap-southeast-1.amazonaws.com/expense-images/${key}`;
+                            const listItem = `<li><a href="javascript:void(0);" onclick="openCenteredImage('${url}');"><img src="${url}" alt="Expense Image" class="img-thumbnail"></a></li>`;
+                            fileList.append(listItem);
                         });
-                      }
+                    }
                 } else {
                     alert('Expense record not found.');
                 }
@@ -41,3 +40,32 @@ $(document).ready(function () {
         alert('No expense ID provided in the URL.');
     }
 });
+
+// Function to open the image centered in a new tab
+function openCenteredImage(imageUrl) {
+    const newWindow = window.open("", "_blank", "width=800,height=600,scrollbars=no");
+    newWindow.document.write(`
+        <html>
+        <head>
+            <style>
+                body, html {
+                    height: 100%;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #000;
+                }
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            </style>
+        </head>
+        <body>
+            <img src="${imageUrl}" alt="Expense Image">
+        </body>
+        </html>
+    `);
+    newWindow.document.close();
+}
