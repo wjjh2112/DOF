@@ -10,6 +10,7 @@ $(document).ready(function () {
             .then(data => {
                 if (data) {
                     // Populate the form fields with the fetched data
+                    $('#incomeID').val(data.incomeID);
                     $('#incomeItem').val(data.incomeItem);
                     $('#incomeAmount').val(data.incomeAmount);
                     $('#income-datetime-input').val(new Date(data.incomeRecDateTime).toISOString().slice(0, 16));
@@ -18,7 +19,7 @@ $(document).ready(function () {
 
                     // Display images
                     if (data.imageKeys && data.imageKeys.length > 0) {
-                        const fileList = $('#expense-file-list');
+                        const fileList = $('#income-file-list');
                         fileList.empty();
                         data.imageKeys.forEach(key => {
                           const url = `https://ikanmeter.s3.ap-southeast-1.amazonaws.com/income-images/${key}`;

@@ -10,6 +10,7 @@ $(document).ready(function () {
             .then(data => {
                 if (data) {
                     // Populate the form fields with the fetched data
+                    $('#expenseID').val(data.expenseID);
                     $('#expenseItem').val(data.expenseItem);
                     $('#expenseAmount').val(data.expenseAmount);
                     $('#expense-datetime-input').val(new Date(data.expRecDateTime).toISOString().slice(0, 16));

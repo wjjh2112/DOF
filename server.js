@@ -35,12 +35,24 @@ const upload = multer({ dest: 'uploads/' });
 // Function to upload file to S3
 const uploadFileToS3 = (filePath, fileName, folder) => {
     const fileContent = fs.readFileSync(filePath);
+    // Determine the Content-Type based on file extension
+    const ext = path.extname(fileName).toLowerCase();
 
+    let contentType;
+    if (ext === '.jpg' || ext === '.jpeg') {
+      contentType = 'image/jpeg';
+    } else if (ext === '.png') {
+      contentType = 'image/png';
+    } else {
+      throw new Error('Unsupported file type. Only JPEG and PNG are allowed.');
+    }
+  
     const params = {
-        Bucket: 'ikanmeter',
-        Key: `${folder}/${fileName}`,
-        Body: fileContent,
-        ContentDisposition: 'inline'
+      Bucket: 'ikanmeter',
+      Key: `${folder}/${fileName}`,
+      Body: fileContent,
+      ContentDisposition: 'inline',
+      ContentType: contentType
     };
 
     return s3.upload(params).promise()
