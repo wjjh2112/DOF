@@ -1,7 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
 
-    if (!userData) {
+    if (userData) {
+        // Control visibility based on user type
+        if (userData.usertype === 'Viewer') {
+            document.getElementById('sidebar-users-item').style.display = 'none';
+            document.getElementById('mobile-users-item').style.display = 'none';
+        }
+        
+    } else {
         // Redirect to login page if user data is not found
         window.location.href = '/login';
     }
