@@ -103,12 +103,13 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(data => {
+            console.log(data); // Log the actual response
             if (data.success) {
                 alert('Expense record submitted successfully!');
-                window.location.href = '/Accounting-Expenses'; // Redirect to another page or refresh
+                window.location.href = '/Accounting-Expense'; // Redirect to another page or refresh
             } else {
                 alert('Error submitting expense record: ' + (data.message || 'Unknown error'));
             }
-        })
+        })        
     });
 });
