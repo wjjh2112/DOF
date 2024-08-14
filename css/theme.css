@@ -564,6 +564,10 @@ section {
     cursor: pointer;
 }
 
+.au-btn:hover {
+    background: #007bff;
+}
+
 .au-btn a {
     color: #fff;
 }
