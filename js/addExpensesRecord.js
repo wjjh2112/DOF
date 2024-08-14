@@ -114,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => {
             console.error('Error:', error);
             alert('Error submitting expense record: ' + error.message);
-        });
-           
+        }); 
     });
 });

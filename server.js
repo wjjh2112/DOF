@@ -283,10 +283,11 @@ app.post('/submit-expense', upload.array('expenseImages[]'), async (req, res) =>
 
       await mongoose.connection.db.collection('expenses').insertOne(newExpense);
 
-      res.status(200).send({ message: 'Expense record saved successfully!', newExpense });
+      // Respond with success status and message
+      res.status(200).json({ success: true, message: 'Expense record saved successfully!', newExpense });
   } catch (error) {
       console.error('Error saving expense record:', error);
-      res.status(500).send({ error: 'Failed to save expense record' });
+      res.status(500).json({ success: false, error: 'Failed to save expense record' });
   }
 });
 
@@ -324,10 +325,11 @@ app.post('/submit-income', upload.array('incomeImages[]'), async (req, res) => {
 
       await mongoose.connection.db.collection('incomes').insertOne(newIncome);
 
-      res.status(200).send({ message: 'Income record saved successfully!', newIncome });
+      // Respond with success status and message
+      res.status(200).json({ success: true, message: 'Income record saved successfully!', newIncome });
   } catch (error) {
       console.error('Error saving income record:', error);
-      res.status(500).send({ error: 'Failed to save income record' });
+      res.status(500).json({ success: false, error: 'Failed to save income record' });
   }
 });
 
