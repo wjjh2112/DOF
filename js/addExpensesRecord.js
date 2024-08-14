@@ -110,9 +110,5 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert('Error submitting expense record: ' + (data.message || 'Unknown error'));
             }
         })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error submitting expense record: ' + error.message);
-        });
     });
 });
