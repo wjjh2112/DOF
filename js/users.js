@@ -53,10 +53,10 @@ $(document).ready(function () {
                 </div>`,
                 user.usertype,
                 `<span class="more">
-                    <i class="zmdi zmdi-edit editUserBtn"></i>
+                    <i class="zmdi zmdi-edit"></i>
                 </span>
                 <span class="more">
-                    <i class="zmdi zmdi-delete deleteUserBtn"></i>
+                    <i class="zmdi zmdi-delete"></i>
                 </span>`
             ]).draw();
         });
