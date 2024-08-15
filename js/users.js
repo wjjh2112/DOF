@@ -52,12 +52,12 @@ $(document).ready(function () {
                     <span><a href="#">${user.email}</a></span>
                 </div>`,
                 user.usertype,
-                `<span class="more">
-                    <i class="zmdi zmdi-edit"></i>
-                </span>
-                <span class="more">
-                    <i class="zmdi zmdi-delete"></i>
-                </span>`
+                `<button type="button" class="au-btn--trans-backg">
+                    <i class="zmdi zmdi-edit editUserBtn"></i>
+                </button> &nbsp; &nbsp;
+                <button type="button" class="au-btn--trans-backg">
+                    <i class="zmdi zmdi-delete deleteUserBtn"></i>
+                </button>`
             ]).draw();
         });
     }
