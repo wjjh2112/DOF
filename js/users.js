@@ -52,11 +52,11 @@ $(document).ready(function () {
                     <span><a href="#">${user.email}</a></span>
                 </div>`,
                 user.usertype,
-                `<div class="align-items-center">
-                    <button type="button" class="au-btn--trans-backg" style="font-size: 18px">
+                `<div class="align-items-center justify-content-center">
+                    <button type="button" class="au-btn--trans-backg" style="font-size: 20px">
                         <i class="zmdi zmdi-edit editUserBtn"></i>
                     </button> &nbsp; &nbsp;
-                    <button type="button" class="au-btn--trans-backg" style="font-size: 18px">
+                    <button type="button" class="au-btn--trans-backg" style="font-size: 20px">
                         <i class="zmdi zmdi-delete deleteUserBtn"></i>
                     </button>
                 </div>`
