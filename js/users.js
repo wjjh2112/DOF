@@ -52,7 +52,7 @@ $(document).ready(function () {
                     <span><a href="#">${user.email}</a></span>
                 </div>`,
                 user.usertype,
-                `<div class="align-items-center justify-content-center">
+                `<div class="row align-items-center justify-content-center">
                     <button type="button" class="au-btn--trans-backg" style="font-size: 20px">
                         <i class="zmdi zmdi-edit editUserBtn"></i>
                     </button> &nbsp; &nbsp;
