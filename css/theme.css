@@ -680,12 +680,12 @@ section {
     color: #007bff;
 }
 
-.au-btn--users:hover {
+/* .au-btn--users:hover {
     padding: 0 20px;
     line-height: 40px;
     font-size: 24px;
     color: #004cbe;
-}
+} */
 
 /*Page Loader*/
 .page-loader {
