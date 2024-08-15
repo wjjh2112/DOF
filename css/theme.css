@@ -673,6 +673,20 @@ section {
     color: #007bff;
 }
 
+.au-btn--users {
+    padding: 0 20px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #007bff;
+}
+
+.au-btn--users:hover {
+    padding: 0 20px;
+    line-height: 40px;
+    font-size: 24px;
+    color: #004cbe;
+}
+
 /*Page Loader*/
 .page-loader {
     background: #f8f8f8;

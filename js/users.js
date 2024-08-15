@@ -53,10 +53,10 @@ $(document).ready(function () {
                 </div>`,
                 user.usertype,
                 `<div class="row align-items-center justify-content-center">
-                    <button type="button" class="au-btn--trans-backg" style="font-size: 20px">
+                    <button type="button" class="au-btn--users">
                         <i class="zmdi zmdi-edit editUserBtn"></i>
                     </button> &nbsp; &nbsp;
-                    <button type="button" class="au-btn--trans-backg" style="font-size: 20px">
+                    <button type="button" class="au-btn--users">
                         <i class="zmdi zmdi-delete deleteUserBtn"></i>
                     </button>
                 </div>`
