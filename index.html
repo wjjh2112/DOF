@@ -231,7 +231,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <!-- DATA FIELD -->
+                            <!-- DATA FIELD -->
                                 <div class="au-card">
                                     <div class="au-card-header">
                                         <h3 id="site"></h3>
@@ -240,6 +240,18 @@
                                     <div class="au-card-body p-l-0 p-r-0">
                                         <h6 style="color: rgb(93, 93, 93);"><span data-i18n="selectDataField"></span></h6><br>
                                         <div class="row justify-content-center">
+                                            <!-- First row (2 columns) -->
+                                            <div class="col-md-6 col-lg-5 mb-3">
+                                                <div class="au-card-sm border border-primary">
+                                                    <div class="au-card-sm-inner">
+                                                        <h4><span data-i18n="temp"></span></h4><br>
+                                                        <center><h2 style="color: #00c0ef;"><span id="temp"></span>&deg;C</h2></center>
+                                                    </div><br>
+                                                    <a href="/Temperature" class="au-card-sm-footer" style="color: black;">
+                                                        <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <div class="col-md-6 col-lg-5 mb-3">
                                                 <div class="au-card-sm border border-primary">
                                                     <div class="au-card-sm-inner">
@@ -247,6 +259,18 @@
                                                         <center><h2 style="color: #00c0ef;"><span id="do"></span>mg/L</h2></center>
                                                     </div><br>
                                                     <a href="/Dissolved-Oxygen" class="au-card-sm-footer" style="color: black;">
+                                                        <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- Second row (2 columns) -->
+                                            <div class="col-md-6 col-lg-5 mb-3">
+                                                <div class="au-card-sm border border-primary">
+                                                    <div class="au-card-sm-inner">
+                                                        <h4><span data-i18n="doPerc"></span></h4><br>
+                                                        <center><h2 style="color: #00c0ef;"><span id="doPerc"></span>%</h2></center>
+                                                    </div><br>
+                                                    <a href="/Dissolved-Oxygen-Percentage" class="au-card-sm-footer" style="color: black;">
                                                         <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
                                                     </a>
                                                 </div>
@@ -262,12 +286,24 @@
                                                     </a>
                                                 </div>
                                             </div>
+                                            <!-- Third row (1 column) -->
+                                            <div class="col-lg-10 mb-3">
+                                                <div class="au-card-sm border border-primary">
+                                                    <div class="au-card-sm-inner">
+                                                        <h4><span data-i18n="salinity"></span></h4><br>
+                                                        <center><h2 style="color: #00c0ef;"><span id="salinity"></span>ppm</h2></center>
+                                                    </div><br>
+                                                    <a href="/Salinity" class="au-card-sm-footer" style="color: black;">
+                                                        <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- END DATA FIELD -->
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
