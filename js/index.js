@@ -1,51 +1,30 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Initial display values
-    const siteDropdown = document.getElementById('dropdownSites');
-    const loggerDropdown = document.getElementById('dropdownLogger');
-    
-    // Set the initial site and logger
-    const site = siteDropdown.value;
-    const logger = loggerDropdown.value;
+document.getElementById('dropdownSites').addEventListener('change', fetchData);
+document.getElementById('dropdownLogger').addEventListener('change', fetchData);
 
-    // Function to fetch data from MongoDB
-    function fetchData(site, logger) {
-        let collectionPH = `${logger}_PH`;
-        let collectionDO = `${logger}_DO`;
+function fetchData() {
+    const site = document.getElementById('dropdownSites').value;
+    const logger = document.getElementById('dropdownLogger').value;
+    const phCollection = `${logger}_PH`;
+    const doCollection = `${logger}_DO`;
 
-        // Fetch the latest PH data
-        fetch(`/api/data?collection=${collectionPH}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    const latestPH = data[0];
-                    document.getElementById('ph').textContent = latestPH.value;
-                }
-            });
-
-        // Fetch the latest DO data
-        fetch(`/api/data?collection=${collectionDO}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    const latestDO = data[0];
-                    document.getElementById('do').textContent = latestDO.value;
-                }
-            });
-
-        // Display selected site and logger
-        document.getElementById('site').textContent = `Site: ${site}`;
-        document.getElementById('logger').textContent = `Logger: ${logger}`;
+    if (site === "Penang") {
+        fetchNewestData(phCollection, 'ph');
+        fetchNewestData(doCollection, 'do');
+    } else {
+        // Handle other sites
+        console.log("Other site selected: " + site);
     }
+}
 
-    // Fetch initial data
-    fetchData(site, logger);
+function fetchNewestData(collectionName, elementId) {
+    // Replace with your actual API endpoint or MongoDB query
+    fetch(`/api/collection/${collectionName}/newest`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById(elementId).textContent = data.value;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
 
-    // Event listeners for dropdowns
-    siteDropdown.addEventListener('change', function () {
-        fetchData(siteDropdown.value, loggerDropdown.value);
-    });
-
-    loggerDropdown.addEventListener('change', function () {
-        fetchData(siteDropdown.value, loggerDropdown.value);
-    });
-});
+// Initial fetch on page load
+fetchData();
