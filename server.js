@@ -333,6 +333,19 @@ app.post('/submit-income', upload.array('incomeImages[]'), async (req, res) => {
   }
 });
 
+app.get('/api/data', async (req, res) => {
+  const collectionName = req.query.collection;
+
+  try {
+      const collection = db.collection(collectionName);
+      const latestData = await collection.find().sort({ timestamp: -1 }).limit(1).toArray();
+      res.json(latestData);
+  } catch (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).json({ error: 'Failed to fetch data' });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
