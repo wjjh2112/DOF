@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const doChart = initializePenDOLineChart(doCtx, doInitialData);
     const doElement = document.getElementById("penDO");
     doElement.textContent = doInitialData.initialData[doInitialData.initialData.length - 1].toFixed(2);
-  
+
     setInterval(() => updatePenDOChartAndCurrent(doChart, doElement), 60000);  // Update every 1 minute
 
     // Initialize pH chart
@@ -185,17 +185,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const phChart = initializePenPHLineChart(phCtx, phInitialData);
     const phElement = document.getElementById("penPH");
     phElement.textContent = phInitialData.initialData[phInitialData.initialData.length - 1].toFixed(2);
-  
+
     setInterval(() => updatePenPHChartAndCurrent(phChart, phElement), 60000);  // Update every 1 minute
 
-    const loggerElement = document.getElementById('logger');
-    const dropdownLogger = document.getElementById('dropdownLogger');
-    
-    // Update the logger name on page load
-    loggerElement.textContent = dropdownLogger.options[dropdownLogger.selectedIndex].text;
+    // Update the logger name based on selected logger from dropdown
+    const dropdownLogger = document.getElementById("dropdownLogger");
+    const loggerDisplay = document.getElementById("logger");
 
-    // Add an event listener to update the logger name when the dropdown value changes
-    dropdownLogger.addEventListener('change', function() {
-        loggerElement.textContent = dropdownLogger.options[dropdownLogger.selectedIndex].text;
+    // Set initial logger value
+    loggerDisplay.textContent = dropdownLogger.value;
+
+    // Update logger when dropdown selection changes
+    dropdownLogger.addEventListener("change", function() {
+        loggerDisplay.textContent = this.value;
     });
 });
