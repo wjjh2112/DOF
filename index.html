@@ -357,26 +357,22 @@
                                                     <div class="au-card-sm border border-primary">
                                                         <div class="au-card-sm-inner">
                                                             <h4><span data-i18n="do"></span></h4><br>
-                                                            <center><h2 style="color: #00c0ef;"><span id="do"></span>mg/L</h2></center>
+                                                            <center><h2 style="color: #00c0ef;"><span id="do"></span> mg/L</h2></center><br>
+                                                            <canvas id="realtimeDO"></canvas>
                                                         </div><br>
-                                                        <a href="/Dissolved-Oxygen" class="au-card-sm-footer" style="color: black;">
-                                                            <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
-                                                        </a>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-lg-5 mb-3">
                                                     <div class="au-card-sm border border-primary">
                                                         <div class="au-card-sm-inner">
                                                             <h4><span data-i18n="phValue"></span></h4><br>
-                                                            <center><h2 style="color: #00c0ef;"><span id="ph"></span></h2></center>
+                                                            <center><h2 style="color: #00c0ef;"><span id="ph"></span></h2></center><br>
+                                                            <canvas id="realtimePH"></canvas>
                                                         </div><br>
-                                                        <a href="/pH-Value" class="au-card-sm-footer" style="color: black;">
-                                                            <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                     <!-- END DATA FIELD -->
                                 </div>
@@ -414,6 +410,9 @@
 
     <!-- Dashboard JS -->
     <script src="js/index.js"></script>
+
+    <!-- Penang Institute JS -->
+    <script src="js/penangInstIndex.js"></script>
 
     <!-- Language Switch JS -->
     <script src="js/language_switch.js"></script>
