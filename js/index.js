@@ -1,30 +1,18 @@
-document.getElementById('dropdownSites').addEventListener('change', fetchData);
-document.getElementById('dropdownLogger').addEventListener('change', fetchData);
+document.addEventListener('DOMContentLoaded', function() {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
 
-function fetchData() {
-    const site = document.getElementById('dropdownSites').value;
-    const logger = document.getElementById('dropdownLogger').value;
-    const phCollection = `${logger}_PH`;
-    const doCollection = `${logger}_DO`;
-
-    if (site === "Penang") {
-        fetchNewestData(phCollection, 'ph');
-        fetchNewestData(doCollection, 'do');
+    if (userData) {
+        // Control dashboard based on user organization
+        if (userData.userOrg === 'DOF') {
+            document.getElementById('DOF-dashboard').style.display = 'block';
+        }
+        else if (userData.userOrg === 'Penang Institute') {
+            document.getElementById('PenangInstitute-dashboard').style.display = 'block';
+        }
+        
     } else {
-        // Handle other sites
-        console.log("Other site selected: " + site);
+        // Redirect to login page if user data is not found
+        window.location.href = '/login';
     }
-}
+});
 
-function fetchNewestData(collectionName, elementId) {
-    // Replace with your actual API endpoint or MongoDB query
-    fetch(`/api/collection/${collectionName}/newest`)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById(elementId).textContent = data.value;
-        })
-        .catch(error => console.error('Error fetching data:', error));
-}
-
-// Initial fetch on page load
-fetchData();

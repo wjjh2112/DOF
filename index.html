@@ -193,123 +193,202 @@
         </aside>
         <!-- END MENU SIDEBAR-->
 
-        <!-- PAGE CONTAINER-->
-        <div class="page-container">
-            <!-- MAIN CONTENT -->
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col justify-content-start"><h1><span data-i18n="telemetry"></span></h1></div><br><br><br>
-                            <div class="row m-l-10 m-r-10 justify-content-end">
-                                <div class="col d-flex justify-content-end">
-                                    <div class="table-data__tool">
-                                        <div class="table-data__tool-left">
-                                            <div class="rs-select2--light rs-select2--sm">
-                                                <select class="js-select2" name="sites" id="dropdownSites">
-                                                    <option value="Penang" selected>Penang</option>
-                                                    <option value="Santubong">Santubong</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
+        <!-- DOF DASHBOARD -->
+        <div id="DOF-dashboard" class="dashboard-content" style="display: none;">
+            <!-- PAGE CONTAINER-->
+            <div class="page-container">
+                <!-- MAIN CONTENT -->
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col justify-content-start"><h1><span data-i18n="telemetry"></span></h1></div><br><br><br>
+                                <div class="row m-l-10 m-r-10 justify-content-end">
+                                    <div class="col d-flex justify-content-end">
+                                        <div class="table-data__tool">
+                                            <div class="table-data__tool-left">
+                                                <div class="rs-select2--light rs-select2--sm">
+                                                    <select class="js-select2" name="sites" id="dropdownSites">
+                                                        <option selected="Santubong CageFarm">Santubong CageFarm</option>
+                                                        <option value="Rambungan CageFarm">Rambungan CageFarm</option>
+                                                    </select>
+                                                    <div class="dropDownSelect2"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="table-data__tool">
-                                        <div class="table-data__tool-left">
-                                            <div class="rs-select2--light rs-select2--md">
-                                                <select class="js-select2" name="logger" id="dropdownLogger">
-                                                    <option value="PEN1" selected>PEN 1</option>
-                                                    <option value="PEN2">PEN 2</option>
-                                                    <option value="PEN3">PEN 3</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
+                                        <div class="table-data__tool">
+                                            <div class="table-data__tool-left">
+                                                <div class="rs-select2--light rs-select2--md">
+                                                    <select class="js-select2" name="logger" id="dropdownLogger">
+                                                        <option selected="Logger 1">Logger 1</option>
+                                                        <option value="Logger 2">Logger 2</option>
+                                                    </select>
+                                                    <div class="dropDownSelect2"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                            <!-- DATA FIELD -->
-                                <div class="au-card">
-                                    <div class="au-card-header">
-                                        <h3 id="site"></h3>
-                                        <h4 id="logger"></h4>
-                                    </div><br>
-                                    <div class="au-card-body p-l-0 p-r-0">
-                                        <h6 style="color: rgb(93, 93, 93);"><span data-i18n="selectDataField"></span></h6><br>
-                                        <div class="row justify-content-center">
-                                            <!-- First row (2 columns) -->
-                                            <div class="col-md-6 col-lg-5 mb-3">
-                                                <div class="au-card-sm border border-primary">
-                                                    <div class="au-card-sm-inner">
-                                                        <h4><span data-i18n="temp"></span></h4><br>
-                                                        <center><h2 style="color: #00c0ef;"><span id="temp"></span>&deg;C</h2></center>
-                                                    </div><br>
-                                                    <a href="/Temperature" class="au-card-sm-footer" style="color: black;">
-                                                        <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
-                                                    </a>
+                            <div class="row">
+                                <div class="col">
+                                <!-- DATA FIELD -->
+                                    <div class="au-card">
+                                        <div class="au-card-header">
+                                            <h3 id="site"></h3>
+                                            <h4 id="logger"></h4>
+                                        </div><br>
+                                        <div class="au-card-body p-l-0 p-r-0">
+                                            <h6 style="color: rgb(93, 93, 93);"><span data-i18n="selectDataField"></span></h6><br>
+                                            <div class="row justify-content-center">
+                                                <!-- First row (2 columns) -->
+                                                <div class="col-md-6 col-lg-5 mb-3">
+                                                    <div class="au-card-sm border border-primary">
+                                                        <div class="au-card-sm-inner">
+                                                            <h4><span data-i18n="temp"></span></h4><br>
+                                                            <center><h2 style="color: #00c0ef;"><span id="temp"></span>&deg;C</h2></center>
+                                                        </div><br>
+                                                        <a href="/Temperature" class="au-card-sm-footer" style="color: black;">
+                                                            <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-5 mb-3">
-                                                <div class="au-card-sm border border-primary">
-                                                    <div class="au-card-sm-inner">
-                                                        <h4><span data-i18n="do"></span></h4><br>
-                                                        <center><h2 style="color: #00c0ef;"><span id="do"></span>mg/L</h2></center>
-                                                    </div><br>
-                                                    <a href="/Dissolved-Oxygen" class="au-card-sm-footer" style="color: black;">
-                                                        <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
-                                                    </a>
+                                                <div class="col-md-6 col-lg-5 mb-3">
+                                                    <div class="au-card-sm border border-primary">
+                                                        <div class="au-card-sm-inner">
+                                                            <h4><span data-i18n="do"></span></h4><br>
+                                                            <center><h2 style="color: #00c0ef;"><span id="do"></span>mg/L</h2></center>
+                                                        </div><br>
+                                                        <a href="/Dissolved-Oxygen" class="au-card-sm-footer" style="color: black;">
+                                                            <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <!-- Second row (2 columns) -->
-                                            <div class="col-md-6 col-lg-5 mb-3">
-                                                <div class="au-card-sm border border-primary">
-                                                    <div class="au-card-sm-inner">
-                                                        <h4><span data-i18n="doPerc"></span></h4><br>
-                                                        <center><h2 style="color: #00c0ef;"><span id="doPerc"></span>%</h2></center>
-                                                    </div><br>
-                                                    <a href="/Dissolved-Oxygen-Percentage" class="au-card-sm-footer" style="color: black;">
-                                                        <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
-                                                    </a>
+                                                <!-- Second row (2 columns) -->
+                                                <div class="col-md-6 col-lg-5 mb-3">
+                                                    <div class="au-card-sm border border-primary">
+                                                        <div class="au-card-sm-inner">
+                                                            <h4><span data-i18n="doPerc"></span></h4><br>
+                                                            <center><h2 style="color: #00c0ef;"><span id="doPerc"></span>%</h2></center>
+                                                        </div><br>
+                                                        <a href="/Dissolved-Oxygen-Percentage" class="au-card-sm-footer" style="color: black;">
+                                                            <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-5 mb-3">
-                                                <div class="au-card-sm border border-primary">
-                                                    <div class="au-card-sm-inner">
-                                                        <h4><span data-i18n="phValue"></span></h4><br>
-                                                        <center><h2 style="color: #00c0ef;"><span id="ph"></span></h2></center>
-                                                    </div><br>
-                                                    <a href="/pH-Value" class="au-card-sm-footer" style="color: black;">
-                                                        <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
-                                                    </a>
+                                                <div class="col-md-6 col-lg-5 mb-3">
+                                                    <div class="au-card-sm border border-primary">
+                                                        <div class="au-card-sm-inner">
+                                                            <h4><span data-i18n="phValue"></span></h4><br>
+                                                            <center><h2 style="color: #00c0ef;"><span id="ph"></span></h2></center>
+                                                        </div><br>
+                                                        <a href="/pH-Value" class="au-card-sm-footer" style="color: black;">
+                                                            <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <!-- Third row (1 column) -->
-                                            <div class="col-lg-10 mb-3">
-                                                <div class="au-card-sm border border-primary">
-                                                    <div class="au-card-sm-inner">
-                                                        <h4><span data-i18n="salinity"></span></h4><br>
-                                                        <center><h2 style="color: #00c0ef;"><span id="salinity"></span>ppm</h2></center>
-                                                    </div><br>
-                                                    <a href="/Salinity" class="au-card-sm-footer" style="color: black;">
-                                                        <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
-                                                    </a>
+                                                <!-- Third row (1 column) -->
+                                                <div class="col-lg-10 mb-3">
+                                                    <div class="au-card-sm border border-primary">
+                                                        <div class="au-card-sm-inner">
+                                                            <h4><span data-i18n="salinity"></span></h4><br>
+                                                            <center><h2 style="color: #00c0ef;"><span id="salinity"></span>ppm</h2></center>
+                                                        </div><br>
+                                                        <a href="/Salinity" class="au-card-sm-footer" style="color: black;">
+                                                            <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- END DATA FIELD -->
                                 </div>
-                                <!-- END DATA FIELD -->
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- END MAIN CONTENT-->
             </div>
-            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
         </div>
-        <!-- END PAGE CONTAINER-->
+        <!-- END DOF DASHBOARD -->
+
+        <!-- PEN DASHBOARD -->
+        <div id="DOF-dashboard" class="dashboard-content" style="display: none;">
+            <!-- PAGE CONTAINER-->
+            <div class="page-container">
+                <!-- MAIN CONTENT -->
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col justify-content-start"><h1><span data-i18n="telemetry"></span></h1></div><br><br><br>
+                                <div class="row m-l-10 m-r-10 justify-content-end">
+                                    <div class="col d-flex justify-content-end">
+                                        <div class="table-data__tool">
+                                            <div class="table-data__tool-left">
+                                                <div class="rs-select2--light rs-select2--md">
+                                                    <select class="js-select2" name="logger" id="dropdownLogger">
+                                                        <option value="Tank1" selected>Tank 1</option>
+                                                        <option value="Tank2">Tank 2</option>
+                                                        <option value="Tank3">Tank 3</option>
+                                                    </select>
+                                                    <div class="dropDownSelect2"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                <!-- DATA FIELD -->
+                                    <div class="au-card">
+                                        <div class="au-card-header">
+                                            <h3 id="site"></h3>
+                                            <h4 id="logger"></h4>
+                                        </div><br>
+                                        <div class="au-card-body p-l-0 p-r-0">
+                                            <h6 style="color: rgb(93, 93, 93);"><span data-i18n="selectDataField"></span></h6><br>
+                                            <div class="row justify-content-center">
+                                                <!-- First row (2 columns) -->
+                                                <div class="col-md-6 col-lg-5 mb-3">
+                                                    <div class="au-card-sm border border-primary">
+                                                        <div class="au-card-sm-inner">
+                                                            <h4><span data-i18n="do"></span></h4><br>
+                                                            <center><h2 style="color: #00c0ef;"><span id="do"></span>mg/L</h2></center>
+                                                        </div><br>
+                                                        <a href="/Dissolved-Oxygen" class="au-card-sm-footer" style="color: black;">
+                                                            <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-5 mb-3">
+                                                    <div class="au-card-sm border border-primary">
+                                                        <div class="au-card-sm-inner">
+                                                            <h4><span data-i18n="phValue"></span></h4><br>
+                                                            <center><h2 style="color: #00c0ef;"><span id="ph"></span></h2></center>
+                                                        </div><br>
+                                                        <a href="/pH-Value" class="au-card-sm-footer" style="color: black;">
+                                                            <span data-i18n="moreInfo"></span> <i class="fas fa-arrow-circle-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END DATA FIELD -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MAIN CONTENT-->
+            </div>
+            <!-- END PAGE CONTAINER-->
+        </div>
+        <!-- END PEN DASHBOARD -->
 
     </div>
 
@@ -332,6 +411,9 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
+
+    <!-- Dashboard JS -->
+    <script src="js/index.js"></script>
 
     <!-- Language Switch JS -->
     <script src="js/language_switch.js"></script>

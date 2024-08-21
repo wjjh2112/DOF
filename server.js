@@ -85,7 +85,6 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
-  // Find user in database
   mongoose.connection.db.collection('users').findOne({ email, password }, (err, user) => {
     if (err) {
       return res.status(500).json({ error: 'Internal server error' });
@@ -93,15 +92,17 @@ app.post('/login', (req, res) => {
     if (!user) {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
-    // Return user data including usertype as JSON
+    // Return user data
     res.json({
       firstname: user.firstname,
       lastname: user.lastname,
       email: user.email,
-      usertype: user.usertype
+      usertype: user.usertype,
+      userOrg: user.userOrg
     });
   });
 });
+
 
 app.get('/users', (req, res) => {
   mongoose.connection.db.collection('users').find({}).toArray((err, users) => {
@@ -332,13 +333,6 @@ app.post('/submit-income', upload.array('incomeImages[]'), async (req, res) => {
       res.status(500).json({ success: false, error: 'Failed to save income record' });
   }
 });
-
-app.get('/api/collection/:collectionName/newest', async (req, res) => {
-  const collectionName = req.params.collectionName;
-  const newestData = await db.collection(collectionName).find().sort({ timestamp: -1 }).limit(1).toArray();
-  res.json(newestData[0]);
-});
-
 
 // Start the server
 app.listen(port, () => {
