@@ -188,17 +188,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     setInterval(() => updatePenPHChartAndCurrent(phChart, phElement), 60000);  // Update every 1 minute
 
-    // Update the logger name based on selected logger from dropdown
+    // Initialize logger display
     const dropdownLogger = document.getElementById("dropdownPenLogger");
-    const loggerDisplay = document.getElementById("penLogger");
+    const loggerElement = document.getElementById("penLogger");
 
-    if (dropdownLogger && loggerDisplay) {
-        // Set initial logger value
-        loggerDisplay.textContent = dropdownLogger.value;
+    // Set the initial logger display
+    loggerElement.textContent = dropdownLogger.value;
 
-        // Update logger when dropdown selection changes
-        dropdownLogger.addEventListener("change", function() {
-            loggerDisplay.textContent = this.value;
-        });
-    }
+    // Update logger display on dropdown change
+    dropdownLogger.addEventListener("change", function() {
+        loggerElement.textContent = dropdownLogger.value;
+    });    
 });
