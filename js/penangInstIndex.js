@@ -52,7 +52,7 @@ function initializePenDOLineChart(ctx, initialData) {
             }],
             yAxes: [{
                 ticks: {
-                    min: 4.0,
+                    min: 0.0,
                     max: 7.0,
                     fontFamily: "Poppins"
                 }
@@ -137,7 +137,7 @@ function initializePenPHLineChart(ctx, initialData) {
             }],
             yAxes: [{
                 ticks: {
-                    min: 7.2,
+                    min: 0.0,
                     max: 8.0,
                     fontFamily: "Poppins"
                 }
