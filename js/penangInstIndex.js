@@ -187,4 +187,15 @@ document.addEventListener("DOMContentLoaded", function() {
     phElement.textContent = phInitialData.initialData[phInitialData.initialData.length - 1].toFixed(2);
   
     setInterval(() => updatePenPHChartAndCurrent(phChart, phElement), 60000);  // Update every 1 minute
+
+    const loggerElement = document.getElementById('logger');
+    const dropdownLogger = document.getElementById('dropdownLogger');
+    
+    // Update the logger name on page load
+    loggerElement.textContent = dropdownLogger.options[dropdownLogger.selectedIndex].text;
+
+    // Add an event listener to update the logger name when the dropdown value changes
+    dropdownLogger.addEventListener('change', function() {
+        loggerElement.textContent = dropdownLogger.options[dropdownLogger.selectedIndex].text;
+    });
 });
