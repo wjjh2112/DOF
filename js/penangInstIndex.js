@@ -21,9 +21,9 @@ function initializePenDOLineChart(ctx, initialData) {
         labels: initialData.labels,
         datasets: [{
             label: "Dissolved Oxygen (mg/L)",
-            borderColor: "rgba(0,123,255,255)",
+            borderColor: "rgba(0, 192, 239)",
             borderWidth: 1,
-            backgroundColor: "rgba(77, 163, 255, 0.7)",
+            backgroundColor: "rgba(102, 217, 245)",
             data: initialData.initialData,
         }]
     };
@@ -106,9 +106,9 @@ function initializePenPHLineChart(ctx, initialData) {
         labels: initialData.labels,
         datasets: [{
             label: "pH Value",
-            borderColor: "rgba(0,123,255,255)",
+            borderColor: "rgba(0, 192, 239)",
             borderWidth: 1,
-            backgroundColor: "rgba(77, 163, 255, 0.7)",
+            backgroundColor: "rgba(102, 217, 245)",
             data: initialData.initialData,
         }]
     };
@@ -192,11 +192,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const dropdownLogger = document.getElementById("dropdownLogger");
     const loggerDisplay = document.getElementById("logger");
 
-    // Set initial logger value
-    loggerDisplay.textContent = dropdownLogger.value;
+    if (dropdownLogger && loggerDisplay) {
+        // Set initial logger value
+        loggerDisplay.textContent = dropdownLogger.value;
 
-    // Update logger when dropdown selection changes
-    dropdownLogger.addEventListener("change", function() {
-        loggerDisplay.textContent = this.value;
-    });
+        // Update logger when dropdown selection changes
+        dropdownLogger.addEventListener("change", function() {
+            loggerDisplay.textContent = this.value;
+        });
+    }
 });
