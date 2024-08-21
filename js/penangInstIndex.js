@@ -1,6 +1,6 @@
 // Dissolved Oxygen
 // Function to generate initial dummy data
-function generateDOInitialData() {
+function generatePenDOInitialData() {
     const initialData = [];
     const labels = [];
     const now = new Date();
@@ -16,7 +16,7 @@ function generateDOInitialData() {
 }
   
 // Initialize the real time Dissolved Oxygen line chart
-function initializeDOLineChart(ctx, initialData) {
+function initializePenDOLineChart(ctx, initialData) {
     const data = {
         labels: initialData.labels,
         datasets: [{
@@ -68,24 +68,24 @@ function initializeDOLineChart(ctx, initialData) {
 }
   
 // Update the chart and current with new generated dummy data
-function updateDOChartAndCurrent(chart, currentElement) {
+function updatePenDOChartAndCurrent(chart, currentElement) {
     const now = new Date();
     const newTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
   
     chart.data.labels.push(newTime);
     chart.data.labels.shift();
   
-    const newDO = 4.30 + Math.random() * 2.58; // Generate new dissolved oxygen value between 4.30 and 6.88
-    chart.data.datasets[0].data.push(newDO);
+    const newPenDO = 4.30 + Math.random() * 2.58; // Generate new dissolved oxygen value between 4.30 and 6.88
+    chart.data.datasets[0].data.push(newPenDO);
     chart.data.datasets[0].data.shift();
   
     chart.update();
-    currentElement.textContent = newDO.toFixed(2); // Update the displayed value
+    currentElement.textContent = newPenDO.toFixed(2); // Update the displayed value
 }
 
 // PH Value
 // Function to generate initial dummy data
-function generatePHInitialData() {
+function generatePenPHInitialData() {
     const initialData = [];
     const labels = [];
     const now = new Date();
@@ -101,7 +101,7 @@ function generatePHInitialData() {
 }
   
 // Initialize the real time pH line chart
-function initializePHLineChart(ctx, initialData) {
+function initializePenPHLineChart(ctx, initialData) {
     const data = {
         labels: initialData.labels,
         datasets: [{
@@ -153,38 +153,38 @@ function initializePHLineChart(ctx, initialData) {
 }
   
 // Update the chart and current with new generated dummy data
-function updatePHChartAndCurrent(chart, currentElement) {
+function updatePenPHChartAndCurrent(chart, currentElement) {
     const now = new Date();
     const newTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
   
     chart.data.labels.push(newTime);
     chart.data.labels.shift();
   
-    const newPH = 7.30 + Math.random() * 0.60; // Generate new pH value between 7.30 and 7.90
-    chart.data.datasets[0].data.push(newPH);
+    const newPenPH = 7.30 + Math.random() * 0.60; // Generate new pH value between 7.30 and 7.90
+    chart.data.datasets[0].data.push(newPenPH);
     chart.data.datasets[0].data.shift();
   
     chart.update();
-    currentElement.textContent = newPH.toFixed(2); // Update the displayed value
+    currentElement.textContent = newPenPH.toFixed(2); // Update the displayed value
 }
 
 // Main function to initialize everything
 document.addEventListener("DOMContentLoaded", function() {
     // Initialize Dissolved Oxygen chart
-    const doCtx = document.getElementById("realtimeDO").getContext("2d");
-    const doInitialData = generateDOInitialData();
-    const doChart = initializeDOLineChart(doCtx, doInitialData);
-    const doElement = document.getElementById("do");
+    const doCtx = document.getElementById("realtimePenDO").getContext("2d");
+    const doInitialData = generatePenDOInitialData();
+    const doChart = initializePenDOLineChart(doCtx, doInitialData);
+    const doElement = document.getElementById("penDO");
     doElement.textContent = doInitialData.initialData[doInitialData.initialData.length - 1].toFixed(2);
   
-    setInterval(() => updateDOChartAndCurrent(doChart, doElement), 60000);  // Update every 1 minute
+    setInterval(() => updatePenDOChartAndCurrent(doChart, doElement), 60000);  // Update every 1 minute
 
     // Initialize pH chart
-    const phCtx = document.getElementById("realtimePH").getContext("2d");
-    const phInitialData = generatePHInitialData();
-    const phChart = initializePHLineChart(phCtx, phInitialData);
-    const phElement = document.getElementById("ph");
+    const phCtx = document.getElementById("realtimePenPH").getContext("2d");
+    const phInitialData = generatePenPHInitialData();
+    const phChart = initializePenPHLineChart(phCtx, phInitialData);
+    const phElement = document.getElementById("penPH");
     phElement.textContent = phInitialData.initialData[phInitialData.initialData.length - 1].toFixed(2);
   
-    setInterval(() => updatePHChartAndCurrent(phChart, phElement), 60000);  // Update every 1 minute
+    setInterval(() => updatePenPHChartAndCurrent(phChart, phElement), 60000);  // Update every 1 minute
 });
