@@ -339,12 +339,14 @@ const penSchema = new mongoose.Schema({
     timestamp: { type: Date, default: Date.now } // optional, to track when the data was created
 });
 
-const PEN1_PH = mongoose.model('PEN1_PH', penSchema);
-const PEN1_DO = mongoose.model('PEN1_DO', penSchema);
-const PEN2_PH = mongoose.model('PEN2_PH', penSchema);
-const PEN2_DO = mongoose.model('PEN2_DO', penSchema);
-const PEN3_PH = mongoose.model('PEN3_PH', penSchema);
-const PEN3_DO = mongoose.model('PEN3_DO', penSchema);
+// Define each model with the custom collection name
+const PEN1_PH = mongoose.model('PEN1_PH', penSchema, 'PEN1_PH');
+const PEN1_DO = mongoose.model('PEN1_DO', penSchema, 'PEN1_DO');
+const PEN2_PH = mongoose.model('PEN2_PH', penSchema, 'PEN2_PH');
+const PEN2_DO = mongoose.model('PEN2_DO', penSchema, 'PEN2_DO');
+const PEN3_PH = mongoose.model('PEN3_PH', penSchema, 'PEN3_PH');
+const PEN3_DO = mongoose.model('PEN3_DO', penSchema, 'PEN3_DO');
+
 
 function generateRandomData(min, max) {
   return Math.random() * (max - min) + min;
