@@ -165,12 +165,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    dropdownLogger.addEventListener("change", fetchAndDisplayData);
-
-    dropdownLogger.addEventListener("change", function() {
-        console.log('Dropdown changed:', dropdownLogger.value);
-        fetchAndDisplayData();
-    });
+    $('#dropdownPenLogger').change(fetchAndDisplayData);
 
     // Initial fetch
     fetchAndDisplayData();
