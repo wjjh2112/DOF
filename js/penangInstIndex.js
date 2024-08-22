@@ -36,7 +36,7 @@ function initializePenDOLineChart(ctx, initialData) {
             yAxes: [{
                 ticks: {
                     min: 0.0,
-                    max: 7.0, // Adjust as necessary
+                    max: 9.0, // Adjust as necessary
                     fontFamily: "Poppins"
                 }
             }]
@@ -88,7 +88,7 @@ function initializePenPHLineChart(ctx, initialData) {
             yAxes: [{
                 ticks: {
                     min: 0.0,
-                    max: 8.0, // Adjust as necessary
+                    max: 9.0, // Adjust as necessary
                     fontFamily: "Poppins"
                 }
             }]
@@ -135,15 +135,32 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const dropdownLogger = document.getElementById("dropdownPenLogger");
 
-    async function fetchAndDisplayData() {
-        const tank = dropdownLogger.value;
-        const doLogger = tank + "_DO";
-        const phLogger = tank + "_PH";
+    function mapDropdownValueToTank(value) {
+        switch (value) {
+            case 'Tank 1':
+                return 'PEN1';
+            case 'Tank 2':
+                return 'PEN2';
+            case 'Tank 3':
+                return 'PEN3';
+            default:
+                return '';
+        }
+    }
 
-        // Fetch and update DO data
-        await fetchDataAndUpdateChart(doChart, doElement, doLogger);
-        // Fetch and update PH data
-        await fetchDataAndUpdateChart(phChart, phElement, phLogger);
+    async function fetchAndDisplayData() {
+        const dropdownValue = dropdownLogger.value;
+        const tank = mapDropdownValueToTank(dropdownValue);
+
+        if (tank) {
+            const doLogger = `${tank}_DO`;
+            const phLogger = `${tank}_PH`;
+
+            // Fetch and update DO data
+            await fetchDataAndUpdateChart(doChart, doElement, doLogger);
+            // Fetch and update PH data
+            await fetchDataAndUpdateChart(phChart, phElement, phLogger);
+        }
     }
 
     dropdownLogger.addEventListener("change", fetchAndDisplayData);

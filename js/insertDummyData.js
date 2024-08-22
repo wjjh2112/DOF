@@ -1,4 +1,5 @@
-function generateDummyData(model, min, max) {
+function generateDummyData(tankPrefix, type, min, max) {
+    const model = getModel(tankPrefix, type);
     const dummyData = [];
     for (let i = 0; i < 10; i++) {
         dummyData.push({
@@ -14,10 +15,16 @@ function generateDummyData(model, min, max) {
     });
 }
 
-// Generate dummy data for each collection
-generateDummyData(PEN1_PH, 7.30, 7.90);  // pH range
-generateDummyData(PEN1_DO, 4.30, 6.88);  // DO range
-generateDummyData(PEN2_PH, 7.30, 7.90);
-generateDummyData(PEN2_DO, 4.30, 6.88);
-generateDummyData(PEN3_PH, 7.30, 7.90);
-generateDummyData(PEN3_DO, 4.30, 6.88);
+// Generate dummy data for each tank and type with min and max ranges
+const tanks = ['PEN1', 'PEN2', 'PEN3'];
+const dataRanges = {
+    PH: { min: 7.35, max: 7.45 },
+    DO: { min: 6.50, max: 8.00 }
+};
+
+tanks.forEach(tank => {
+    Object.keys(dataRanges).forEach(type => {
+        const { min, max } = dataRanges[type];
+        generateDummyData(tank, type, min, max);
+    });
+});
