@@ -107,22 +107,25 @@ async function fetchDataAndUpdateChart(chart, currentElement, logger) {
         const response = await fetch(`/api/data/${logger}`);
         const data = await response.json();
 
-        console.log('Fetched data for', logger, ':', data);
-
+        // Map and reverse the labels and payload data
         const labels = data.map(item => {
             const time = new Date(item.timestamp);
             return `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
-        });
+        }).reverse();  // Reverse the labels array
 
-        const payloadData = data.map(item => item.payload);
+        const payloadData = data.map(item => item.payload).reverse();  // Reverse the data array
 
+        // Update the chart labels and data
         chart.data.labels = labels;
         chart.data.datasets[0].data = payloadData;
         chart.update();
 
-        currentElement.textContent = payloadData[payloadData.length - 1].toFixed(2);
+        // Update the current value displayed with the latest value
+        const latestValue = payloadData[payloadData.length - 1];
+        currentElement.textContent = latestValue ? latestValue.toFixed(2) : "N/A";
     } catch (error) {
         console.error('Error fetching data:', error);
+        currentElement.textContent = "Error";
     }
 }
 
