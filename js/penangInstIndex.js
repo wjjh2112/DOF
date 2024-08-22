@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const phElement = document.getElementById("penPH");
 
     const dropdownLogger = document.getElementById("dropdownPenLogger");
+    const penLoggerElement = document.getElementById("penLogger");
 
     function mapDropdownValueToTank(value) {
         switch (value) {
@@ -157,6 +158,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (tank) {
             const doLogger = `${tank}_DO`;
             const phLogger = `${tank}_PH`;
+
+            penLoggerElement.textContent = dropdownValue;
 
             // Fetch and update DO data
             await fetchDataAndUpdateChart(doChart, doElement, doLogger);
