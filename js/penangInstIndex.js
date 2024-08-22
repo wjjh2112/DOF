@@ -50,22 +50,6 @@ function initializePenDOLineChart(ctx, initialData) {
     });
 }
 
-// Update the chart and current with new generated dummy data
-function updatePenDOChartAndCurrent(chart, currentElement) {
-    const now = new Date();
-    const newTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-  
-    chart.data.labels.push(newTime);
-    chart.data.labels.shift();
-  
-    const newPenDO = 4.30 + Math.random() * 2.58; // Generate new dissolved oxygen value between 4.30 and 6.88
-    chart.data.datasets[0].data.push(newPenDO);
-    chart.data.datasets[0].data.shift();
-  
-    chart.update();
-    currentElement.textContent = newPenDO.toFixed(2); // Update the displayed value
-}
-
 // PH Value
 function initializePenPHLineChart(ctx, initialData) {
     const data = {
@@ -151,16 +135,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const dropdownLogger = document.getElementById("dropdownPenLogger");
 
-    dropdownLogger.addEventListener("change", function() {
-        const logger = dropdownLogger.value;
-        fetchDataAndUpdateChart(logger.includes('DO') ? doChart : phChart, logger.includes('DO') ? doElement : phElement, logger);
-    });
+    async function fetchAndDisplayData() {
+        const tank = dropdownLogger.value;
+        const doLogger = tank + "_DO";
+        const phLogger = tank + "_PH";
+
+        // Fetch and update DO data
+        await fetchDataAndUpdateChart(doChart, doElement, doLogger);
+        // Fetch and update PH data
+        await fetchDataAndUpdateChart(phChart, phElement, phLogger);
+    }
+
+    dropdownLogger.addEventListener("change", fetchAndDisplayData);
 
     // Initial fetch
-    fetchDataAndUpdateChart(doChart, doElement, dropdownLogger.value.includes('DO') ? dropdownLogger.value : 'PEN1_DO');
-    fetchDataAndUpdateChart(phChart, phElement, dropdownLogger.value.includes('PH') ? dropdownLogger.value : 'PEN1_PH');
+    fetchAndDisplayData();
 
     // Update every 1 minute
-    setInterval(() => fetchDataAndUpdateChart(doChart, doElement, dropdownLogger.value.includes('DO') ? dropdownLogger.value : 'PEN1_DO'), 60000);
-    setInterval(() => fetchDataAndUpdateChart(phChart, phElement, dropdownLogger.value.includes('PH') ? dropdownLogger.value : 'PEN1_PH'), 60000);
+    setInterval(fetchAndDisplayData, 60000);
 });
