@@ -107,12 +107,14 @@ async function fetchDataAndUpdateChart(chart, currentElement, logger) {
         const response = await fetch(`/api/data/${logger}`);
         const data = await response.json();
 
+        console.log('Fetched data for', logger, ':', data);
+
         const labels = data.map(item => {
             const time = new Date(item.timestamp);
             return `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
         });
 
-        const payloadData = data.map(item => item.payload); // Make sure 'payload' is correct
+        const payloadData = data.map(item => item.payload);
 
         chart.data.labels = labels;
         chart.data.datasets[0].data = payloadData;
@@ -164,6 +166,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     dropdownLogger.addEventListener("change", fetchAndDisplayData);
+
+    dropdownLogger.addEventListener("change", function() {
+        console.log('Dropdown changed:', dropdownLogger.value);
+        fetchAndDisplayData();
+    });
 
     // Initial fetch
     fetchAndDisplayData();
