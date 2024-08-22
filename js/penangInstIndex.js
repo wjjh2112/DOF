@@ -1,21 +1,4 @@
 // Dissolved Oxygen
-// Function to generate initial dummy data
-function generatePenDOInitialData() {
-    const initialData = [];
-    const labels = [];
-    const now = new Date();
-  
-    for (let i = 0; i < 10; i++) {
-        const time = new Date(now.getTime() - (9 - i) * 60 * 1000);
-        const formattedTime = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
-        labels.push(formattedTime);
-        initialData.push(4.30 + Math.random() * 2.58);  // Values between 4.30 and 6.88
-    }
-  
-    return { labels: labels, initialData: initialData };
-}
-  
-// Initialize the real time Dissolved Oxygen line chart
 function initializePenDOLineChart(ctx, initialData) {
     const data = {
         labels: initialData.labels,
@@ -24,7 +7,7 @@ function initializePenDOLineChart(ctx, initialData) {
             borderColor: "rgba(0, 192, 239)",
             borderWidth: 1,
             backgroundColor: "rgba(102, 217, 245, 0.7)",
-            data: initialData.initialData,
+            data: initialData.values, // changed from initialData.initialData to initialData.values
         }]
     };
   
@@ -53,7 +36,7 @@ function initializePenDOLineChart(ctx, initialData) {
             yAxes: [{
                 ticks: {
                     min: 0.0,
-                    max: 7.0,
+                    max: 7.0, // Adjust as necessary
                     fontFamily: "Poppins"
                 }
             }]
@@ -66,7 +49,7 @@ function initializePenDOLineChart(ctx, initialData) {
         options: options
     });
 }
-  
+
 // Update the chart and current with new generated dummy data
 function updatePenDOChartAndCurrent(chart, currentElement) {
     const now = new Date();
@@ -84,23 +67,6 @@ function updatePenDOChartAndCurrent(chart, currentElement) {
 }
 
 // PH Value
-// Function to generate initial dummy data
-function generatePenPHInitialData() {
-    const initialData = [];
-    const labels = [];
-    const now = new Date();
-  
-    for (let i = 0; i < 10; i++) {
-        const time = new Date(now.getTime() - (9 - i) * 60 * 1000);
-        const formattedTime = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
-        labels.push(formattedTime);
-        initialData.push(7.30 + Math.random() * 0.60);  // Values between 7.30 and 7.90
-    }
-  
-    return { labels: labels, initialData: initialData };
-}
-  
-// Initialize the real time pH line chart
 function initializePenPHLineChart(ctx, initialData) {
     const data = {
         labels: initialData.labels,
@@ -109,7 +75,7 @@ function initializePenPHLineChart(ctx, initialData) {
             borderColor: "rgba(0, 192, 239)",
             borderWidth: 1,
             backgroundColor: "rgba(102, 217, 245, 0.7)",
-            data: initialData.initialData,
+            data: initialData.values, // changed from initialData.initialData to initialData.values
         }]
     };
   
@@ -138,7 +104,7 @@ function initializePenPHLineChart(ctx, initialData) {
             yAxes: [{
                 ticks: {
                     min: 0.0,
-                    max: 8.0,
+                    max: 8.0, // Adjust as necessary
                     fontFamily: "Poppins"
                 }
             }]
@@ -151,52 +117,50 @@ function initializePenPHLineChart(ctx, initialData) {
         options: options
     });
 }
-  
-// Update the chart and current with new generated dummy data
-function updatePenPHChartAndCurrent(chart, currentElement) {
-    const now = new Date();
-    const newTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-  
-    chart.data.labels.push(newTime);
-    chart.data.labels.shift();
-  
-    const newPenPH = 7.30 + Math.random() * 0.60; // Generate new pH value between 7.30 and 7.90
-    chart.data.datasets[0].data.push(newPenPH);
-    chart.data.datasets[0].data.shift();
-  
-    chart.update();
-    currentElement.textContent = newPenPH.toFixed(2); // Update the displayed value
+
+async function fetchDataAndUpdateChart(chart, currentElement, logger) {
+    try {
+        const response = await fetch(`/api/data/${logger}`);
+        const data = await response.json();
+
+        const labels = data.map(item => {
+            const time = new Date(item.timestamp);
+            return `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
+        });
+
+        const payloadData = data.map(item => item.payload); // Make sure 'payload' is correct
+
+        chart.data.labels = labels;
+        chart.data.datasets[0].data = payloadData;
+        chart.update();
+
+        currentElement.textContent = payloadData[payloadData.length - 1].toFixed(2);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
 
-// Main function to initialize everything
 document.addEventListener("DOMContentLoaded", function() {
-    // Initialize Dissolved Oxygen chart
     const doCtx = document.getElementById("realtimePenDO").getContext("2d");
-    const doInitialData = generatePenDOInitialData();
-    const doChart = initializePenDOLineChart(doCtx, doInitialData);
+    const doChart = initializePenDOLineChart(doCtx, { labels: [], values: [] });
     const doElement = document.getElementById("penDO");
-    doElement.textContent = doInitialData.initialData[doInitialData.initialData.length - 1].toFixed(2);
 
-    setInterval(() => updatePenDOChartAndCurrent(doChart, doElement), 60000);  // Update every 1 minute
-
-    // Initialize pH chart
     const phCtx = document.getElementById("realtimePenPH").getContext("2d");
-    const phInitialData = generatePenPHInitialData();
-    const phChart = initializePenPHLineChart(phCtx, phInitialData);
+    const phChart = initializePenPHLineChart(phCtx, { labels: [], values: [] });
     const phElement = document.getElementById("penPH");
-    phElement.textContent = phInitialData.initialData[phInitialData.initialData.length - 1].toFixed(2);
 
-    setInterval(() => updatePenPHChartAndCurrent(phChart, phElement), 60000);  // Update every 1 minute
-
-    // Initialize logger display
     const dropdownLogger = document.getElementById("dropdownPenLogger");
-    const loggerElement = document.getElementById("penLogger");
 
-    // Set the initial logger display
-    loggerElement.textContent = dropdownLogger.value;
-
-    // Update logger display on dropdown change
     dropdownLogger.addEventListener("change", function() {
-        loggerElement.textContent = dropdownLogger.value;
-    });    
+        const logger = dropdownLogger.value;
+        fetchDataAndUpdateChart(logger.includes('DO') ? doChart : phChart, logger.includes('DO') ? doElement : phElement, logger);
+    });
+
+    // Initial fetch
+    fetchDataAndUpdateChart(doChart, doElement, dropdownLogger.value.includes('DO') ? dropdownLogger.value : 'PEN1_DO');
+    fetchDataAndUpdateChart(phChart, phElement, dropdownLogger.value.includes('PH') ? dropdownLogger.value : 'PEN1_PH');
+
+    // Update every 1 minute
+    setInterval(() => fetchDataAndUpdateChart(doChart, doElement, dropdownLogger.value.includes('DO') ? dropdownLogger.value : 'PEN1_DO'), 60000);
+    setInterval(() => fetchDataAndUpdateChart(phChart, phElement, dropdownLogger.value.includes('PH') ? dropdownLogger.value : 'PEN1_PH'), 60000);
 });

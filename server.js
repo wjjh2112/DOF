@@ -334,6 +334,76 @@ app.post('/submit-income', upload.array('incomeImages[]'), async (req, res) => {
   }
 });
 
+const penSchema = new mongoose.Schema({
+    payload: Number, // or any other type that suits your needs
+    timestamp: { type: Date, default: Date.now } // optional, to track when the data was created
+});
+
+const PEN1_PH = mongoose.model('PEN1_PH', penSchema);
+const PEN1_DO = mongoose.model('PEN1_DO', penSchema);
+const PEN2_PH = mongoose.model('PEN2_PH', penSchema);
+const PEN2_DO = mongoose.model('PEN2_DO', penSchema);
+const PEN3_PH = mongoose.model('PEN3_PH', penSchema);
+const PEN3_DO = mongoose.model('PEN3_DO', penSchema);
+
+function generateRandomData(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function storeDummyData() {
+  const pen1PH = new PEN1_PH({ payload: generateRandomData(7.30, 7.90) });
+  const pen1DO = new PEN1_DO({ payload: generateRandomData(4.30, 6.88) });
+  const pen2PH = new PEN2_PH({ payload: generateRandomData(7.30, 7.90) });
+  const pen2DO = new PEN2_DO({ payload: generateRandomData(4.30, 6.88) });
+  const pen3PH = new PEN3_PH({ payload: generateRandomData(7.30, 7.90) });
+  const pen3DO = new PEN3_DO({ payload: generateRandomData(4.30, 6.88) });
+
+  pen1PH.save();
+  pen1DO.save();
+  pen2PH.save();
+  pen2DO.save();
+  pen3PH.save();
+  pen3DO.save();
+}
+
+setInterval(storeDummyData, 60000); // Run every 60 seconds (1 minute)
+
+app.get('/api/data/:logger', async (req, res) => {
+  const logger = req.params.logger;
+  let model;
+
+  switch (logger) {
+      case 'PEN1_PH':
+          model = PEN1_PH;
+          break;
+      case 'PEN1_DO':
+          model = PEN1_DO;
+          break;
+      case 'PEN2_PH':
+          model = PEN2_PH;
+          break;
+      case 'PEN2_DO':
+          model = PEN2_DO;
+          break;
+      case 'PEN3_PH':
+          model = PEN3_PH;
+          break;
+      case 'PEN3_DO':
+          model = PEN3_DO;
+          break;
+      default:
+          return res.status(400).send('Invalid logger');
+  }
+
+  try {
+      const data = await model.find().sort({ timestamp: -1 }).limit(10); // Fetch latest 10 records
+      res.json(data);
+  } catch (err) {
+      res.status(500).send('Error fetching data');
+  }
+});
+
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
