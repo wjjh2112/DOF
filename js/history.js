@@ -1,3 +1,18 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+
+    if (userData) {
+        // Control dashboard based on user organization
+        if (userData.userOrg === 'DOF') {
+            document.getElementById('DOF-history').style.display = 'block';
+        }
+        else if (userData.userOrg === 'Penang Institute') {
+            document.getElementById('PenangInstitute-history').style.display = 'block';
+        }
+        
+    } 
+});
+
 $(function() {
     // Initialize Date Range Picker
     $('#dateRangePicker').daterangepicker({

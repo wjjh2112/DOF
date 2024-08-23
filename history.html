@@ -193,303 +193,378 @@
       </aside>
       <!-- END MENU SIDEBAR-->
 
+      <!-- DOF HISTORY -->
+      <div id="DOF-history" class="dashboard-content" style="display: none;">
         <!-- PAGE CONTAINER-->
         <div class="page-container">
-            <!-- MAIN CONTENT-->
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col justify-content-start"><h1><span data-i18n="history"></span></h1></div><br><br><br>
-                            <div class="row justify-content-end">
-                              <div class="col m-r-10 d-flex justify-content-end">
-                                <div class="table-data__tool">
-                                    <div class="table-data__tool-left">
-                                        <div class="rs-select2--light rs-select2--sm">
-                                            <select class="js-select2" name="sites" id="dropdownSites">
-                                                <option selected="Site">Site</option>
-                                                <option value="Santubong CageFarm">Santubong CageFarm</option>
-                                                <option value="Rambungan CageFarm">Rambungan CageFarm</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-data__tool">
-                                    <div class="table-data__tool-left">
-                                        <div class="rs-select2--light rs-select2--md">
-                                            <select class="js-select2" name="logger" id="dropdownLogger">
-                                                <option selected="Logger">Logger</option>
-                                                <option value="Logger 1">Logger 1</option>
-                                                <option value="Logger 2">Logger 2</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </div>
-                                </div>
+          <!-- MAIN CONTENT-->
+          <div class="main-content">
+              <div class="section__content section__content--p30">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col justify-content-start"><h1><span data-i18n="history"></span></h1></div><br><br><br>
+                          <div class="row justify-content-end">
+                            <div class="col m-r-10 d-flex justify-content-end">
+                              <div class="table-data__tool">
+                                  <div class="table-data__tool-left">
+                                      <div class="rs-select2--light rs-select2--sm">
+                                          <select class="js-select2" name="sites" id="dropdownSites">
+                                              <option selected="Site">Site</option>
+                                              <option value="Santubong CageFarm">Santubong CageFarm</option>
+                                              <option value="Rambungan CageFarm">Rambungan CageFarm</option>
+                                          </select>
+                                          <div class="dropDownSelect2"></div>
+                                      </div>
+                                  </div>
                               </div>
-                              <div class="col m-r-10 d-flex justify-content-end">
-                                <div class="table-data__tool">
-                                    <div class="table-data__tool-left">
-                                        <div class="rs-select2--light">
-                                            <input type="text" id="dateRangePicker" name="daterange" placeholder="Select Date Range"/>
-                                        </div>
-                                    </div>
-                                </div>
+                              <div class="table-data__tool">
+                                  <div class="table-data__tool-left">
+                                      <div class="rs-select2--light rs-select2--md">
+                                          <select class="js-select2" name="logger" id="dropdownLogger">
+                                              <option selected="Logger">Logger</option>
+                                              <option value="Logger 1">Logger 1</option>
+                                              <option value="Logger 2">Logger 2</option>
+                                          </select>
+                                          <div class="dropDownSelect2"></div>
+                                      </div>
+                                  </div>
                               </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <!-- DATA TABLE -->
-                                <div class="au-card">
-                                    <div class="au-card-header">
-                                        <h3>All Sites</h3>
-                                        <h4>All Loggers</h4>
-                                    </div><br>
-                                    <table id="history" class="table table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                          <th>Logger ID</th>
-                                          <th>Date</th>
-                                          <th>Time</th>
-                                          <th>Temp (&deg;C)</th>
-                                          <th>DO (mgL)</th>
-                                          <th>DO (%)</th>
-                                          <th>pH</th>
-                                          <th>EC</th>
-                                          <th>HEX</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/08/2024
-                                          </td>
-                                          <td>13:15:26</td>
-                                          <td> 30.8</td>
-                                          <td>4.97</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/08/2024
-                                          </td>
-                                          <td>
-                                            12:14:20</td>
-                                          <td> 30.8</td>
-                                          <td>4.97</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/08/2024
-                                          </td>
-                                          <td>11:13:16</td>
-                                          <td> 30.8</td>
-                                          <td>4.97</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/07/2024
-                                          </td>
-                                          <td>10:12:11</td>
-                                          <td> 30.8</td>
-                                          <td>5.91</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/07/2024
-                                          </td>
-                                          <td>
-                                            09:11:06</td>
-                                          <td> 29.8</td>
-                                          <td>4.97</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/07/2024
-                                          </td>
-                                          <td>08:10:01</td>
-                                          <td> 30.8</td>
-                                          <td>5.91</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/06/2024
-                                          </td>
-                                          <td>
-                                            07:08:56</td>
-                                          <td> 28.7</td>
-                                          <td>3.7</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/06/2024
-                                          </td>
-                                          <td>
-                                            06:07:50</td>
-                                          <td> 29.1</td>
-                                          <td>3.59</td>
-                                          <td>45.00</td>
-                                          <td>7.48</td>
-                                          <td>11490.96</td>
-                                          <td>28330167002D02EC46338BD3</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/06/2024
-                                          </td>
-                                          <td>05:06:44</td>
-                                          <td> 30.8</td>
-                                          <td>4.97</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/05/2024
-                                          </td>
-                                          <td>
-                                            04:05:39</td>
-                                          <td> 29.8</td>
-                                          <td>3.7</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/05/2024
-                                          </td>
-                                          <td>03:04:33</td>
-                                          <td> 30.8</td>
-                                          <td>4.97</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/05/2024
-                                          </td>
-                                          <td>
-                                            02:03:27</td>
-                                          <td> 28.7</td>
-                                          <td>5.91</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/04/2024
-                                          </td>
-                                          <td>
-                                            01:02:23</td>
-                                          <td> 30.8</td>
-                                          <td>4.97</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/04/2024
-                                          </td>
-                                          <td>
-                                            23:00:11</td>
-                                          <td> 30.8</td>
-                                          <td>3.7</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/04/2024
-                                          </td>
-                                          <td>13:15:26</td>
-                                          <td> 30.8</td>
-                                          <td>4.97</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        <tr>
-                                          <td>#356349280179954</td>
-                                          <td>
-                                            31/03/2024
-                                          </td>
-                                          <td>13:15:26</td>
-                                          <td> 30.8</td>
-                                          <td>4.97</td>
-                                          <td>65.00</td>
-                                          <td>7.77</td>
-                                          <td>12799.99</td>
-                                          <td>284401F1004103094647FFF7</td>
-                                        </tr>
-                                        </tbody>
-                                      </table>
-                                </div>
+                            <div class="col m-r-10 d-flex justify-content-end">
+                              <div class="table-data__tool">
+                                  <div class="table-data__tool-left">
+                                      <div class="rs-select2--light">
+                                          <input type="text" id="dateRangePicker" name="daterange" placeholder="Select Date Range"/>
+                                      </div>
+                                  </div>
+                              </div>
                             </div>
-                        </div>
-                        <div class="row p-t-40"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col">
+                              <!-- DATA TABLE -->
+                              <div class="au-card">
+                                  <div class="au-card-header">
+                                      <h3>All Sites</h3>
+                                      <h4>All Loggers</h4>
+                                  </div><br>
+                                  <table id="history" class="table table-bordered table-striped">
+                                      <thead>
+                                      <tr>
+                                        <th>Logger ID</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Temp (&deg;C)</th>
+                                        <th>DO (mgL)</th>
+                                        <th>DO (%)</th>
+                                        <th>pH</th>
+                                        <th>EC</th>
+                                        <th>HEX</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/08/2024
+                                        </td>
+                                        <td>13:15:26</td>
+                                        <td> 30.8</td>
+                                        <td>4.97</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/08/2024
+                                        </td>
+                                        <td>
+                                          12:14:20</td>
+                                        <td> 30.8</td>
+                                        <td>4.97</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/08/2024
+                                        </td>
+                                        <td>11:13:16</td>
+                                        <td> 30.8</td>
+                                        <td>4.97</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/07/2024
+                                        </td>
+                                        <td>10:12:11</td>
+                                        <td> 30.8</td>
+                                        <td>5.91</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/07/2024
+                                        </td>
+                                        <td>
+                                          09:11:06</td>
+                                        <td> 29.8</td>
+                                        <td>4.97</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/07/2024
+                                        </td>
+                                        <td>08:10:01</td>
+                                        <td> 30.8</td>
+                                        <td>5.91</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/06/2024
+                                        </td>
+                                        <td>
+                                          07:08:56</td>
+                                        <td> 28.7</td>
+                                        <td>3.7</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/06/2024
+                                        </td>
+                                        <td>
+                                          06:07:50</td>
+                                        <td> 29.1</td>
+                                        <td>3.59</td>
+                                        <td>45.00</td>
+                                        <td>7.48</td>
+                                        <td>11490.96</td>
+                                        <td>28330167002D02EC46338BD3</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/06/2024
+                                        </td>
+                                        <td>05:06:44</td>
+                                        <td> 30.8</td>
+                                        <td>4.97</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/05/2024
+                                        </td>
+                                        <td>
+                                          04:05:39</td>
+                                        <td> 29.8</td>
+                                        <td>3.7</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/05/2024
+                                        </td>
+                                        <td>03:04:33</td>
+                                        <td> 30.8</td>
+                                        <td>4.97</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/05/2024
+                                        </td>
+                                        <td>
+                                          02:03:27</td>
+                                        <td> 28.7</td>
+                                        <td>5.91</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/04/2024
+                                        </td>
+                                        <td>
+                                          01:02:23</td>
+                                        <td> 30.8</td>
+                                        <td>4.97</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/04/2024
+                                        </td>
+                                        <td>
+                                          23:00:11</td>
+                                        <td> 30.8</td>
+                                        <td>3.7</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/04/2024
+                                        </td>
+                                        <td>13:15:26</td>
+                                        <td> 30.8</td>
+                                        <td>4.97</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      <tr>
+                                        <td>#356349280179954</td>
+                                        <td>
+                                          31/03/2024
+                                        </td>
+                                        <td>13:15:26</td>
+                                        <td> 30.8</td>
+                                        <td>4.97</td>
+                                        <td>65.00</td>
+                                        <td>7.77</td>
+                                        <td>12799.99</td>
+                                        <td>284401F1004103094647FFF7</td>
+                                      </tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row p-t-40"></div>
+                  </div>
+              </div>
+          </div>
+          <!-- END MAIN CONTENT-->
         </div>
+      <!-- END PAGE CONTAINER-->
+      </div>
+      <!-- END DOF HISTORY -->
+
+      <!-- PEN HISTORY -->
+      <div id="PenangInstitute-history" class="dashboard-content" style="display: none;">
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+          <!-- MAIN CONTENT-->
+          <div class="main-content">
+              <div class="section__content section__content--p30">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col justify-content-start"><h1><span data-i18n="history"></span></h1></div><br><br><br>
+                          <div class="row justify-content-end">
+                            <div class="col m-r-10 d-flex justify-content-end">
+                              <div class="table-data__tool">
+                                  <div class="table-data__tool-left">
+                                      <div class="rs-select2--light rs-select2--md">
+                                        <select class="js-select2" name="penLogger" id="dropdownPenLogger">
+                                          <option value="" selected>All Tanks</option>
+                                          <option value="Tank 1">Tank 1</option>
+                                          <option value="Tank 2">Tank 2</option>
+                                          <option value="Tank 3">Tank 3</option>
+                                      </select>
+                                      <div class="dropDownSelect2"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col m-r-10 d-flex justify-content-end">
+                              <div class="table-data__tool">
+                                  <div class="table-data__tool-left">
+                                      <div class="rs-select2--light">
+                                          <input type="text" id="penDateRangePicker" name="penDaterange" placeholder="Select Date Range"/>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col">
+                              <!-- DATA TABLE -->
+                              <div class="au-card">
+                                  <div class="au-card-header">
+                                      <h3 id="penLogger"></h3>
+                                  </div><br>
+                                  <table class="table table-bordered table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th>Device ID</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>DO (mgL)</th>
+                                        <th>pH</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="penHistory">
+                                        <!-- Penang Institute History will be dynamically inserted here -->
+                                    </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row p-t-40"></div>
+                  </div>
+              </div>
+          </div>
+          <!-- END MAIN CONTENT-->
+        </div>
+      <!-- END PAGE CONTAINER-->
+      </div>
+      <!-- END PEN HISTORY -->
 
     </div>
 

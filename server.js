@@ -384,6 +384,33 @@ app.get('/api/data/:logger', async (req, res) => {
   }
 });
 
+app.get('/api/data', async (req, res) => {
+  const { logger, startDate, endDate } = req.query; // Read query parameters
+  const [tankPrefix, type] = logger.split('_');
+
+  if (!tankPrefix || !type) {
+    return res.status(400).send('Invalid logger format');
+  }
+
+  const model = getModel(tankPrefix, type);
+  
+  // Build query object
+  const query = {};
+  if (startDate && endDate) {
+    query.timestamp = {
+      $gte: new Date(startDate),
+      $lte: new Date(endDate)
+    };
+  }
+
+  try {
+    const data = await model.find(query).sort({ timestamp: -1 }); // Fetch data based on filters
+    res.json(data);
+  } catch (err) {
+    res.status(500).send('Error fetching data');
+  }
+});
+
 
 // Start the server
 app.listen(port, () => {
