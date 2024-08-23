@@ -385,32 +385,42 @@ app.get('/api/data/:logger', async (req, res) => {
 });
 
 app.get('/api/data', async (req, res) => {
-  const { logger, startDate, endDate } = req.query; // Read query parameters
-  const [tankPrefix, type] = logger.split('_');
-
-  if (!tankPrefix || !type) {
-    return res.status(400).send('Invalid logger format');
-  }
-
-  const model = getModel(tankPrefix, type);
+  const { tank, startDate, endDate } = req.query;
   
-  // Build query object
-  const query = {};
-  if (startDate && endDate) {
-    query.timestamp = {
-      $gte: new Date(startDate),
-      $lte: new Date(endDate)
-    };
-  }
+  // Create an array to store promises for each tank's data
+  const promises = [];
+
+  const tanks = tank ? [tank] : ['PEN1', 'PEN2', 'PEN3'];
+  tanks.forEach(tankPrefix => {
+      ['DO', 'PH'].forEach(type => {
+          const model = getModel(tankPrefix, type);
+          const query = {};
+
+          // Apply date filter if both startDate and endDate are provided
+          if (startDate && endDate) {
+              query.timestamp = {
+                  $gte: new Date(startDate),
+                  $lte: new Date(endDate)
+              };
+          }
+
+          promises.push(
+              model.find(query).sort({ timestamp: -1 }).exec()
+          );
+      });
+  });
 
   try {
-    const data = await model.find(query).sort({ timestamp: -1 }); // Fetch data based on filters
-    res.json(data);
+      const results = await Promise.all(promises);
+      // Combine all the results into a single array
+      const data = results.flat();
+      // Sort combined results by timestamp in descending order
+      data.sort((a, b) => b.timestamp - a.timestamp);
+      res.json(data);
   } catch (err) {
-    res.status(500).send('Error fetching data');
+      res.status(500).send('Error fetching data');
   }
 });
-
 
 // Start the server
 app.listen(port, () => {
