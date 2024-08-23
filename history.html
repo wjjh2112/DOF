@@ -539,7 +539,7 @@
                                   <div class="au-card-header">
                                       <h3 id="penLogger"></h3>
                                   </div><br>
-                                  <table class="table table-bordered table-striped">
+                                  <table id="penHistory" class="table table-bordered table-striped">
                                     <thead>
                                       <tr>
                                         <th>Device ID</th>
@@ -623,10 +623,15 @@
     <!-- Page specific script -->
     <script>
         $(function () {
-        $("#history").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#history_wrapper .col-md-6:eq(0)');
+          $("#history").DataTable({
+              "responsive": true, "lengthChange": false, "autoWidth": false,
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          }).buttons().container().appendTo('#history_wrapper .col-md-6:eq(0)');
+
+          $("#penHistory").DataTable({
+              "responsive": true, "lengthChange": false, "autoWidth": false,
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          }).buttons().container().appendTo('#history_wrapper .col-md-6:eq(0)');
         });
     </script>
     
