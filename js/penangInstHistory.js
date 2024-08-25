@@ -39,6 +39,7 @@ $(function() {
                 endDate: endDate
             },
             success: function(data) {
+                console.log('Data received from server:', data);
                 const tbody = $('#penHistory');
                 tbody.empty(); // Clear existing rows
 
