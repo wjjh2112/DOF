@@ -73,6 +73,9 @@
     "linkExp": "Link Expiry (days)",
     "admin": "Admin",
     "viewer": "Viewer",
+    "org": "Organisation",
+    "dof": "Department Of Fishery",
+    "pen": "Penang Institute",
     "generateButton": "Generate Link",
 
     "dwCSV": "Download CSV",
