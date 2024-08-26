@@ -45,8 +45,6 @@ $(function() {
             case 'PEN3_DO':
             case 'PEN3_PH':
                 return 'Tank 3';
-            default:
-                return 'Unknown Tank';
         }
     }
 
@@ -72,7 +70,7 @@ $(function() {
             },
             success: function(data) {
                 console.log('Data received from server:', data);
-                const tbody = $('#penHistory');
+                const tbody = $('#penHistoryBody');
                 tbody.empty(); // Clear existing rows
 
                 if (data.length === 0) {
@@ -81,7 +79,7 @@ $(function() {
                     data.forEach(record => {
                         const date = moment(record.timestamp).format('DD/MM/YYYY');
                         const time = moment(record.timestamp).format('HH:mm:ss');
-                        tbody.append(`
+                        const row = `
                             <tr>
                                 <td>${mapTankToDeviceID(record._id)}</td>
                                 <td>${date}</td>
@@ -89,7 +87,8 @@ $(function() {
                                 <td>${record.payload}</td>
                                 <td>${record.payload}</td>
                             </tr>
-                        `);
+                        `;
+                        tbody.innerHTML += row;
                     });
                 }
             },
