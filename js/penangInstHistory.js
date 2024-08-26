@@ -79,7 +79,7 @@ $(function() {
                     data.forEach(record => {
                         const date = moment(record.timestamp).format('DD/MM/YYYY');
                         const time = moment(record.timestamp).format('HH:mm:ss');
-                        const row = `
+                        tbody.append(`
                             <tr>
                                 <td>${mapTankToDeviceID(record._id)}</td>
                                 <td>${date}</td>
@@ -87,8 +87,7 @@ $(function() {
                                 <td>${record.payload}</td>
                                 <td>${record.payload}</td>
                             </tr>
-                        `;
-                        tbody.innerHTML += row;
+                        `);
                     });
                 }
             },
