@@ -18,36 +18,6 @@ $(function() {
         autoUpdateInput: false
     });
 
-    // Helper function to map dropdown value to tank identifier
-    function mapDropdownValueToTank(dropdownValue) {
-        switch (dropdownValue) {
-            case 'Tank 1':
-                return 'PEN1';
-            case 'Tank 2':
-                return 'PEN2';
-            case 'Tank 3':
-                return 'PEN3';
-            case 'All Tanks':
-            default:
-                return '';  // Return empty to indicate all tanks
-        }
-    }
-
-    // Helper function to map tank identifier to device ID (if needed)
-    function mapTankToDeviceID(tankID) {
-        switch (tankID) {
-            case 'PEN1_DO':
-            case 'PEN1_PH':
-                return 'Tank 1';
-            case 'PEN2_DO':
-            case 'PEN2_PH':
-                return 'Tank 2';
-            case 'PEN3_DO':
-            case 'PEN3_PH':
-                return 'Tank 3';
-        }
-    }
-
     function fetchDataAndDisplayTable() {
         const tank = $('#dropdownPenLogger').val();
         const dateRange = $('#penDateRangePicker').val();
@@ -79,9 +49,11 @@ $(function() {
                     data.forEach(record => {
                         const date = moment(record.timestamp).format('DD/MM/YYYY');
                         const time = moment(record.timestamp).format('HH:mm:ss');
+                        const tankName = record.collection.split('_')[0]; // Extract 'PEN1', 'PEN2', etc.
+
                         tbody.append(`
                             <tr>
-                                <td>${mapTankToDeviceID(record._id)}</td>
+                                <td>${tankName}</td>
                                 <td>${date}</td>
                                 <td>${time}</td>
                                 <td>${record.payload}</td>

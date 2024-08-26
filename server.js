@@ -404,8 +404,11 @@ app.get('/api/data', async (req, res) => {
               };
           }
 
+          // Push a promise that also includes the collection name in the result
           promises.push(
-              model.find(query).sort({ timestamp: -1 }).exec()
+              model.find(query).sort({ timestamp: -1 }).exec().then(results => 
+                  results.map(record => ({ ...record.toObject(), collection: `${tankPrefix}_${type}` }))
+              )
           );
       });
   });
