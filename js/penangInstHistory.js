@@ -18,6 +18,21 @@ $(function() {
         autoUpdateInput: false
     });
 
+    // Helper function to map dropdown value to tank identifier
+    function mapDropdownValueToTank(dropdownValue) {
+        switch (dropdownValue) {
+            case 'Tank 1':
+                return 'PEN1';
+            case 'Tank 2':
+                return 'PEN2';
+            case 'Tank 3':
+                return 'PEN3';
+            case 'All Tanks':
+            default:
+                return '';  // Return empty to indicate all tanks
+        }
+    }
+
     function fetchDataAndDisplayTable() {
         const tank = $('#dropdownPenLogger').val();
         const dateRange = $('#penDateRangePicker').val();
