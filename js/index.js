@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
         else if (userData.userOrg === 'Penang Institute') {
             document.getElementById('PenangInstitute-dashboard').style.display = 'block';
         }
-        
+
+        if (userData.userOrg === 'Admin'){
+            document.getElementById('mobile-dof-accounting').style.display = 'block';
+            document.getElementById('sidebar-dof-accounting').style.display= 'block';
+        }
     } else {
         // Redirect to login page if user data is not found
         window.location.href = '/login';
