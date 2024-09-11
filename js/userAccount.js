@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('sidebar-dof-accounting').style.display = 'none';
             document.getElementById('mobile-dof-accounting').style.display = 'none';
         }
+
+        if (userData.userOrg === 'Admin') {
+            document.getElementById('sidebar-dof-accounting').style.display = 'block';
+            document.getElementById('mobile-dof-accounting').style.display = 'block';
+        }
         
     } else {
         // Redirect to login page if user data is not found
