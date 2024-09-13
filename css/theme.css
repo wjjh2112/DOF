@@ -1955,7 +1955,7 @@ input[type="file"] {
 
 
 .has-sub {
-    position: relative;
+    position: static;
 }
 
 .header-mobile {
