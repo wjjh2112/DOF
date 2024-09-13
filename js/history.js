@@ -9,10 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
         else if (userData.userOrg === 'Penang Institute') {
             document.getElementById('PenangInstitute-history').style.display = 'block';
         }
-        else (userData.userOrg === 'Admin') {
+
+        else (userData.userOrg === 'Admin'){
             document.getElementById('Admin-History').style.display = 'block';
         }
-    }
+        
+    } 
 });
 
 $(function() {
