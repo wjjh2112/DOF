@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (userData.userOrg === 'Admin'){
-            document.getElementById('mobile-dof-accounting').style.display = 'block';
-            document.getElementById('sidebar-dof-accounting').style.display= 'block';
+            document.getElementById(Admin-dashboard')style.display = 'block''
         }
     } else {
         // Redirect to login page if user data is not found
