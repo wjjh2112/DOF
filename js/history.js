@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('PenangInstitute-history').style.display = 'block';
         }
         else (userData.userOrg === 'Admin'){
-            document.getElementById('Admin
+            document.getElementById('Admin-History').style.display = 'block';
         } 
 });
 
