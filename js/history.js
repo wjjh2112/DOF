@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (userData.userOrg === 'DOF') {
             document.getElementById('DOF-history').style.display = 'block';
         }
-        if (userData.userOrg === 'Penang Institute') {
+        else if (userData.userOrg === 'Penang Institute') {
             document.getElementById('PenangInstitute-history').style.display = 'block';
         }
 
-        else (userData.userOrg === 'Admin'){
+        if (userData.userOrg === 'Admin'){
             document.getElementById('Admin-History').style.display = 'block';
         }
         
