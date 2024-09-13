@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (userData.userOrg === 'Admin'){
             document.getElementById(Admin-dashboard')style.display = 'block';
-            document.getElementById(Admin
         }
+        
     } else {
         // Redirect to login page if user data is not found
         window.location.href = '/login';
