@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (userData.userOrg === 'Admin'){
-            document.getElementById(Admin-dashboard')style.display = 'block';
+            document.getElementById('Admin-dashboard')style.display = 'block';
         }
         
     } else {
