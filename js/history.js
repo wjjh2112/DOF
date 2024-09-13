@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (userData.userOrg === 'DOF') {
             document.getElementById('DOF-history').style.display = 'block';
         }
-        else if (userData.userOrg === 'Penang Institute') {
+        if (userData.userOrg === 'Penang Institute') {
             document.getElementById('PenangInstitute-history').style.display = 'block';
         }
 
