@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else (userData.userOrg === 'Admin'){
             document.getElementById('Admin-History').style.display = 'block';
-        } 
+        }
+    }
 });
 
 $(function() {
