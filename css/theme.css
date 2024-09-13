@@ -4625,11 +4625,12 @@ input[type="file"] {
 .table {
     width: 100%;
     table-layout: auto;
+    margin: 0;
 }
 
 .table-container {
     overflow-x: auto;
-    max-height: 200px;
+    max-height: 400px;
     border-radius: 8px;
 }
 
