@@ -13,11 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('mobile-dof-accounting').style.display = 'none';
         }
 
-        if (userData.userOrg === 'Admin') {
-            document.getElementById('sidebar-dof-accounting').style.display = 'block';
-            document.getElementById('mobile-dof-accounting').style.display = 'block';
-        }
-
 
         
     } else {
